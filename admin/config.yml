@@ -1,0 +1,177 @@
+# 本檔為可讀性備份；實際運行的 CMS 配置在 admin/config.js。
+# 修改請兩邊同步，勿僅改此檔。
+backend:
+  name: github
+  repo: CBAIC888/crivu-blog
+  branch: main
+  base_url: https://cbc688.com
+  auth_endpoint: /api/auth
+  commit_messages:
+    create: "content: create {{collection}} '{{slug}}'"
+    update: "content: update {{collection}} '{{slug}}'"
+    delete: "content: delete {{collection}} '{{slug}}'"
+    uploadMedia: "media: upload '{{path}}'"
+    deleteMedia: "media: delete '{{path}}'"
+
+media_folder: "assets/img/uploads"
+public_folder: "/assets/img/uploads"
+media_library:
+  name: "crivu-r2-images"
+publish_mode: editorial_workflow
+logo_url: "/assets/img/favicon.png"
+display_url: "https://cbc688.com"
+
+collections:
+  - name: "posts"
+    label: "文章"
+    label_singular: "文章"
+    description: "管理所有文章。"
+    sortable_fields: ["commit_date", "commit_author"]
+    files:
+      - name: "posts"
+        label: "文章列表"
+        file: "posts/posts.json"
+        format: "json"
+        fields:
+          - label: "文章"
+            name: "items"
+            widget: "list"
+            label_singular: "文章"
+            summary: "{{fields.date | date('YYYY-MM-DD')}} · {{fields.title}}"
+            collapsed: true
+            minimize_collapsed: true
+            add_to_top: true
+            fields:
+              - { label: "前台發布", name: "published", widget: "boolean", required: false, default: false, hint: "確認內容完成後再開啟；未開啟時不會出現在前台。" }
+              - { label: "標題", name: "title", widget: "string" }
+              - { label: "日期", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ", date_format: "YYYY-MM-DD", time_format: "HH:mm", picker_utc: false }
+              - { label: "分類", name: "category", widget: "string", required: false }
+              - { label: "標籤", name: "tags", widget: "list", required: false, allow_add: true }
+              - { label: "摘要", name: "excerpt", widget: "text", required: false }
+              - { label: "封面", name: "cover", widget: "image", required: false }
+              - { label: "期刊 ID", name: "issue", widget: "string", required: false }
+              - { label: "Slug", name: "slug", widget: "string" }
+              - { label: "內文", name: "body", widget: "markdown", hint: "支援 Markdown，可寫 **粗體**、## 標題、> 引用、- 列表、[紅字]{red}、==標記==；右側可即時預覽，發布後直接渲染為正式文章。" }
+
+  - name: "issues"
+    label: "期刊"
+    label_singular: "期刊"
+    sortable_fields: ["commit_date", "commit_author"]
+    files:
+      - name: "issues"
+        label: "期刊列表"
+        file: "posts/issues.json"
+        format: "json"
+        fields:
+          - label: "期刊"
+            name: "issues"
+            widget: "list"
+            summary: "{{fields.id}} · {{fields.title}}"
+            collapsed: true
+            minimize_collapsed: true
+            fields:
+              - { label: "前台發布", name: "published", widget: "boolean", required: false, default: false, hint: "確認封面、編者語及收錄文章後再開啟。" }
+              - { label: "期刊 ID", name: "id", widget: "string" }
+              - { label: "標題", name: "title", widget: "string" }
+              - { label: "主題", name: "theme", widget: "string", required: false }
+              - { label: "封面", name: "cover", widget: "image", required: false }
+              - { label: "發布日期", name: "publishDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ", date_format: "YYYY-MM-DD", time_format: "HH:mm", picker_utc: false, required: false }
+              - { label: "編者語", name: "editorNote", widget: "text", required: false }
+              - label: "收錄文章（Slug 列表）"
+                name: "posts"
+                widget: "list"
+                required: false
+                allow_add: true
+                collapsed: false
+                field: { label: "文章 Slug", name: "slug", widget: "string" }
+
+  - name: "records"
+    label: "紀錄"
+    label_singular: "紀錄"
+    description: "管理專題紀錄、外部影片與照片介紹。"
+    sortable_fields: ["commit_date", "commit_author"]
+    files:
+      - name: "records"
+        label: "紀錄列表"
+        file: "posts/records.json"
+        format: "json"
+        fields:
+          - label: "紀錄"
+            name: "records"
+            widget: "list"
+            summary: "{{fields.date}} · {{fields.title}}"
+            collapsed: true
+            minimize_collapsed: true
+            add_to_top: true
+            fields:
+              - { label: "前台發布", name: "published", widget: "boolean", required: false, default: false, hint: "未開啟時首頁、紀錄頁及詳情頁均不顯示。" }
+              - { label: "紀錄 ID", name: "id", widget: "string", pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "ID 只能包含小寫英文、數字和連字號"] }
+              - { label: "標題", name: "title", widget: "string" }
+              - { label: "建立日期", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ", date_format: "YYYY-MM-DD", time_format: "HH:mm", picker_utc: false }
+              - { label: "封面", name: "cover", widget: "image" }
+              - { label: "專題介紹", name: "summary", widget: "text", required: false }
+              - label: "影片"
+                name: "videos"
+                widget: "list"
+                required: false
+                collapsed: true
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: "前台顯示", name: "published", widget: "boolean", required: false, default: false }
+                  - { label: "標題", name: "title", widget: "string" }
+                  - { label: "封面", name: "cover", widget: "image" }
+                  - { label: "介紹", name: "description", widget: "text", required: false }
+                  - { label: "外部網址", name: "url", widget: "string", hint: "點擊後以新分頁開啟；請填完整 https:// 網址。", pattern: ["^https://.+$", "影片網址必須以 https:// 開頭"] }
+              - label: "照片"
+                name: "photos"
+                widget: "list"
+                required: false
+                collapsed: true
+                summary: "{{fields.alt}}"
+                fields:
+                  - { label: "前台顯示", name: "published", widget: "boolean", required: false, default: false }
+                  - { label: "圖片", name: "image", widget: "image" }
+                  - { label: "替代文字", name: "alt", widget: "string", required: false }
+                  - { label: "介紹", name: "description", widget: "text", required: false }
+
+  - name: "site"
+    label: "站點設定"
+    label_singular: "站點設定"
+    description: "管理站名、導航、SEO、主題配色與各頁文案。"
+    sortable_fields: ["commit_date", "commit_author"]
+    files:
+      - name: "site"
+        label: "站點資訊"
+        file: "posts/site.json"
+        format: "json"
+        fields:
+          # 基本
+          - { label: "「基本」站名", name: "siteName", widget: "string" }
+          - { label: "「基本」網站描述", name: "siteDescription", widget: "text", required: false }
+          - { label: "「基本」關鍵字", name: "siteKeywords", widget: "string", required: false }
+          - { label: "「基本」Favicon", name: "favicon", widget: "image", required: false }
+          - { label: "「基本」OG Image", name: "ogImage", widget: "image", required: false }
+          - { label: "「基本」底部文案", name: "footerText", widget: "string" }
+          # 導航
+          - label: "「導航」導航項目"
+            name: "nav"
+            widget: "list"
+            required: false
+            summary: "{{fields.label}} → {{fields.href}}"
+            fields:
+              - { label: "名稱", name: "label", widget: "string" }
+              - { label: "連結", name: "href", widget: "string" }
+          - { label: "「導航」搜尋框提示文字", name: "searchPlaceholder", widget: "string", required: false }
+          # 主題
+          - { label: "「主題」顯示切換按鈕", name: "themeToggleEnabled", widget: "boolean", required: false, default: true }
+          # 文章頁
+          - { label: "「文章頁」標題", name: "articlesPageTitle", widget: "string", required: false }
+          - { label: "「文章頁」說明", name: "articlesPageIntro", widget: "text", required: false }
+          # 期刊頁
+          - { label: "「期刊頁」標題", name: "issuesPageTitle", widget: "string", required: false }
+          - { label: "「期刊頁」說明", name: "issuesPageIntro", widget: "text", required: false }
+          - { label: "「期刊頁」文章數模板", name: "issueCountTemplate", widget: "string", required: false }
+          - { label: "「期刊頁」空內容提示", name: "issueEmptyText", widget: "string", required: false }
+          # 關於頁
+          - { label: "「關於頁」標題", name: "aboutTitle", widget: "string" }
+          - { label: "「關於頁」正文", name: "aboutBody", widget: "markdown", required: false }

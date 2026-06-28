@@ -1,0 +1,7 @@
+User-agent: BlogFinderbot
+Allow: /
+Allow: /rss.xml
+Allow: /articles/
+
+User-agent: *
+Allow: /

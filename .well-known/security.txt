@@ -1,0 +1,4 @@
+Contact: mailto:cbc88898@outlook.com
+Expires: 2027-01-07T00:00:00Z
+Preferred-Languages: zh-Hant, en
+Canonical: https://cbc688.com/.well-known/security.txt

@@ -1,0 +1,325 @@
+:root {
+  --cms-accent: #9f3c3c;
+  --cms-accent-2: #1c6b6a;
+  --cms-ink: #1a1814;
+  --cms-bg: #f5f1e8;
+  --cms-card: #ffffff;
+  --cms-card-alt: #fbf8f1;
+  --cms-line: rgba(26, 24, 20, 0.12);
+  --cms-line-strong: rgba(26, 24, 20, 0.4);
+  --cms-muted: #7a7168;
+}
+
+body {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', 'Noto Serif SC',
+    'Songti SC', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif !important;
+  color: var(--cms-ink);
+  background: var(--cms-bg);
+}
+
+button,
+input,
+textarea,
+select,
+[class*='Button'],
+[class*='Control'] {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif !important;
+}
+
+button,
+[class*='Button'] {
+  border-radius: 8px !important;
+}
+
+a,
+[class*='Link'] {
+  color: var(--cms-accent) !important;
+}
+
+[class*='ControlLabel'] {
+  font-weight: 600 !important;
+  letter-spacing: 0.2px;
+  color: var(--cms-ink) !important;
+}
+
+/* 站點設定：「基本」「導航」等分組標題著色，讓長列表易讀 */
+[class*='ControlLabel']::first-line {
+  color: var(--cms-accent);
+}
+label[class*='ControlLabel'] {
+  position: relative;
+}
+/* 分組前綴加分隔線（視覺節拍，純 CSS 偵測「基本/導航/主題」等字首） */
+[class*='ControlLabel']:has-text('「基本」'),
+[class*='ControlLabel']:has-text('「導航」'),
+[class*='ControlLabel']:has-text('「主題」'),
+[class*='ControlLabel']:has-text('「文章頁」'),
+[class*='ControlLabel']:has-text('「期刊頁」'),
+[class*='ControlLabel']:has-text('「關於頁」'),
+[class*='ControlLabel']:has-text('「舊版」') {
+  padding-top: 16px;
+  border-top: 1px dashed var(--cms-line);
+}
+
+[class*='ToolbarContainer'],
+[class*='AppHeader'] {
+  background: var(--cms-bg) !important;
+  border-bottom: 1px solid var(--cms-line);
+}
+
+[class*='SidebarContainer'],
+[class*='Sidebar'] {
+  background: #ffffff !important;
+  border-right: 1px solid var(--cms-line);
+}
+
+[class*='Card'],
+[class*='ListCard'],
+[class*='EditorContainer'],
+[class*='Pane'] {
+  border-radius: 10px !important;
+  background: var(--cms-card) !important;
+  border: 1px solid var(--cms-line);
+  box-shadow: none !important;
+}
+
+[class*='ListControl'] [class*='Card'] {
+  margin-bottom: 10px;
+}
+
+[class*='EditorControl'] textarea,
+[class*='EditorControl'] input,
+[class*='EditorControl'] select {
+  line-height: 1.45;
+}
+
+/* 浮動功能區：音訊上傳、快速工具 */
+.cms-fab-cluster {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+  z-index: 9999;
+}
+.cms-fab-cluster button,
+.cms-fab-cluster a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #fff;
+  background: var(--cms-ink);
+  box-shadow: 0 10px 28px -10px rgba(26, 24, 20, 0.45);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.cms-fab-cluster a { text-decoration: none; }
+.cms-fab-cluster button:hover,
+.cms-fab-cluster a:hover {
+  transform: translateY(-1px);
+  background: var(--cms-accent);
+}
+.cms-fab-cluster .fab-primary {
+  background: var(--cms-accent);
+}
+.cms-fab-cluster .fab-primary:hover {
+  background: var(--cms-accent-2);
+}
+.cms-fab-cluster .fab-kbd {
+  font-family: 'SF Mono', Menlo, monospace;
+  font-size: 11px;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 4px;
+}
+.cms-md-tools {
+  width: 190px;
+  padding: 10px;
+  border: 1px solid var(--cms-line);
+  border-radius: 12px;
+  background: var(--cms-card);
+  box-shadow: 0 18px 48px -22px rgba(26, 24, 20, 0.38);
+}
+.cms-md-tools__title {
+  margin: 0 0 8px;
+  color: var(--cms-muted);
+  font: 700 12px/1.2 -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+  letter-spacing: 0.04em;
+}
+.cms-md-tools button {
+  width: 100%;
+  justify-content: flex-start;
+  margin: 0 0 6px;
+  padding: 8px 10px;
+  border: 1px solid var(--cms-line);
+  border-radius: 8px !important;
+  background: #fff;
+  color: var(--cms-ink);
+  box-shadow: none;
+  font-family: 'SF Mono', Menlo, monospace;
+  font-size: 12px;
+}
+.cms-md-tools button:last-child { margin-bottom: 0; }
+.cms-md-tools button:hover {
+  background: var(--cms-card-alt);
+  color: var(--cms-accent);
+  transform: none;
+}
+
+/* 站點設定頁的輔助說明卡 */
+.cms-hint-card {
+  position: sticky;
+  top: 0;
+  margin: -16px -16px 12px;
+  padding: 14px 18px;
+  background: var(--cms-card-alt);
+  border-bottom: 1px solid var(--cms-line);
+  font-size: 13px;
+  color: var(--cms-muted);
+  line-height: 1.6;
+  z-index: 5;
+}
+.cms-hint-card strong { color: var(--cms-ink); }
+.cms-hint-card code {
+  background: rgba(26, 24, 20, 0.06);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: 'SF Mono', Menlo, monospace;
+  font-size: 12px;
+}
+
+/* 色碼欄位的即時色塊（JS 動態加 .cms-color-swatch） */
+.cms-color-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cms-color-swatch {
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--cms-line-strong);
+  border-radius: 6px;
+  background: #fff;
+  flex: 0 0 auto;
+}
+
+/* R2 圖片媒體庫 */
+.r2-media-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+.r2-media-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 24, 20, 0.42);
+}
+.r2-media-dialog {
+  position: relative;
+  width: min(560px, 100%);
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--cms-card);
+  border: 1px solid var(--cms-line);
+  box-shadow: 0 24px 80px -28px rgba(26, 24, 20, 0.45);
+}
+.r2-media-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--cms-line);
+  background: var(--cms-card-alt);
+}
+.r2-media-header h2 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  line-height: 1.2;
+}
+.r2-media-header p {
+  margin: 0;
+  color: var(--cms-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.r2-media-close {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--cms-line);
+  background: #fff;
+  color: var(--cms-ink);
+  font-size: 22px;
+  line-height: 1;
+}
+.r2-media-body {
+  padding: 20px;
+}
+.r2-media-drop {
+  display: grid;
+  gap: 8px;
+  place-items: center;
+  min-height: 150px;
+  padding: 22px;
+  border: 1px dashed var(--cms-line-strong);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+.r2-media-drop.is-busy {
+  pointer-events: none;
+  opacity: 0.66;
+}
+.r2-media-drop input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.r2-media-drop span {
+  font-weight: 700;
+  color: var(--cms-accent);
+}
+.r2-media-drop small {
+  max-width: 360px;
+  color: var(--cms-muted);
+  line-height: 1.5;
+}
+.r2-media-url-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  margin-top: 14px;
+}
+.r2-media-url-row input {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--cms-line);
+  border-radius: 8px;
+}
+.r2-media-url-row button {
+  padding: 10px 14px;
+  border: 0;
+  background: var(--cms-ink);
+  color: #fff;
+}
+.r2-media-status {
+  min-height: 20px;
+  margin-top: 12px;
+  color: var(--cms-muted);
+  font-size: 13px;
+}
+.r2-media-status.is-error {
+  color: #a12f2f;
+}
