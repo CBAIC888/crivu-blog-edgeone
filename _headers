@@ -6,25 +6,29 @@
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
-  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
 
 /
   Cache-Control: no-store, no-cache, must-revalidate, max-age=0
   Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cloudflareinsights.com https://cbc688.goatcounter.com
 
 /index.html
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
   Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cloudflareinsights.com https://cbc688.goatcounter.com
 
 /about.html
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
   Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cloudflareinsights.com https://cbc688.goatcounter.com
 
 /articles.html
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
   Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cloudflareinsights.com https://cbc688.goatcounter.com
 
 /issues.html
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
   Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cloudflareinsights.com https://cbc688.goatcounter.com
 
 /post.html
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
   Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cloudflareinsights.com https://cbc688.goatcounter.com
 
 /*.html

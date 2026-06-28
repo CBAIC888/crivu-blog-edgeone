@@ -172,20 +172,9 @@ const uploadToGithubMedia = async ({ bytes, contentType, env, filename, token })
     return { ok: false, status: uploadRes.status >= 500 ? 502 : uploadRes.status, error: message };
   }
 
-  const rawUrl =
-    uploadJson &&
-    uploadJson.content &&
-    typeof uploadJson.content.download_url === 'string' &&
-    uploadJson.content.download_url
-      ? uploadJson.content.download_url
-      : `https://raw.githubusercontent.com/${repo}/${branch}/${repoPath
-          .split('/')
-          .map((part) => encodeURIComponent(part))
-          .join('/')}`;
-
   return {
     ok: true,
-    publicUrl: rawUrl,
+    publicUrl: `/${repoPath}`,
     key: repoPath,
     sitePath: `/${repoPath}`,
     storage: 'github',
