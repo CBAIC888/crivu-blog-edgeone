@@ -98,8 +98,7 @@ const renderPage = ({ currentPath, description, origin, post, site }) => {
     <section class="comments" data-comments data-comments-slug="${escapeHtml(post.slug || '')}" aria-labelledby="commentsTitle">
       <div class="comments__inner">
         <header class="comments__head">
-          <p class="cap">Comments</p>
-          <h2 id="commentsTitle">評論</h2>
+          <h2 id="commentsTitle" class="cap">評論</h2>
         </header>
         <div class="comments__list" data-comments-list>
           <p class="comments__empty">評論載入中。</p>
@@ -123,9 +122,12 @@ const renderPage = ({ currentPath, description, origin, post, site }) => {
             <span>Website</span>
             <input name="website" tabindex="-1" autocomplete="off" />
           </label>
-          <div class="comments__turnstile" data-comments-turnstile></div>
+          <div class="comments__verification">
+            <span>驗證</span>
+            <div class="comments__turnstile" data-comments-turnstile></div>
+          </div>
           <div class="comments__actions">
-            <button type="submit" data-comments-submit disabled>提交審核</button>
+            <button type="submit" data-comments-submit disabled>提交</button>
             <p class="comments__status" data-comments-status aria-live="polite"></p>
           </div>
         </form>
