@@ -82,8 +82,13 @@ const navList = (site, currentPath) =>
     {}
   );
 
-const scriptTag = (src) =>
-  src ? `\n  <script src="${escapeHtml(src)}?v=${BUILD_VERSION}" type="module"></script>` : '';
+const scriptTags = (src) => {
+  const sources = Array.isArray(src) ? src : [src];
+  return sources
+    .filter(Boolean)
+    .map((item) => `\n  <script src="${escapeHtml(item)}?v=${BUILD_VERSION}" type="module"></script>`)
+    .join('');
+};
 
 export const renderAnalyticsScript = () =>
   `\n  <script src="/assets/js/analytics.js?v=${BUILD_VERSION}" defer></script>`;
@@ -185,7 +190,7 @@ export const renderPageShell = ({
 
   <script src="/assets/js/search.js?v=${BUILD_VERSION}"></script>
   <script src="/assets/js/mobile-nav.js?v=${BUILD_VERSION}"></script>
-  <script src="/assets/js/scroll-rails.js?v=${BUILD_VERSION}"></script>${scriptTag(scriptSrc)}${renderAnalyticsScript()}
+  <script src="/assets/js/scroll-rails.js?v=${BUILD_VERSION}"></script>${scriptTags(scriptSrc)}${renderAnalyticsScript()}
 </body>
 </html>`;
 };
@@ -381,13 +386,52 @@ export const renderAboutPage = ({ site }) => {
 
       <div class="reading__body post-body" id="aboutBody">${simpleMarkdown(aboutBody)}</div>
     </article>
+
+    <section class="comments" data-comments data-comments-slug="about" aria-labelledby="commentsTitle">
+      <div class="comments__inner">
+        <header class="comments__head">
+          <h2 id="commentsTitle" class="cap">評論</h2>
+        </header>
+        <div class="comments__list" data-comments-list>
+          <p class="comments__empty">評論載入中。</p>
+        </div>
+        <form class="comments__form" data-comments-form>
+          <div class="comments__fields">
+            <label>
+              <span>稱呼</span>
+              <input name="authorName" maxlength="32" autocomplete="name" required />
+            </label>
+            <label>
+              <span>電郵（不公開）</span>
+              <input name="email" type="email" maxlength="160" autocomplete="email" />
+            </label>
+          </div>
+          <label class="comments__body-field">
+            <span>評論</span>
+            <textarea name="body" rows="5" maxlength="1200" required></textarea>
+          </label>
+          <label class="comments__trap" aria-hidden="true" tabindex="-1">
+            <span>Website</span>
+            <input name="website" tabindex="-1" autocomplete="off" />
+          </label>
+          <div class="comments__verification">
+            <span>驗證</span>
+            <div class="comments__turnstile" data-comments-turnstile></div>
+          </div>
+          <div class="comments__actions">
+            <button type="submit" data-comments-submit disabled>提交</button>
+            <p class="comments__status" data-comments-status aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
   </main>`;
 
   return renderPageShell({
     currentPath: '/about.html',
     description: description || `${fallbackSiteName(site)} · 關於`,
     mainHtml,
-    scriptSrc: '/assets/js/app.js',
+    scriptSrc: ['/assets/js/app.js', '/assets/js/comments.js'],
     site,
     title: `關於 · ${fallbackSiteName(site)}`,
   });

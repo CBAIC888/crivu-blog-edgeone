@@ -1,4 +1,23 @@
 const ALLOWED_STATUSES = new Set(['pending', 'approved', 'hidden', 'spam']);
+const MAX_NAME_LENGTH = 32;
+const MAX_BODY_LENGTH = 1200;
+
+const toHex = (buffer) =>
+  Array.from(new Uint8Array(buffer), (byte) => byte.toString(16).padStart(2, '0')).join('');
+
+const makeId = () => {
+  const bytes = new Uint8Array(12);
+  crypto.getRandomValues(bytes);
+  return `c_${toHex(bytes)}`;
+};
+
+const normalizeText = (value, maxLength) =>
+  String(value ?? '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, maxLength);
+
+const isValidSlug = (value) => /^[a-z0-9]+(?:-[a-z0-9]+)*$/i.test(String(value || ''));
 
 const json = (data, status = 200) =>
   new Response(JSON.stringify(data), {
@@ -50,6 +69,7 @@ const schemaStatements = [
     author_email_hash TEXT,
     body TEXT NOT NULL,
     status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'hidden', 'spam')),
+    source TEXT NOT NULL DEFAULT 'public',
     ip_hash TEXT,
     user_agent_hash TEXT,
     created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
@@ -65,12 +85,66 @@ const ensureSchema = async (db) => {
   for (const statement of schemaStatements) {
     await db.prepare(statement).run();
   }
+  const hasSourceColumn = async () => {
+    const columns = await db.prepare(`PRAGMA table_info(comments)`).all();
+    return (columns.results || []).some((column) => column.name === 'source');
+  };
+  if (!(await hasSourceColumn())) {
+    try {
+      await db.prepare(`ALTER TABLE comments ADD COLUMN source TEXT NOT NULL DEFAULT 'public'`).run();
+    } catch (err) {
+      if (!(await hasSourceColumn())) throw err;
+    }
+  }
+};
+
+const createBoostComment = async (db, request) => {
+  let payload;
+  try {
+    payload = await request.json();
+  } catch {
+    return json({ error: 'Invalid JSON body' }, 400);
+  }
+
+  const slug = normalizeText(payload.slug, 80);
+  const authorName = normalizeText(payload.authorName, MAX_NAME_LENGTH);
+  const body = normalizeText(payload.body, MAX_BODY_LENGTH);
+
+  if (!isValidSlug(slug)) return json({ error: 'Invalid article slug' }, 400);
+  if (authorName.length < 1) return json({ error: 'Please enter a name' }, 400);
+  if (body.length < 2) return json({ error: 'Please enter a comment' }, 400);
+
+  const id = makeId();
+  const now = new Date().toISOString();
+  await db
+    .prepare(
+      `INSERT INTO comments
+       (id, slug, author_name, body, status, source, created_at, updated_at, approved_at)
+       VALUES (?, ?, ?, ?, 'approved', 'admin', ?, ?, ?)`
+    )
+    .bind(id, slug, authorName, body, now, now, now)
+    .run();
+
+  return json({
+    ok: true,
+    comment: {
+      id,
+      slug,
+      authorName,
+      body,
+      status: 'approved',
+      source: 'admin',
+      createdAt: now,
+      updatedAt: now,
+      approvedAt: now,
+    },
+  });
 };
 
 export async function onRequest(context) {
   const { request, env } = context;
   if (request.method === 'OPTIONS') return new Response(null, { status: 204 });
-  if (request.method !== 'GET') return json({ error: 'Method not allowed' }, 405);
+  if (request.method !== 'GET' && request.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
 
   const auth = await verifyCmsToken(bearerToken(request), env);
   if (!auth.ok) return json({ error: auth.error }, auth.status);
@@ -78,6 +152,10 @@ export async function onRequest(context) {
   const db = env.COMMENTS_DB;
   if (!db) return json({ error: 'Comments database is not configured' }, 503);
   await ensureSchema(db);
+
+  if (request.method === 'POST') {
+    return createBoostComment(db, request);
+  }
 
   const url = new URL(request.url);
   const status = url.searchParams.get('status') || 'pending';
@@ -101,7 +179,7 @@ export async function onRequest(context) {
   const where = filters.length ? `WHERE ${filters.join(' AND ')}` : '';
   const result = await db
     .prepare(
-      `SELECT id, slug, author_name, body, status, created_at, updated_at, approved_at
+      `SELECT id, slug, author_name, body, status, source, created_at, updated_at, approved_at
        FROM comments
        ${where}
        ORDER BY created_at DESC
@@ -117,6 +195,7 @@ export async function onRequest(context) {
       authorName: row.author_name,
       body: row.body,
       status: row.status,
+      source: row.source || 'public',
       createdAt: row.created_at,
       updatedAt: row.updated_at,
       approvedAt: row.approved_at,

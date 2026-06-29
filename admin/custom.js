@@ -212,6 +212,21 @@
     return data;
   };
 
+  const loadCommentTargets = async () => {
+    const res = await fetch('/posts/posts.json?v=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error('文章列表載入失敗');
+    const data = await res.json();
+    const posts = (data.items || data || [])
+      .filter((item) => item && item.published !== false && item.slug)
+      .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+    return [{ slug: 'about', title: '關於' }].concat(
+      posts.map((item) => ({
+        slug: String(item.slug || ''),
+        title: String(item.title || item.slug || '未命名文章'),
+      }))
+    );
+  };
+
   const openCommentsManager = () => {
     let modal = document.querySelector('.comments-admin-modal');
     if (modal) modal.remove();
@@ -234,6 +249,32 @@
           <button type="button" data-comments-status="hidden">已隱藏</button>
           <button type="button" data-comments-status="all">全部</button>
         </div>
+        <form class="comments-admin-boost" data-comments-boost-form>
+          <div class="comments-admin-boost__head">
+            <strong>新增捧場</strong>
+            <span>直接通過，前台按普通評論顯示。</span>
+          </div>
+          <div class="comments-admin-boost__grid">
+            <label>
+              <span>位置</span>
+              <select name="slug" data-comments-boost-slug required>
+                <option value="">載入文章中…</option>
+              </select>
+            </label>
+            <label>
+              <span>名稱</span>
+              <input name="authorName" maxlength="32" required />
+            </label>
+          </div>
+          <label>
+            <span>內容</span>
+            <textarea name="body" rows="3" maxlength="1200" required></textarea>
+          </label>
+          <div class="comments-admin-boost__actions">
+            <button type="submit">新增</button>
+            <p data-comments-boost-status></p>
+          </div>
+        </form>
         <div class="comments-admin-status" data-comments-admin-status>載入中…</div>
         <div class="comments-admin-list" data-comments-admin-list></div>
       </section>
@@ -242,11 +283,32 @@
 
     const list = modal.querySelector('[data-comments-admin-list]');
     const status = modal.querySelector('[data-comments-admin-status]');
+    const boostForm = modal.querySelector('[data-comments-boost-form]');
+    const boostSlug = modal.querySelector('[data-comments-boost-slug]');
+    const boostStatus = modal.querySelector('[data-comments-boost-status]');
     let currentStatus = 'pending';
 
     const setStatus = (message, isError) => {
       status.textContent = message || '';
       status.classList.toggle('is-error', Boolean(isError));
+    };
+
+    const setBoostStatus = (message, isError) => {
+      boostStatus.textContent = message || '';
+      boostStatus.classList.toggle('is-error', Boolean(isError));
+    };
+
+    const hydrateBoostTargets = async () => {
+      try {
+        const targets = await loadCommentTargets();
+        boostSlug.innerHTML = targets
+          .map((item) => `<option value="${escapeHtml(item.slug)}">${escapeHtml(item.title)}（${escapeHtml(item.slug)}）</option>`)
+          .join('');
+        setBoostStatus('', false);
+      } catch (err) {
+        boostSlug.innerHTML = '<option value="">文章列表載入失敗</option>';
+        setBoostStatus(err && err.message ? err.message : '文章列表載入失敗', true);
+      }
     };
 
     const render = (comments) => {
@@ -261,6 +323,7 @@
               <strong>${escapeHtml(item.authorName || '讀者')}</strong>
               <span>${escapeHtml(item.slug || '')}</span>
               <span>${escapeHtml(item.status || '')}</span>
+              ${item.source === 'admin' ? '<span>捧場</span>' : ''}
               <time>${escapeHtml(String(item.createdAt || '').slice(0, 10))}</time>
             </div>
             <p>${escapeHtml(item.body || '')}</p>
@@ -323,6 +386,34 @@
       }
     });
 
+    boostForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const submit = boostForm.querySelector('button[type="submit"]');
+      const data = new FormData(boostForm);
+      const payload = {
+        slug: data.get('slug'),
+        authorName: data.get('authorName'),
+        body: data.get('body'),
+      };
+      submit.disabled = true;
+      setBoostStatus('正在新增…', false);
+      try {
+        await commentsRequest('/api/comments/admin', {
+          method: 'POST',
+          body: JSON.stringify(payload),
+        });
+        boostForm.reset();
+        currentStatus = 'approved';
+        await load();
+        setBoostStatus('已新增，前台已可顯示。', false);
+      } catch (err) {
+        setBoostStatus(err && err.message ? err.message : '新增失敗', true);
+      } finally {
+        submit.disabled = false;
+      }
+    });
+
+    hydrateBoostTargets();
     load();
   };
 

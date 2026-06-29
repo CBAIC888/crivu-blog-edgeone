@@ -84,9 +84,13 @@ Do not force-push EdgeOne unless intentionally replacing its history. The EdgeOn
   - New comments are inserted as `pending`.
   - Public pages only read `approved`.
   - Admin review is available from `/admin` via the floating `評論審核` button after GitHub CMS login.
+  - The same admin dialog has `新增捧場`; it writes an already-approved comment with `source='admin'`.
+  - The front end does not show `source`, so boosted entries render like normal comments. The admin list keeps a `捧場` marker for later cleanup.
+  - The About page uses the comment slug `about`.
 - EdgeOne `eo.cbc688.com` should use `https://cbc688.com/api/comments` as the comments API. Do not create a second comments database for EdgeOne unless intentionally splitting comment stores.
 - If comments do not submit, check in this order:
   - D1 binding exists on the Cloudflare Pages production environment.
+  - Existing D1 databases have the `source` column. The app can add it lazily, and the matching SQL is `migrations/0002_comments_source.sql`.
   - Turnstile site key and secret key are set.
   - `_headers` / CSP allows `https://challenges.cloudflare.com`.
   - `/api/comments?config=1` returns `submissionEnabled: true`.

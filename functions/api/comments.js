@@ -83,6 +83,7 @@ const schemaStatements = [
     author_email_hash TEXT,
     body TEXT NOT NULL,
     status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'hidden', 'spam')),
+    source TEXT NOT NULL DEFAULT 'public',
     ip_hash TEXT,
     user_agent_hash TEXT,
     created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
@@ -99,6 +100,17 @@ const getDb = (env) => env.COMMENTS_DB || null;
 const ensureSchema = async (db) => {
   for (const statement of schemaStatements) {
     await db.prepare(statement).run();
+  }
+  const hasSourceColumn = async () => {
+    const columns = await db.prepare(`PRAGMA table_info(comments)`).all();
+    return (columns.results || []).some((column) => column.name === 'source');
+  };
+  if (!(await hasSourceColumn())) {
+    try {
+      await db.prepare(`ALTER TABLE comments ADD COLUMN source TEXT NOT NULL DEFAULT 'public'`).run();
+    } catch (err) {
+      if (!(await hasSourceColumn())) throw err;
+    }
   }
 };
 
@@ -222,8 +234,8 @@ const createComment = async (env, request) => {
   await db
     .prepare(
       `INSERT INTO comments
-       (id, slug, author_name, author_email_hash, body, status, ip_hash, user_agent_hash, created_at, updated_at)
-       VALUES (?, ?, ?, ?, ?, 'pending', ?, ?, ?, ?)`
+       (id, slug, author_name, author_email_hash, body, status, source, ip_hash, user_agent_hash, created_at, updated_at)
+       VALUES (?, ?, ?, ?, ?, 'pending', 'public', ?, ?, ?, ?)`
     )
     .bind(id, slug, authorName, emailHash, body, ipHash, userAgentHash, now, now)
     .run();

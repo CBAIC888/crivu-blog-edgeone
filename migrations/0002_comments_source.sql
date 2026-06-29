@@ -1,0 +1,1 @@
+ALTER TABLE comments ADD COLUMN source TEXT NOT NULL DEFAULT 'public';

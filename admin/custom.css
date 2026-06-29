@@ -343,7 +343,7 @@ label[class*='ControlLabel'] {
   width: min(760px, 100%);
   max-height: min(760px, calc(100vh - 36px));
   display: grid;
-  grid-template-rows: auto auto auto 1fr;
+  grid-template-rows: auto auto auto auto 1fr;
   overflow: hidden;
   border-radius: 12px;
   background: var(--cms-card);
@@ -398,6 +398,75 @@ label[class*='ControlLabel'] {
   color: var(--cms-accent);
   transform: none;
 }
+.comments-admin-boost {
+  display: grid;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--cms-line);
+  background: rgba(255, 255, 255, 0.56);
+}
+.comments-admin-boost__head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.comments-admin-boost__head strong {
+  color: var(--cms-ink);
+  font-size: 14px;
+}
+.comments-admin-boost__head span,
+.comments-admin-boost__actions p {
+  color: var(--cms-muted);
+  font-size: 12px;
+}
+.comments-admin-boost__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 10px;
+}
+.comments-admin-boost label {
+  display: grid;
+  gap: 6px;
+  color: var(--cms-muted);
+  font-size: 12px;
+}
+.comments-admin-boost input,
+.comments-admin-boost select,
+.comments-admin-boost textarea {
+  width: 100%;
+  border: 1px solid var(--cms-line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--cms-ink);
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 8px 10px;
+}
+.comments-admin-boost textarea {
+  min-height: 82px;
+  resize: vertical;
+}
+.comments-admin-boost__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.comments-admin-boost__actions button {
+  padding: 8px 13px;
+  border: 1px solid var(--cms-accent);
+  background: var(--cms-accent);
+  color: #fff;
+  box-shadow: none;
+  font-size: 12px;
+}
+.comments-admin-boost__actions p {
+  margin: 0;
+}
+.comments-admin-boost__actions p.is-error {
+  color: #a12f2f;
+}
 .comments-admin-status {
   min-height: 20px;
   padding: 10px 20px;
@@ -440,4 +509,10 @@ label[class*='ControlLabel'] {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .comments-admin-boost__grid {
+    grid-template-columns: 1fr;
+  }
 }
