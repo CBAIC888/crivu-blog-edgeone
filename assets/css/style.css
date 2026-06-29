@@ -1255,7 +1255,7 @@ main > .section:first-child {
 }
 .comments__inner { width: 100%; }
 .comments__head {
-  margin-bottom: 22px;
+  margin-bottom: 8px;
 }
 .comments__head h2 {
   margin: 0;
@@ -1278,7 +1278,7 @@ main > .section:first-child {
   border-bottom: 1px solid var(--line);
 }
 .comment-item {
-  padding: 24px 4px 26px;
+  padding: 14px 4px 22px;
   border-bottom: 1px solid var(--line);
 }
 .comment-item__head {
@@ -1290,7 +1290,7 @@ main > .section:first-child {
   font-family: var(--sans);
 }
 .comment-item__head strong {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--ink);
   letter-spacing: 0;
@@ -1302,7 +1302,7 @@ main > .section:first-child {
 }
 .comment-item p {
   margin: 0;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.75;
   color: var(--ink);
   white-space: pre-wrap;
