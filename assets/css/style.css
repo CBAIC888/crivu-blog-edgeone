@@ -43,14 +43,13 @@
   --footer-ink: #ece5d4;
   --footer-ink-dim: rgba(236, 229, 212, 0.6);
   --footer-line: rgba(236, 229, 212, 0.12);
-  --comments-panel-bg: #1a1814;
-  --comments-panel-ink: #f7f7f4;
-  --comments-panel-muted: rgba(247, 247, 244, 0.68);
-  --comments-panel-field: rgba(255, 255, 255, 0.08);
-  --comments-panel-line: rgba(255, 255, 255, 0.16);
-  --comments-verify-bg: #e9e8e6;
-  --comments-verify-line: rgba(26, 24, 20, 0.08);
-  --comments-verify-ink: #2a2520;
+  --comments-panel-bg: #e9e8e6;
+  --comments-panel-ink: #1a1814;
+  --comments-panel-muted: rgba(26, 24, 20, 0.58);
+  --comments-panel-field: rgba(255, 255, 255, 0.72);
+  --comments-panel-line: rgba(26, 24, 20, 0.12);
+  --comments-panel-button-bg: #1a1814;
+  --comments-panel-button-ink: #ffffff;
 
   color-scheme: light;
 }
@@ -86,14 +85,13 @@
   --footer-ink: #ece5d4;
   --footer-ink-dim: rgba(236, 229, 212, 0.6);
   --footer-line: rgba(236, 229, 212, 0.12);
-  --comments-panel-bg: #211d18;
-  --comments-panel-ink: #f8f2e6;
-  --comments-panel-muted: rgba(248, 242, 230, 0.68);
-  --comments-panel-field: rgba(255, 255, 255, 0.08);
-  --comments-panel-line: rgba(255, 255, 255, 0.16);
-  --comments-verify-bg: #ddd4c2;
-  --comments-verify-line: rgba(26, 24, 20, 0.1);
-  --comments-verify-ink: #2a2520;
+  --comments-panel-bg: #ded3bf;
+  --comments-panel-ink: #211d18;
+  --comments-panel-muted: rgba(33, 29, 24, 0.58);
+  --comments-panel-field: rgba(255, 252, 244, 0.72);
+  --comments-panel-line: rgba(33, 29, 24, 0.14);
+  --comments-panel-button-bg: #211d18;
+  --comments-panel-button-ink: #f8f2e6;
 
   color-scheme: light;
 }
@@ -129,14 +127,13 @@
   --footer-ink: #e8e2d4;
   --footer-ink-dim: rgba(232, 226, 212, 0.55);
   --footer-line: rgba(232, 226, 212, 0.1);
-  --comments-panel-bg: #0f1112;
+  --comments-panel-bg: #252b2c;
   --comments-panel-ink: #ede6d8;
-  --comments-panel-muted: rgba(237, 230, 216, 0.64);
-  --comments-panel-field: rgba(255, 255, 255, 0.07);
-  --comments-panel-line: rgba(255, 255, 255, 0.14);
-  --comments-verify-bg: #252b2c;
-  --comments-verify-line: rgba(232, 226, 212, 0.1);
-  --comments-verify-ink: #e8e2d4;
+  --comments-panel-muted: rgba(237, 230, 216, 0.62);
+  --comments-panel-field: rgba(15, 17, 18, 0.58);
+  --comments-panel-line: rgba(232, 226, 212, 0.12);
+  --comments-panel-button-bg: #ede6d8;
+  --comments-panel-button-ink: #141617;
 
   color-scheme: dark;
 }
@@ -1293,7 +1290,7 @@ main > .section:first-child {
   font-family: var(--sans);
 }
 .comment-item__head strong {
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--ink);
   letter-spacing: 0;
@@ -1305,7 +1302,7 @@ main > .section:first-child {
 }
 .comment-item p {
   margin: 0;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.75;
   color: var(--ink);
   white-space: pre-wrap;
@@ -1367,17 +1364,13 @@ main > .section:first-child {
 }
 .comments__verification {
   display: grid;
-  gap: 10px;
-  min-height: 96px;
+  gap: 8px;
+  min-height: 0;
   align-content: start;
-  padding: 14px 16px;
-  border: 1px solid var(--comments-verify-line);
-  border-radius: 2px;
-  background: var(--comments-verify-bg);
   font-family: var(--sans);
   font-size: 12px;
   letter-spacing: 0.08em;
-  color: var(--comments-verify-ink);
+  color: var(--comments-panel-muted);
 }
 .comments__turnstile {
   min-height: 0;
@@ -1392,10 +1385,10 @@ main > .section:first-child {
 }
 .comments__actions button {
   appearance: none;
-  border: 1px solid var(--comments-panel-ink);
+  border: 1px solid var(--comments-panel-button-bg);
   border-radius: 4px;
-  background: var(--comments-panel-ink);
-  color: var(--comments-panel-bg);
+  background: var(--comments-panel-button-bg);
+  color: var(--comments-panel-button-ink);
   font: 600 12px/1 var(--sans);
   letter-spacing: 0.16em;
   padding: 11px 16px;
@@ -1634,7 +1627,6 @@ body::before { display: none !important; }
   .comments { margin-top: 48px; }
   .comments__form { padding: 18px; }
   .comments__fields { grid-template-columns: 1fr; }
-  .comments__verification { min-height: 88px; padding: 14px; }
   .comments__actions { align-items: flex-start; flex-direction: column; }
   .site-footer { padding: 22px 4vw max(20px, calc(20px + env(safe-area-inset-bottom))); }
   .site-footer__copy { text-align: center; }
