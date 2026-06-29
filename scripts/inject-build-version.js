@@ -15,6 +15,7 @@ const TARGETS = [
   'post.html',
   'records.html',
   path.join('assets', 'js', 'app.js'),
+  path.join('assets', 'js', 'comments.js'),
   path.join('assets', 'js', 'issues.js'),
   path.join('assets', 'js', 'post.js'),
   path.join('shared', 'site-pages.js'),

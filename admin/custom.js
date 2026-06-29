@@ -198,6 +198,134 @@
     return '';
   };
 
+  const commentsRequest = async (path, options = {}) => {
+    const token = getCmsToken();
+    if (!token) throw new Error('尚未登入 CMS');
+    const headers = Object.assign(
+      { Authorization: 'Bearer ' + token },
+      options.body ? { 'Content-Type': 'application/json' } : {},
+      options.headers || {}
+    );
+    const res = await fetch(path, Object.assign({}, options, { headers }));
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || '評論請求失敗');
+    return data;
+  };
+
+  const openCommentsManager = () => {
+    let modal = document.querySelector('.comments-admin-modal');
+    if (modal) modal.remove();
+
+    modal = document.createElement('div');
+    modal.className = 'comments-admin-modal';
+    modal.innerHTML = `
+      <div class="comments-admin-backdrop" data-comments-close></div>
+      <section class="comments-admin-dialog" role="dialog" aria-modal="true" aria-labelledby="commentsAdminTitle">
+        <header class="comments-admin-header">
+          <div>
+            <h2 id="commentsAdminTitle">評論審核</h2>
+            <p>只顯示必要資料；電郵、IP 與瀏覽器資訊不在後台明文展示。</p>
+          </div>
+          <button type="button" class="comments-admin-close" data-comments-close aria-label="關閉">×</button>
+        </header>
+        <div class="comments-admin-toolbar">
+          <button type="button" data-comments-status="pending">待審核</button>
+          <button type="button" data-comments-status="approved">已通過</button>
+          <button type="button" data-comments-status="hidden">已隱藏</button>
+          <button type="button" data-comments-status="all">全部</button>
+        </div>
+        <div class="comments-admin-status" data-comments-admin-status>載入中…</div>
+        <div class="comments-admin-list" data-comments-admin-list></div>
+      </section>
+    `;
+    document.body.appendChild(modal);
+
+    const list = modal.querySelector('[data-comments-admin-list]');
+    const status = modal.querySelector('[data-comments-admin-status]');
+    let currentStatus = 'pending';
+
+    const setStatus = (message, isError) => {
+      status.textContent = message || '';
+      status.classList.toggle('is-error', Boolean(isError));
+    };
+
+    const render = (comments) => {
+      if (!comments.length) {
+        list.innerHTML = '<p class="comments-admin-empty">此分類暫無評論。</p>';
+        return;
+      }
+      list.innerHTML = comments
+        .map((item) => `
+          <article class="comments-admin-item" data-comment-id="${escapeHtml(item.id)}">
+            <div class="comments-admin-item__meta">
+              <strong>${escapeHtml(item.authorName || '讀者')}</strong>
+              <span>${escapeHtml(item.slug || '')}</span>
+              <span>${escapeHtml(item.status || '')}</span>
+              <time>${escapeHtml(String(item.createdAt || '').slice(0, 10))}</time>
+            </div>
+            <p>${escapeHtml(item.body || '')}</p>
+            <div class="comments-admin-actions">
+              <button type="button" data-comment-action="approved">通過</button>
+              <button type="button" data-comment-action="hidden">隱藏</button>
+              <button type="button" data-comment-action="spam">垃圾</button>
+              <button type="button" data-comment-action="delete">刪除</button>
+            </div>
+          </article>
+        `)
+        .join('');
+    };
+
+    const load = async () => {
+      setStatus('載入中…', false);
+      list.innerHTML = '';
+      try {
+        const data = await commentsRequest('/api/comments/admin?status=' + encodeURIComponent(currentStatus));
+        render(Array.isArray(data.comments) ? data.comments : []);
+        setStatus('', false);
+      } catch (err) {
+        setStatus(err && err.message ? err.message : '載入評論失敗', true);
+      }
+    };
+
+    modal.addEventListener('click', async (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+      if (target.matches('[data-comments-close]')) {
+        modal.remove();
+        return;
+      }
+      const nextStatus = target.getAttribute('data-comments-status');
+      if (nextStatus) {
+        currentStatus = nextStatus;
+        await load();
+        return;
+      }
+      const action = target.getAttribute('data-comment-action');
+      if (!action) return;
+      const item = target.closest('[data-comment-id]');
+      const id = item && item.getAttribute('data-comment-id');
+      if (!id) return;
+      target.disabled = true;
+      try {
+        if (action === 'delete') {
+          await commentsRequest('/api/comments/' + encodeURIComponent(id), { method: 'DELETE' });
+        } else {
+          await commentsRequest('/api/comments/' + encodeURIComponent(id), {
+            method: 'PATCH',
+            body: JSON.stringify({ status: action })
+          });
+        }
+        await load();
+      } catch (err) {
+        setStatus(err && err.message ? err.message : '操作失敗', true);
+      } finally {
+        target.disabled = false;
+      }
+    });
+
+    load();
+  };
+
   const uploadImageToCloudflare = async (file, onProgress) => {
     const token = getCmsToken();
     if (!token) throw new Error('尚未登入 CMS，請先登入後再上傳圖片');
@@ -442,6 +570,13 @@
 
     cluster.appendChild(mdTools);
     cluster.appendChild(audioBtn);
+
+    const commentsBtn = document.createElement('button');
+    commentsBtn.type = 'button';
+    commentsBtn.innerHTML = '💬 評論審核';
+    commentsBtn.addEventListener('click', openCommentsManager);
+    cluster.appendChild(commentsBtn);
+
     cluster.appendChild(siteLink);
     document.body.appendChild(cluster);
   };

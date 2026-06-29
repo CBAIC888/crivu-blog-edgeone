@@ -94,6 +94,43 @@ const renderPage = ({ currentPath, description, origin, post, site }) => {
 
       <div class="reading__body post-body" id="postBody">${bodyHtml}</div>
     </article>
+
+    <section class="comments" data-comments data-comments-slug="${escapeHtml(post.slug || '')}" aria-labelledby="commentsTitle">
+      <div class="comments__inner">
+        <header class="comments__head">
+          <p class="cap">Comments</p>
+          <h2 id="commentsTitle">評論</h2>
+        </header>
+        <div class="comments__list" data-comments-list>
+          <p class="comments__empty">評論載入中。</p>
+        </div>
+        <form class="comments__form" data-comments-form>
+          <div class="comments__fields">
+            <label>
+              <span>稱呼</span>
+              <input name="authorName" maxlength="32" autocomplete="name" required />
+            </label>
+            <label>
+              <span>電郵（不公開）</span>
+              <input name="email" type="email" maxlength="160" autocomplete="email" />
+            </label>
+          </div>
+          <label class="comments__body-field">
+            <span>評論</span>
+            <textarea name="body" rows="5" maxlength="1200" required></textarea>
+          </label>
+          <label class="comments__trap" aria-hidden="true" tabindex="-1">
+            <span>Website</span>
+            <input name="website" tabindex="-1" autocomplete="off" />
+          </label>
+          <div class="comments__turnstile" data-comments-turnstile></div>
+          <div class="comments__actions">
+            <button type="submit" data-comments-submit>提交審核</button>
+            <p class="comments__status" data-comments-status aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
   </main>
 
   ${renderFooter(site, currentPath)}
@@ -101,7 +138,8 @@ const renderPage = ({ currentPath, description, origin, post, site }) => {
   <script src="/assets/js/search.js?v=__BUILD_VERSION__"></script>
   <script src="/assets/js/mobile-nav.js?v=__BUILD_VERSION__"></script>
   <script src="/assets/js/scroll-rails.js?v=__BUILD_VERSION__"></script>
-  <script src="/assets/js/post.js?v=__BUILD_VERSION__" type="module"></script>${renderAnalyticsScript()}
+  <script src="/assets/js/post.js?v=__BUILD_VERSION__" type="module"></script>
+  <script src="/assets/js/comments.js?v=__BUILD_VERSION__" type="module"></script>${renderAnalyticsScript()}
 </body>
 </html>`;
 };

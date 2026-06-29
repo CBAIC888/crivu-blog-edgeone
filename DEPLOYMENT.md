@@ -70,6 +70,27 @@ Do not force-push EdgeOne unless intentionally replacing its history. The EdgeOn
   - `curl -I https://cbc688.com/assets/...`
   - `curl -I https://eo.cbc688.com/assets/...`
 
+## Comments Setup
+- Comments use Cloudflare Pages Functions + D1. The public form never stores plaintext IP, user agent, or email. Email is optional and stored only as a salted hash.
+- D1 binding name must be `COMMENTS_DB`.
+- Schema file: `migrations/0001_comments.sql`.
+- Required production environment variables:
+  - `TURNSTILE_SITE_KEY`: public Turnstile site key.
+  - `TURNSTILE_SECRET_KEY`: secret Turnstile key. Set as a Pages secret, never commit it.
+  - `COMMENT_HASH_SALT`: random secret salt for hashing email/IP/user-agent. Set as a Pages secret, never commit it.
+- Optional development-only variable:
+  - `COMMENTS_ALLOW_UNVERIFIED=true` bypasses Turnstile. Do not enable this in production.
+- Moderation is manual by default:
+  - New comments are inserted as `pending`.
+  - Public pages only read `approved`.
+  - Admin review is available from `/admin` via the floating `評論審核` button after GitHub CMS login.
+- EdgeOne `eo.cbc688.com` should use `https://cbc688.com/api/comments` as the comments API. Do not create a second comments database for EdgeOne unless intentionally splitting comment stores.
+- If comments do not submit, check in this order:
+  - D1 binding exists on the Cloudflare Pages production environment.
+  - Turnstile site key and secret key are set.
+  - `_headers` / CSP allows `https://challenges.cloudflare.com`.
+  - `/api/comments?config=1` returns `submissionEnabled: true`.
+
 ## Post-Deploy Verification
 - Verify GitHub accepted the push and note the exact commit SHA.
 - Check these public URLs:
@@ -95,6 +116,11 @@ Do not force-push EdgeOne unless intentionally replacing its history. The EdgeOn
   - Homepage HTML has no `raw.githubusercontent.com`.
   - A newly uploaded image returns `200 OK` from both `https://cbc688.com/assets/...` and `https://eo.cbc688.com/assets/...`.
   - Asset responses must not include `no-store`.
+- Confirm comments:
+  - `curl https://cbc688.com/api/comments?config=1`
+  - `curl "https://cbc688.com/api/comments?slug=<slug>"`
+  - Article pages include `/assets/js/comments.js`.
+  - If D1 or Turnstile is not configured yet, the form should stay disabled instead of accepting unsafe submissions.
 
 ## If Public Site Still Shows Old HTML
 - Do **not** keep pushing.

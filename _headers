@@ -9,27 +9,27 @@
 
 /
   Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cloudflareinsights.com https://cbc688.goatcounter.com
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://challenges.cloudflare.com https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cbc688.com https://challenges.cloudflare.com https://cloudflareinsights.com https://cbc688.goatcounter.com; frame-src https://challenges.cloudflare.com
 
 /index.html
   Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cloudflareinsights.com https://cbc688.goatcounter.com
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://challenges.cloudflare.com https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cbc688.com https://challenges.cloudflare.com https://cloudflareinsights.com https://cbc688.goatcounter.com; frame-src https://challenges.cloudflare.com
 
 /about.html
   Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cloudflareinsights.com https://cbc688.goatcounter.com
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://challenges.cloudflare.com https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cbc688.com https://challenges.cloudflare.com https://cloudflareinsights.com https://cbc688.goatcounter.com; frame-src https://challenges.cloudflare.com
 
 /articles.html
   Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cloudflareinsights.com https://cbc688.goatcounter.com
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://challenges.cloudflare.com https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cbc688.com https://challenges.cloudflare.com https://cloudflareinsights.com https://cbc688.goatcounter.com; frame-src https://challenges.cloudflare.com
 
 /issues.html
   Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cloudflareinsights.com https://cbc688.goatcounter.com
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://challenges.cloudflare.com https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cbc688.com https://challenges.cloudflare.com https://cloudflareinsights.com https://cbc688.goatcounter.com; frame-src https://challenges.cloudflare.com
 
 /post.html
   Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cloudflareinsights.com https://cbc688.goatcounter.com
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://challenges.cloudflare.com https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cbc688.com https://challenges.cloudflare.com https://cloudflareinsights.com https://cbc688.goatcounter.com; frame-src https://challenges.cloudflare.com
 
 /*.html
   Cache-Control: no-store, no-cache, must-revalidate, max-age=0

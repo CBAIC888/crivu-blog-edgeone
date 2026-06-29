@@ -14,7 +14,7 @@ import {
 const BUILD_VERSION = '__BUILD_VERSION__';
 export const GOATCOUNTER_URL = 'https://cbc688.goatcounter.com/count';
 export const PUBLIC_CONTENT_SECURITY_POLICY =
-  "default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cloudflareinsights.com https://cbc688.goatcounter.com";
+  "default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; script-src 'self' https://challenges.cloudflare.com https://static.cloudflareinsights.com; style-src 'self'; connect-src 'self' https://cbc688.com https://challenges.cloudflare.com https://cloudflareinsights.com https://cbc688.goatcounter.com; frame-src https://challenges.cloudflare.com";
 
 export const PAGE_HEADERS = {
   'Content-Type': 'text/html; charset=UTF-8',
