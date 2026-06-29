@@ -57,7 +57,7 @@ const renderComments = (listEl, comments) => {
       (comment) => `
         <article class="comment-item">
           <header class="comment-item__head">
-            <strong>${escapeHtml(comment.authorName || '讀者')}</strong>
+            <strong>用戶名稱：${escapeHtml(comment.authorName || '讀者')}</strong>
             <time datetime="${escapeHtml(comment.createdAt || '')}">${escapeHtml(formatDate(comment.createdAt))}</time>
           </header>
           <p>${escapeHtml(comment.body || '')}</p>
