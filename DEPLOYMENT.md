@@ -78,6 +78,10 @@ Do not force-push EdgeOne unless intentionally replacing its history. The EdgeOn
   - `TURNSTILE_SITE_KEY`: public Turnstile site key.
   - `TURNSTILE_SECRET_KEY`: secret Turnstile key. Set as a Pages secret, never commit it.
   - `COMMENT_HASH_SALT`: random secret salt for hashing email/IP/user-agent. Set as a Pages secret, never commit it.
+- Optional production secrets for Telegram review notices:
+  - `TELEGRAM_BOT_TOKEN`: Telegram Bot token from BotFather. Set as a Pages secret, never commit it.
+  - `TELEGRAM_CHAT_ID`: the Telegram chat/user ID that should receive pending-comment notices. Set as a Pages secret.
+  - Notices are sent only for public form submissions. Admin `新增捧場` entries do not send notices.
 - Optional development-only variable:
   - `COMMENTS_ALLOW_UNVERIFIED=true` bypasses Turnstile. Do not enable this in production.
 - Moderation is manual by default:

@@ -138,6 +138,34 @@ const verifyTurnstile = async ({ env, request, token }) => {
   return data && data.success ? { ok: true } : { ok: false, error: 'Verification failed' };
 };
 
+const notifyTelegram = async ({ env, slug, authorName, body }) => {
+  const token = String(env.TELEGRAM_BOT_TOKEN || '').trim();
+  const chatId = String(env.TELEGRAM_CHAT_ID || '').trim();
+  if (!token || !chatId) return;
+
+  const excerpt = normalizeText(body, 280);
+  const text = [
+    'CRIVU 有新評論待審核',
+    '',
+    `位置：${slug}`,
+    `稱呼：${authorName}`,
+    '',
+    excerpt,
+    '',
+    '審核：https://cbc688.com/admin',
+  ].join('\n');
+
+  await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text,
+      disable_web_page_preview: true,
+    }),
+  });
+};
+
 const handleConfig = (env, request) =>
   json(
     {
@@ -178,7 +206,7 @@ const listComments = async (env, request, slug) => {
   return json({ enabled: true, comments }, 200, request);
 };
 
-const createComment = async (env, request) => {
+const createComment = async (env, request, context) => {
   const db = getDb(env);
   if (!db) return json({ error: 'Comments are not configured' }, 503, request);
   if (!submissionsEnabled(env)) return json({ error: 'Comments are not accepting submissions yet' }, 503, request);
@@ -240,6 +268,13 @@ const createComment = async (env, request) => {
     .bind(id, slug, authorName, emailHash, body, ipHash, userAgentHash, now, now)
     .run();
 
+  const notification = notifyTelegram({ env, slug, authorName, body }).catch(() => {});
+  if (typeof context?.waitUntil === 'function') {
+    context.waitUntil(notification);
+  } else {
+    await notification;
+  }
+
   return json({ ok: true, status: 'pending' }, 202, request);
 };
 
@@ -255,7 +290,7 @@ export async function onRequest(context) {
     return listComments(env, request, url.searchParams.get('slug') || '');
   }
   if (request.method === 'POST') {
-    return createComment(env, request);
+    return createComment(env, request, context);
   }
   return json({ error: 'Method not allowed' }, 405, request);
 }
