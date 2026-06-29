@@ -17,14 +17,24 @@ const formatDate = (value) => {
 
 const loadTurnstile = () =>
   new Promise((resolve, reject) => {
+    const timeout = window.setTimeout(() => reject(new Error('驗證元件載入逾時，請稍後再試。')), 15000);
+    const finish = (turnstile) => {
+      window.clearTimeout(timeout);
+      resolve(turnstile);
+    };
+    const fail = (error) => {
+      window.clearTimeout(timeout);
+      reject(error);
+    };
+
     if (window.turnstile) {
-      resolve(window.turnstile);
+      finish(window.turnstile);
       return;
     }
     const existing = document.querySelector('script[data-turnstile-script]');
     if (existing) {
-      existing.addEventListener('load', () => resolve(window.turnstile), { once: true });
-      existing.addEventListener('error', reject, { once: true });
+      existing.addEventListener('load', () => finish(window.turnstile), { once: true });
+      existing.addEventListener('error', fail, { once: true });
       return;
     }
     const script = document.createElement('script');
@@ -32,8 +42,8 @@ const loadTurnstile = () =>
     script.async = true;
     script.defer = true;
     script.dataset.turnstileScript = '1';
-    script.onload = () => resolve(window.turnstile);
-    script.onerror = reject;
+    script.onload = () => finish(window.turnstile);
+    script.onerror = fail;
     document.head.appendChild(script);
   });
 
@@ -74,6 +84,8 @@ const initComments = async () => {
   if (!slug || !listEl || !form || !statusEl || !submitBtn || !turnstileEl) return;
 
   let turnstileWidget = '';
+  let canSubmit = false;
+  submitBtn.disabled = true;
 
   const fetchJson = async (url, options) => {
     const res = await fetch(url, options);
@@ -103,6 +115,8 @@ const initComments = async () => {
         theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light',
       });
     }
+    canSubmit = true;
+    submitBtn.disabled = false;
   } catch (err) {
     form.hidden = true;
     setStatus(statusEl, err && err.message ? err.message : '評論暫不可用。', 'error');
@@ -135,7 +149,7 @@ const initComments = async () => {
     } catch (err) {
       setStatus(statusEl, err && err.message ? err.message : '提交失敗。', 'error');
     } finally {
-      submitBtn.disabled = false;
+      submitBtn.disabled = !canSubmit;
     }
   });
 };

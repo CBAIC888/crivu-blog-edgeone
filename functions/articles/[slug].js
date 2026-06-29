@@ -125,7 +125,7 @@ const renderPage = ({ currentPath, description, origin, post, site }) => {
           </label>
           <div class="comments__turnstile" data-comments-turnstile></div>
           <div class="comments__actions">
-            <button type="submit" data-comments-submit>提交審核</button>
+            <button type="submit" data-comments-submit disabled>提交審核</button>
             <p class="comments__status" data-comments-status aria-live="polite"></p>
           </div>
         </form>
