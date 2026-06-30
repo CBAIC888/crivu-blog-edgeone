@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "generate:rss": "node scripts/generate-rss.js",
-    "build": "node scripts/generate-rss.js && node scripts/inject-build-version.js",
+    "build": "node scripts/generate-rss.js && node scripts/inject-build-version.js && node scripts/build-edgeone.js",
     "build:edgeone": "node scripts/build-edgeone.js"
   }
 }
