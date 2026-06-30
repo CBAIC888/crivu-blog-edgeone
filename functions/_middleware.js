@@ -19,7 +19,9 @@ const PLACEHOLDER = '__BUILD_VERSION__';
 const PLACEHOLDER_ENCODED = encodeURIComponent(PLACEHOLDER); // "__BUILD_VERSION__" 不會被 encode，但照樣處理保險起見
 const BLOCKED_EXACT_PATHS = new Set([
   '/_headers',
+  '/.gitignore',
   '/DEPLOYMENT.md',
+  '/edgeone.json',
   '/package.json',
   '/wrangler.toml',
   '/admin/config.yml',
