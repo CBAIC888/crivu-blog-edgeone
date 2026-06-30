@@ -48,9 +48,6 @@
   Cache-Control: no-cache, max-age=0
   Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https: blob:; media-src 'self' blob:; font-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline'; connect-src 'self' https://api.github.com https://github.com https://raw.githubusercontent.com https://media.githubusercontent.com https://avatars.githubusercontent.com https://uploads.github.com; form-action 'self'
 
-/admin/config.yml
-  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-
 /api/auth
   Content-Security-Policy: default-src 'none'; base-uri 'none'; frame-ancestors 'none'; img-src 'none'; script-src 'none'; style-src 'none'; connect-src 'none'; form-action 'none'
 

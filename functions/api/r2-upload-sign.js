@@ -4,6 +4,7 @@ const json = (data, status = 200) =>
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'Cache-Control': 'no-store, max-age=0',
+      'X-Content-Type-Options': 'nosniff',
     },
   });
 
@@ -22,6 +23,26 @@ const ALLOWED_AUDIO_CONTENT_TYPES = new Set([
   'audio/ogg',
   'audio/flac',
 ]);
+const AUDIO_EXTENSIONS_BY_CONTENT_TYPE = {
+  'audio/mpeg': new Set(['mp3']),
+  'audio/mp3': new Set(['mp3']),
+  'audio/mp4': new Set(['m4a', 'mp4']),
+  'audio/x-m4a': new Set(['m4a', 'mp4']),
+  'audio/wav': new Set(['wav']),
+  'audio/x-wav': new Set(['wav']),
+  'audio/aac': new Set(['aac']),
+  'audio/ogg': new Set(['ogg']),
+  'audio/flac': new Set(['flac']),
+};
+const CONTENT_TYPE_BY_AUDIO_EXTENSION = {
+  mp3: 'audio/mpeg',
+  m4a: 'audio/x-m4a',
+  mp4: 'audio/mp4',
+  wav: 'audio/wav',
+  aac: 'audio/aac',
+  ogg: 'audio/ogg',
+  flac: 'audio/flac',
+};
 
 const toHex = (buffer) =>
   Array.from(new Uint8Array(buffer), (b) => b.toString(16).padStart(2, '0')).join('');
@@ -55,12 +76,16 @@ const sanitizeFileBase = (name) =>
     .replace(/^-|-$/g, '')
     .slice(0, 64) || 'audio';
 
-const safeExt = (filename) => {
+const fileExt = (filename) => {
   const match = String(filename || '').toLowerCase().match(/\.([a-z0-9]{1,5})$/);
-  if (!match) return 'mp3';
-  const ext = match[1];
-  const allow = new Set(['mp3', 'm4a', 'wav', 'aac', 'ogg', 'flac']);
-  return allow.has(ext) ? ext : 'mp3';
+  return match ? match[1] : '';
+};
+
+const safeExt = (filename, contentType) => {
+  const ext = fileExt(filename);
+  const allowed = AUDIO_EXTENSIONS_BY_CONTENT_TYPE[contentType] || AUDIO_EXTENSIONS_BY_CONTENT_TYPE[DEFAULT_AUDIO_CONTENT_TYPE];
+  if (allowed.has(ext)) return ext;
+  return allowed.values().next().value || 'mp3';
 };
 
 const normalizeContentType = (value) => String(value || '').split(';')[0].trim().toLowerCase();
@@ -182,11 +207,16 @@ export async function onRequest(context) {
   const service = 's3';
   const host = `${accountId}.r2.cloudflarestorage.com`;
   const baseName = sanitizeFileBase(filename);
-  const ext = safeExt(filename);
   if (requestedContentType && !ALLOWED_AUDIO_CONTENT_TYPES.has(requestedContentType)) {
     return json({ error: 'Unsupported content type. Only audio uploads are allowed.' }, 415);
   }
-  const contentType = requestedContentType || DEFAULT_AUDIO_CONTENT_TYPE;
+  const extFromName = fileExt(filename);
+  const contentType = requestedContentType || CONTENT_TYPE_BY_AUDIO_EXTENSION[extFromName] || DEFAULT_AUDIO_CONTENT_TYPE;
+  const allowedExts = AUDIO_EXTENSIONS_BY_CONTENT_TYPE[contentType] || AUDIO_EXTENSIONS_BY_CONTENT_TYPE[DEFAULT_AUDIO_CONTENT_TYPE];
+  if (extFromName && !allowedExts.has(extFromName)) {
+    return json({ error: 'Audio file extension does not match its content type.' }, 415);
+  }
+  const ext = safeExt(filename, contentType);
   const nonce = crypto.randomUUID().replaceAll('-', '').slice(0, 12);
   const key = `audio/uploads/${now.yyyymmdd}/${baseName}-${nonce}.${ext}`;
   const credentialScope = `${now.yyyymmdd}/${region}/${service}/aws4_request`;

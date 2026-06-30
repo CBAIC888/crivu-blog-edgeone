@@ -181,6 +181,7 @@
     String(input == null ? '' : input).replaceAll('\n', ' ').replaceAll('\r', ' ').replaceAll('*', '\\*');
 
   const fileTitle = (name) => String(name || '未命名音訊').replace(/\.[^.]+$/, '');
+  const ALLOWED_UPLOAD_IMAGE_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/avif']);
 
   const getCmsToken = () => {
     try {
@@ -420,7 +421,7 @@
   const uploadImageToCloudflare = async (file, onProgress) => {
     const token = getCmsToken();
     if (!token) throw new Error('尚未登入 CMS，請先登入後再上傳圖片');
-    if (!file || !String(file.type || '').startsWith('image/')) {
+    if (!file || !ALLOWED_UPLOAD_IMAGE_TYPES.has(String(file.type || '').toLowerCase())) {
       throw new Error('請選擇圖片檔案');
     }
 
@@ -487,9 +488,9 @@
             </header>
             <div class="r2-media-body">
               <label class="r2-media-drop">
-                <input type="file" accept="image/*" data-r2-media-file />
+                <input type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/avif" data-r2-media-file />
                 <span>點擊選擇圖片</span>
-                <small>支援 JPG、PNG、WebP、GIF、SVG、AVIF，單檔上限依部署環境設定。</small>
+                <small>支援 JPG、PNG、WebP、GIF、AVIF，單檔上限依部署環境設定。</small>
               </label>
               <div class="r2-media-url-row">
                 <input type="url" placeholder="或貼上現有圖片網址" value="${escapeHtml(options.value || '')}" data-r2-media-url />

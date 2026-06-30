@@ -6,7 +6,6 @@ const RATE_LIMIT_MAX = 5;
 const MAIN_ORIGIN = 'https://cbc688.com';
 const ALLOWED_ORIGINS = new Set([
   'https://cbc688.com',
-  'https://www.cbc688.com',
   'https://eo.cbc688.com',
   'http://localhost:8788',
   'http://127.0.0.1:8788',

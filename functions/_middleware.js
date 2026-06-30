@@ -17,6 +17,20 @@
 
 const PLACEHOLDER = '__BUILD_VERSION__';
 const PLACEHOLDER_ENCODED = encodeURIComponent(PLACEHOLDER); // "__BUILD_VERSION__" 不會被 encode，但照樣處理保險起見
+const BLOCKED_EXACT_PATHS = new Set([
+  '/_headers',
+  '/DEPLOYMENT.md',
+  '/package.json',
+  '/wrangler.toml',
+  '/admin/config.yml',
+]);
+const BLOCKED_PREFIXES = ['/functions/', '/migrations/', '/scripts/'];
+
+const isBlockedPath = (pathname) => {
+  if (BLOCKED_EXACT_PATHS.has(pathname)) return true;
+  if (BLOCKED_PREFIXES.some((prefix) => pathname.startsWith(prefix))) return true;
+  return /^\/\.(env|git|hg|svn)(\/|$)/.test(pathname);
+};
 
 const resolveBuildVersion = (env) => {
   const sha = env && (env.CF_PAGES_COMMIT_SHA || env.COMMIT_REF || env.GITHUB_SHA);
@@ -32,6 +46,17 @@ const isHtml = (contentType) => {
 
 export async function onRequest(context) {
   const url = new URL(context.request.url);
+
+  if (isBlockedPath(url.pathname)) {
+    return new Response('Not found', {
+      status: 404,
+      headers: {
+        'Cache-Control': 'no-store, max-age=0',
+        'Content-Type': 'text/plain; charset=utf-8',
+        'X-Content-Type-Options': 'nosniff',
+      },
+    });
+  }
 
   // /api/* 是 JSON/OAuth 等非 HTML 路徑，省略 body 處理
   if (url.pathname.startsWith('/api/')) {

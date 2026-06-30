@@ -4,6 +4,7 @@ const json = (data, status = 200) =>
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'Cache-Control': 'no-store, max-age=0',
+      'X-Content-Type-Options': 'nosniff',
     },
   });
 
@@ -16,9 +17,34 @@ const ALLOWED_IMAGE_CONTENT_TYPES = new Set([
   'image/png',
   'image/webp',
   'image/gif',
-  'image/svg+xml',
   'image/avif',
 ]);
+const IMAGE_EXTENSIONS_BY_CONTENT_TYPE = {
+  'image/jpeg': new Set(['jpg', 'jpeg']),
+  'image/png': new Set(['png']),
+  'image/webp': new Set(['webp']),
+  'image/gif': new Set(['gif']),
+  'image/avif': new Set(['avif']),
+};
+
+const bytesStartWith = (bytes, signature) => signature.every((byte, index) => bytes[index] === byte);
+
+const asciiAt = (bytes, start, length) =>
+  String.fromCharCode(...bytes.subarray(start, Math.min(bytes.length, start + length)));
+
+const matchesImageSignature = (buffer, contentType) => {
+  const bytes = new Uint8Array(buffer);
+  if (contentType === 'image/jpeg') return bytesStartWith(bytes, [0xff, 0xd8, 0xff]);
+  if (contentType === 'image/png') return bytesStartWith(bytes, [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+  if (contentType === 'image/gif') return asciiAt(bytes, 0, 6) === 'GIF87a' || asciiAt(bytes, 0, 6) === 'GIF89a';
+  if (contentType === 'image/webp') return asciiAt(bytes, 0, 4) === 'RIFF' && asciiAt(bytes, 8, 4) === 'WEBP';
+  if (contentType === 'image/avif') {
+    if (asciiAt(bytes, 4, 4) !== 'ftyp') return false;
+    const brands = asciiAt(bytes, 8, 32);
+    return brands.includes('avif') || brands.includes('avis');
+  }
+  return false;
+};
 
 const toHex = (buffer) =>
   Array.from(new Uint8Array(buffer), (b) => b.toString(16).padStart(2, '0')).join('');
@@ -54,15 +80,18 @@ const sanitizeFileBase = (name) =>
 
 const normalizeContentType = (value) => String(value || '').split(';')[0].trim().toLowerCase();
 
-const safeExt = (filename, contentType) => {
+const fileExt = (filename) => {
   const match = String(filename || '').toLowerCase().match(/\.([a-z0-9]{1,5})$/);
-  const ext = match ? match[1] : '';
-  const allow = new Set(['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'avif']);
-  if (allow.has(ext)) return ext;
+  return match ? match[1] : '';
+};
+
+const safeExt = (filename, contentType) => {
+  const ext = fileExt(filename);
+  const allowed = IMAGE_EXTENSIONS_BY_CONTENT_TYPE[contentType] || IMAGE_EXTENSIONS_BY_CONTENT_TYPE[DEFAULT_IMAGE_CONTENT_TYPE];
+  if (allowed.has(ext)) return ext === 'jpeg' ? 'jpg' : ext;
   if (contentType === 'image/jpeg') return 'jpg';
   if (contentType === 'image/webp') return 'webp';
   if (contentType === 'image/gif') return 'gif';
-  if (contentType === 'image/svg+xml') return 'svg';
   if (contentType === 'image/avif') return 'avif';
   return 'png';
 };
@@ -265,8 +294,15 @@ export async function onRequest(context) {
   if (!Number.isFinite(size) || size <= 0) return json({ error: 'Invalid file size' }, 400);
   if (size > maxImageBytes) return json({ error: `Image too large. Max allowed is ${maxImageBytes} bytes` }, 413);
   if (!ALLOWED_IMAGE_CONTENT_TYPES.has(contentType)) return json({ error: 'Unsupported image content type' }, 415);
+  const extFromName = fileExt(filename);
+  const allowedExts = IMAGE_EXTENSIONS_BY_CONTENT_TYPE[contentType] || IMAGE_EXTENSIONS_BY_CONTENT_TYPE[DEFAULT_IMAGE_CONTENT_TYPE];
+  if (extFromName && !allowedExts.has(extFromName)) {
+    return json({ error: 'Image file extension does not match its content type.' }, 415);
+  }
 
   const bytes = await file.arrayBuffer();
+  if (!matchesImageSignature(bytes, contentType)) return json({ error: 'Image file content does not match its type' }, 415);
+
   let signed;
   try {
     signed = await createSignedPutUrl({ env, filename, contentType });
