@@ -54,6 +54,9 @@
 /api/r2-upload-sign
   Content-Security-Policy: default-src 'none'; base-uri 'none'; frame-ancestors 'none'; img-src 'none'; script-src 'none'; style-src 'none'; connect-src 'none'; form-action 'none'
 
+/api/fsnotes/v1/*
+  Content-Security-Policy: default-src 'none'; base-uri 'none'; frame-ancestors 'none'; img-src 'none'; script-src 'none'; style-src 'none'; connect-src 'none'; form-action 'none'
+
 /api/callback
   Content-Security-Policy: default-src 'none'; base-uri 'none'; frame-ancestors 'none'; img-src 'none'; script-src 'unsafe-inline'; style-src 'none'; connect-src 'none'; form-action 'none'
 

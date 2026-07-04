@@ -1,3 +1,26 @@
+const getCookie = (cookieHeader, key) => {
+  if (!cookieHeader) return '';
+  const pairs = cookieHeader.split(';');
+  for (const pair of pairs) {
+    const [rawName, ...rest] = pair.trim().split('=');
+    if (rawName === key) return rest.join('=');
+  }
+  return '';
+};
+
+const readStates = (cookieHeader) => {
+  const rawStates = getCookie(cookieHeader, 'oauth_states');
+  if (!rawStates) return [];
+
+  try {
+    const states = JSON.parse(decodeURIComponent(rawStates));
+    if (!Array.isArray(states)) return [];
+    return states.filter((item) => typeof item === 'string' && /^[a-f0-9]{32}$/.test(item)).slice(-4);
+  } catch {
+    return [];
+  }
+};
+
 export async function onRequest(context) {
   const { request, env } = context;
   if (request.method !== 'GET') {
@@ -35,9 +58,13 @@ export async function onRequest(context) {
       Location: `https://github.com/login/oauth/authorize?${params.toString()}`,
     },
   });
-  response.headers.set(
+  response.headers.append(
     'Set-Cookie',
     `oauth_state=${state}; HttpOnly; Path=/api/callback; SameSite=Lax; Max-Age=600${secure}`
+  );
+  response.headers.append(
+    'Set-Cookie',
+    `oauth_states=${encodeURIComponent(JSON.stringify([...readStates(request.headers.get('Cookie')), state].slice(-5)))}; HttpOnly; Path=/; SameSite=Lax; Max-Age=600${secure}`
   );
   response.headers.set('Cache-Control', 'no-store, max-age=0');
   return response;

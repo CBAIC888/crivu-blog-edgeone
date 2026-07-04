@@ -16,6 +16,24 @@ const getCookie = (cookieHeader, key) => {
   return '';
 };
 
+const readStates = (cookieHeader) => {
+  const rawStates = getCookie(cookieHeader, 'oauth_states');
+  if (!rawStates) return [];
+
+  try {
+    const states = JSON.parse(decodeURIComponent(rawStates));
+    if (!Array.isArray(states)) return [];
+    return states.filter((item) => typeof item === 'string');
+  } catch {
+    return [];
+  }
+};
+
+const setClearCookies = (response, secure) => {
+  response.headers.append('Set-Cookie', `oauth_state=; HttpOnly; Path=/api/callback; SameSite=Lax; Max-Age=0${secure}`);
+  response.headers.append('Set-Cookie', `oauth_states=; HttpOnly; Path=/; SameSite=Lax; Max-Age=0${secure}`);
+};
+
 export async function onRequest(context) {
   const { request, env } = context;
   if (request.method !== 'GET') {
@@ -25,18 +43,20 @@ export async function onRequest(context) {
   const url = new URL(request.url);
   const code = url.searchParams.get('code');
   const state = url.searchParams.get('state');
-  const clearCookie = `oauth_state=; HttpOnly; Path=/api/callback; SameSite=Lax; Max-Age=0${url.protocol === 'https:' ? '; Secure' : ''}`;
+  const secure = url.protocol === 'https:' ? '; Secure' : '';
   if (!code || !state) {
     const missingResponse = new Response('Missing OAuth parameters', { status: 400 });
-    missingResponse.headers.set('Set-Cookie', clearCookie);
+    setClearCookies(missingResponse, secure);
     missingResponse.headers.set('Cache-Control', 'no-store, max-age=0');
     return missingResponse;
   }
 
-  const cookieState = getCookie(request.headers.get('Cookie'), 'oauth_state');
-  if (!cookieState || cookieState !== state) {
+  const cookieHeader = request.headers.get('Cookie');
+  const cookieState = getCookie(cookieHeader, 'oauth_state');
+  const cookieStates = readStates(cookieHeader);
+  if (cookieState !== state && !cookieStates.includes(state)) {
     const invalidResponse = new Response('Invalid OAuth state', { status: 400 });
-    invalidResponse.headers.set('Set-Cookie', clearCookie);
+    setClearCookies(invalidResponse, secure);
     invalidResponse.headers.set('Cache-Control', 'no-store, max-age=0');
     return invalidResponse;
   }
@@ -68,7 +88,7 @@ export async function onRequest(context) {
     tokenJson = await tokenRes.json();
   } catch {
     const badResponse = new Response('Invalid token response from GitHub', { status: 502 });
-    badResponse.headers.set('Set-Cookie', clearCookie);
+    setClearCookies(badResponse, secure);
     badResponse.headers.set('Cache-Control', 'no-store, max-age=0');
     return badResponse;
   }
@@ -89,7 +109,7 @@ export async function onRequest(context) {
 </html>`,
       { status: 400, headers: { 'Content-Type': 'text/html; charset=utf-8' } }
     );
-    errorResponse.headers.set('Set-Cookie', clearCookie);
+    setClearCookies(errorResponse, secure);
     errorResponse.headers.set('Cache-Control', 'no-store, max-age=0');
     return errorResponse;
   }
@@ -136,7 +156,7 @@ export async function onRequest(context) {
   const okResponse = new Response(response, {
     headers: { 'Content-Type': 'text/html; charset=utf-8' },
   });
-  okResponse.headers.set('Set-Cookie', clearCookie);
+  setClearCookies(okResponse, secure);
   okResponse.headers.set('Cache-Control', 'no-store, max-age=0');
   return okResponse;
 }
