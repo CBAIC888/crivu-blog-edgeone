@@ -5,6 +5,7 @@ import {
   findIdempotentPost,
   idempotencyKey,
   json,
+  makePostListItem,
   makePostResponse,
   noContent,
   normalizePostPayload,
@@ -19,10 +20,32 @@ import {
 export async function onRequest(context) {
   const { request, env } = context;
   if (request.method === 'OPTIONS') return noContent();
-  if (request.method !== 'POST') return error(405, 'method_not_allowed', 'Method not allowed.');
+  if (!['GET', 'POST'].includes(request.method)) return error(405, 'method_not_allowed', 'Method not allowed.');
 
   const auth = await verifyPublishToken(request, env);
   if (!auth.ok) return auth.response;
+
+  if (request.method === 'GET') {
+    const postsRead = await readGithubJson(env, paths.POSTS_PATH, { items: [] });
+    if (!postsRead.ok) return postsRead.response;
+
+    const url = new URL(request.url);
+    const status = url.searchParams.get('status') || 'all';
+    if (!['all', 'draft', 'published'].includes(status)) {
+      return error(422, 'validation_failed', 'status must be all, draft, or published.', { field: 'status' });
+    }
+
+    const postsData = postsRead.data;
+    const posts = Array.isArray(postsData.items) ? postsData.items : Array.isArray(postsData) ? postsData : [];
+    const filtered = posts.filter((post) => {
+      const published = post?.published !== false;
+      if (status === 'published') return published;
+      if (status === 'draft') return !published;
+      return true;
+    });
+    const items = await Promise.all(filtered.map((post) => makePostListItem(post, env)));
+    return json({ items, total: items.length }, 200);
+  }
 
   const parsed = await parseJsonBody(request);
   if (!parsed.ok) return parsed.response;

@@ -242,6 +242,12 @@ export const publicPostForRevision = (post) => {
 
 export const postRevision = async (post) => sha256Hex(stableStringify(publicPostForRevision(post)));
 
+export const postId = (post) => post?.id || post?.slug || '';
+
+export const isPostPublished = (post) => post?.published !== false;
+
+export const postStatus = (post) => (isPostPublished(post) ? 'published' : 'draft');
+
 export const nowInShanghai = () => {
   const shifted = new Date(Date.now() + 8 * 60 * 60 * 1000);
   const pad = (n) => String(n).padStart(2, '0');
@@ -313,7 +319,7 @@ export const normalizePostPayload = async (payload, posts, currentPost = null) =
   const title = Object.prototype.hasOwnProperty.call(payload, 'title') ? cleanText(payload.title, 160) : currentPost?.title;
   const markdownInput = Object.prototype.hasOwnProperty.call(payload, 'markdown') ? payload.markdown : undefined;
   const markdown = markdownInput === undefined ? currentPost?.body : cleanLongText(markdownInput);
-  const status = Object.prototype.hasOwnProperty.call(payload, 'status') ? String(payload.status || '') : currentPost?.published === true ? 'published' : 'draft';
+  const status = Object.prototype.hasOwnProperty.call(payload, 'status') ? String(payload.status || '') : currentPost ? postStatus(currentPost) : 'draft';
   const date = Object.prototype.hasOwnProperty.call(payload, 'date') && cleanText(payload.date, 40) ? cleanText(payload.date, 40) : currentPost?.date || nowInShanghai();
   const slugInput = Object.prototype.hasOwnProperty.call(payload, 'slug') ? cleanText(payload.slug, 100).toLowerCase() : '';
   const slug = slugInput || currentPost?.slug || (await makeSlug({ date, markdown, title }, posts));
@@ -325,7 +331,7 @@ export const normalizePostPayload = async (payload, posts, currentPost = null) =
   if (!isValidSlug(slug)) return { ok: false, response: error(422, 'validation_failed', 'slug must contain lowercase letters, numbers, and hyphens only.', { field: 'slug' }) };
 
   const ownerId = currentPost?.id || '';
-  if (posts.some((post) => post.slug === slug && post.id !== ownerId)) {
+  if (posts.some((post) => post.slug === slug && post !== currentPost && (!ownerId || post.id !== ownerId))) {
     return { ok: false, response: error(409, 'slug_conflict', 'Slug already exists.', { field: 'slug' }) };
   }
 
@@ -382,9 +388,10 @@ export const syncIssueMembership = (issuesData, previousPost, nextPost) => {
 };
 
 export const makePostResponse = async (post, env, commitSha = '') => {
-  const status = post.published === true ? 'published' : 'draft';
+  const status = postStatus(post);
   return {
-    postId: post.id,
+    id: postId(post),
+    postId: postId(post),
     slug: post.slug,
     publicUrl: status === 'published' ? articleUrl(post.slug, env) : null,
     editUrl: editUrl(env),
@@ -396,6 +403,35 @@ export const makePostResponse = async (post, env, commitSha = '') => {
     commitSha,
   };
 };
+
+export const makePostListItem = async (post, env) => {
+  const status = postStatus(post);
+  return {
+    id: postId(post),
+    postId: postId(post),
+    title: post.title || '',
+    slug: post.slug || '',
+    date: post.date || '',
+    updatedAt: post.updatedAt || '',
+    status,
+    published: status === 'published',
+    category: post.category || '',
+    tags: Array.isArray(post.tags) ? post.tags : [],
+    issue: post.issue || '',
+    excerpt: post.excerpt || '',
+    cover: post.cover || '',
+    publicUrl: status === 'published' && post.slug ? articleUrl(post.slug, env) : null,
+    editUrl: editUrl(env),
+    revision: await postRevision(post),
+    language: post.language || 'zh-Hant',
+  };
+};
+
+export const makePostDetailResponse = async (post, env) => ({
+  ...(await makePostListItem(post, env)),
+  markdown: post.body || '',
+  plainText: post.plainText || '',
+});
 
 export const parseJsonBody = async (request) => {
   try {

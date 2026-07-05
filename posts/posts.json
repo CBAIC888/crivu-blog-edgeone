@@ -1,6 +1,25 @@
 {
   "items": [
     {
+      "id": "post_5f70aff6dc99216e9c91aeb5bfc7d5d4",
+      "published": true,
+      "title": "2026年4月14日",
+      "slug": "dbyg",
+      "date": "2026-04-14T12:51:00+08:00",
+      "updatedAt": "2026-07-05T12:51:20+08:00",
+      "body": "用豆包軟體，讓她唱歌，她唱了一首《在你的身邊》。聽完後又去聽原曲，思緒頓時就拉回到了三年多前。\n\n那時候在住院，客廳裡的電視播放著這首歌，外面天氣很好，我站在窗前望著電視。\n\n很多病友也在聽這首歌。不知道如果他們再聽此曲，會不會像我一樣把思緒拉回去呢。\n![](/assets/img/uploads/20260705/0cb8a15a5eba.jpg)\n\n",
+      "plainText": "用豆包軟體，讓她唱歌，她唱了一首《在你的身邊》。聽完後又去聽原曲，思緒頓時就拉回到了三年多前。\n\n那時候在住院，客廳裡的電視播放著這首歌，外面天氣很好，我站在窗前望著電視。\n\n很多病友也在聽這首歌。不知道如果他們再聽此曲，會不會像我一樣把思緒拉回去呢。\n￼\n\n",
+      "tags": [],
+      "category": "隨記",
+      "issue": "miscellany",
+      "language": "zh-Hant",
+      "_fsnotes": {
+        "createKeyHash": "6e032c69b128599c220ba7de81690a2e0307668eeae02843c4c59559cedf7580",
+        "createBodyHash": "fa03fe17a91a369e1a1cbed23a395d6011a756ca26dcbcce421072787aa44f80",
+        "createdAtMs": 1783227080448
+      }
+    },
+    {
       "published": true,
       "tags": [
         "傳統"

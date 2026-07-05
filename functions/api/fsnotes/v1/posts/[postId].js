@@ -2,6 +2,7 @@ import {
   commitGithubFiles,
   error,
   json,
+  makePostDetailResponse,
   makePostResponse,
   noContent,
   normalizePostPayload,
@@ -14,7 +15,7 @@ import {
   verifyPublishToken,
 } from '../_shared.js';
 
-const findPostIndex = (posts, postId) => posts.findIndex((post) => post?.id === postId);
+const findPostIndex = (posts, targetPostId) => posts.findIndex((post) => post?.id === targetPostId || post?.slug === targetPostId);
 
 const loadPostsAndIssues = async (env) => {
   const [postsRead, issuesRead] = await Promise.all([
@@ -39,7 +40,7 @@ const ensureRevision = async (request, post) => {
 export async function onRequest(context) {
   const { request, env, params } = context;
   if (request.method === 'OPTIONS') return noContent();
-  if (!['PATCH', 'DELETE'].includes(request.method)) return error(405, 'method_not_allowed', 'Method not allowed.');
+  if (!['GET', 'PATCH', 'DELETE'].includes(request.method)) return error(405, 'method_not_allowed', 'Method not allowed.');
 
   const auth = await verifyPublishToken(request, env);
   if (!auth.ok) return auth.response;
@@ -54,6 +55,10 @@ export async function onRequest(context) {
   if (index === -1) return error(404, 'post_not_found', 'Article does not exist.');
 
   const currentPost = loaded.posts[index];
+
+  if (request.method === 'GET') {
+    return json(await makePostDetailResponse(currentPost, env), 200);
+  }
 
   if (request.method === 'PATCH') {
     const revision = await ensureRevision(request, currentPost);
