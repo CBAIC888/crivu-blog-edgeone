@@ -117,9 +117,9 @@
     .comments-entry__title { display:flex; align-items:center; gap:7px; font-size:11px; font-weight:700; letter-spacing:.1em; }
     .comments-entry__title::before { content:""; width:5px; height:5px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 4px color-mix(in srgb,var(--gold) 12%,transparent); }
     .comments-entry__count { color:var(--muted); font-size:9px; font-weight:600; letter-spacing:.04em; }
-    .comments-entry__previews { display:grid; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-    .comments-entry__preview { display:grid; grid-template-columns:auto minmax(0,1fr); gap:8px; padding:7px 0; border-bottom:1px solid var(--line); font-family:var(--sans); }
-    .comments-entry__preview:last-child { border-bottom:0; }
+    .comments-entry__previews { display:grid; gap:6px; }
+    .comments-entry__preview { display:grid; grid-template-columns:18px auto minmax(0,1fr); align-items:center; gap:7px; padding:8px 9px; border:1px solid var(--line); border-radius:8px; background:var(--comments-panel-field); font-family:var(--sans); }
+    .comments-entry__preview::before { content:"“"; width:18px; height:18px; display:grid; place-items:center; border-radius:50%; color:var(--gold); background:color-mix(in srgb,var(--gold) 12%,transparent); font:600 13px/1 var(--serif); }
     .comments-entry__preview strong { max-width:7em; overflow:hidden; font-size:9px; text-overflow:ellipsis; white-space:nowrap; }
     .comments-entry__preview em { min-width:0; overflow:hidden; color:var(--muted); font-size:9px; font-style:normal; text-overflow:ellipsis; white-space:nowrap; }
     .comments-entry__empty { padding:9px 0; color:var(--muted); font:500 9px/1.5 var(--sans); }
@@ -137,11 +137,14 @@
     .comments-compact__count { color:var(--muted); font:600 9px/1 var(--sans); white-space:nowrap; }
     .comments-compact__body { min-height:0; display:grid; grid-template-columns:minmax(0,1fr) minmax(300px,.82fr); gap:28px; padding-top:16px; }
     .comments-compact__list { min-height:0; overflow:auto; padding-right:12px; border-right:1px solid var(--line); scrollbar-width:thin; }
-    .comments-compact__empty { margin:0; padding:11px 2px; color:var(--muted); font:400 11px/1.5 var(--sans); }
-    .comment-mini { padding:9px 2px; border-bottom:1px solid var(--line); } .comment-mini:last-child { border-bottom:0; }
-    .comment-mini__head { display:flex; justify-content:space-between; gap:10px; margin-bottom:4px; font-family:var(--sans); }
-    .comment-mini__head strong { font-size:11px; } .comment-mini__head time { color:var(--muted); font-size:9px; }
-    .comment-mini p { margin:0; color:var(--ink); font-size:12px; line-height:1.55; white-space:pre-wrap; overflow-wrap:anywhere; }
+    .comments-compact__list .comments__empty { margin:0; padding:14px 13px; border:1px dashed var(--line); border-radius:9px; color:var(--muted); background:var(--comments-panel-field); font:500 11px/1.5 var(--sans); }
+    .comments-compact__list .comment-item { margin:0 0 9px; padding:11px 13px 12px; border:1px solid var(--line); border-radius:9px; background:var(--comments-panel-field); box-shadow:0 6px 18px rgba(35,31,24,.06); }
+    .comments-compact__list .comment-item:last-child { margin-bottom:0; }
+    .comments-compact__list .comment-item__head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 7px; font-family:var(--sans); }
+    .comments-compact__list .comment-item__head strong { display:flex; align-items:center; gap:7px; font-size:11px; }
+    .comments-compact__list .comment-item__head strong::before { content:""; width:5px; height:5px; border-radius:50%; background:var(--gold); }
+    .comments-compact__list .comment-item__head time { color:var(--muted); font-size:9px; white-space:nowrap; }
+    .comments-compact__list .comment-item p { margin:0; color:var(--ink); font-size:12px; line-height:1.62; white-space:pre-wrap; overflow-wrap:anywhere; }
     .comments-compact__form { position:relative; display:grid; align-content:start; gap:9px; }
     .comments-compact__fields { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
     .comments-compact label { display:grid; gap:3px; color:var(--muted); font:600 8px/1.2 var(--sans); letter-spacing:.06em; }
@@ -149,9 +152,13 @@
     .comments-compact textarea { height:48px; min-height:48px; resize:none; }
     .comments-compact .comments-compact__trap { position:absolute; left:-9999px; width:1px; height:1px; opacity:0; pointer-events:none; }
     .comments-compact input:focus,.comments-compact textarea:focus { outline:1px solid var(--gold); outline-offset:0; }
+    .comments-compact__verification { display:grid; gap:5px; color:var(--muted); font:600 8px/1.35 var(--sans); letter-spacing:.05em; }
+    .comments-compact__turnstile { min-height:0; max-width:100%; overflow:hidden; }
     .comments-compact__actions { display:flex; align-items:center; justify-content:space-between; gap:10px; }
     .comments-compact__actions button { min-height:28px; padding:0 11px; border:0; border-radius:4px; color:var(--paper); background:var(--ink); font:650 9px/1 var(--sans); letter-spacing:.08em; }
+    .comments-compact__actions button:disabled { cursor:wait; opacity:.55; }
     .comments-compact__status { min-width:0; margin:0; overflow:hidden; color:var(--muted); font:550 8px/1.4 var(--sans); text-overflow:ellipsis; white-space:nowrap; }
+    .comments-compact__status[data-tone="success"] { color:#3f7550; } .comments-compact__status[data-tone="error"] { color:#a54949; }
     .article-layout { display:grid; grid-template-columns:minmax(210px,280px) minmax(0,760px); justify-content:center; align-items:start; gap:clamp(44px,8vw,126px); padding:clamp(84px,10vw,150px) max(5vw,28px); }
     .article-toc { position:sticky; top:116px; align-self:start; max-height:calc(100vh - 144px); overflow:auto; padding-right:20px; }
     .article-toc h2 { margin:0 0 22px; color:var(--muted); font:650 10px/1 var(--sans); letter-spacing:.22em; }
@@ -269,7 +276,8 @@
       .record-footer { display:block; padding-inline:20px; }
     }
     @media (max-width:420px) {
-      .comments-sheet__panel { min-height:340px; }
+      .comments-sheet__panel { height:50dvh; min-height:0; }
+      .comments-sheet__inner { padding:14px 10px 16px; }
       .comments-compact__fields { grid-template-columns:1fr; }
       .comments-compact__status { white-space:normal; }
     }
@@ -336,7 +344,7 @@
           <figcaption>从两个古老汉字出发，沿着近两千年的翻译与使用，重新辨认一个最熟悉的词。</figcaption>
         </figure>
         <button class="comments-entry" id="commentsEntry" type="button" aria-haspopup="dialog">
-          <span class="comments-entry__head"><span class="comments-entry__title">读者片言</span><span class="comments-entry__count" id="commentsEntryCount">0 条评论</span></span>
+          <span class="comments-entry__head"><span class="comments-entry__title">最新评论</span><span class="comments-entry__count" id="commentsEntryCount">读取中</span></span>
           <span class="comments-entry__previews" id="commentsEntryPreviews"><span class="comments-entry__empty">暂无评论</span></span>
           <span class="comments-entry__foot"><span>展开半屏评论</span><span aria-hidden="true">→</span></span>
         </button>
@@ -812,22 +820,23 @@
 
   <footer class="record-footer"><span>© 2026 CRIVU · 世界一词的探索</span></footer>
 
-  <section class="comments-sheet" id="commentsSheet" hidden role="dialog" aria-modal="true" aria-labelledby="commentsSheetTitle">
+  <section class="comments-sheet" id="commentsSheet" hidden role="dialog" aria-modal="true" aria-labelledby="commentsSheetTitle" data-comments data-comments-slug="world-word-exploration" data-comments-empty="暂无评论" data-comments-defer-turnstile>
     <div class="comments-sheet__panel">
       <div class="comments-sheet__inner">
         <header class="comments-sheet__top"><h2 id="commentsSheetTitle">专题评论</h2><button class="comments-sheet__close" id="commentsSheetClose" type="button" aria-label="关闭评论">×</button></header>
-        <section class="comments-compact" aria-labelledby="localCommentsTitle">
-          <header class="comments-compact__head"><h3 id="localCommentsTitle">读者片言</h3><span class="comments-compact__count" id="localCommentCount">0 条评论</span></header>
+        <section class="comments-compact" aria-labelledby="commentsListTitle">
+          <header class="comments-compact__head"><h3 id="commentsListTitle">已审核评论</h3><span class="comments-compact__count" id="commentCount">读取中</span></header>
           <div class="comments-compact__body">
-            <div class="comments-compact__list" id="localCommentList"><p class="comments-compact__empty">暂无评论</p></div>
-            <form class="comments-compact__form" id="localCommentForm">
+            <div class="comments-compact__list" data-comments-list><p class="comments__empty">评论加载中…</p></div>
+            <form class="comments-compact__form" data-comments-form>
               <div class="comments-compact__fields">
                 <label>昵称<input name="authorName" maxlength="32" autocomplete="name" required placeholder="如何称呼"></label>
-                <label>邮箱（选填）<input name="email" type="email" maxlength="160" autocomplete="email" placeholder="不会公开"></label>
+                <label>邮箱（不公开）<input name="email" type="email" maxlength="160" autocomplete="email" placeholder="选填"></label>
               </div>
               <label>内容<textarea name="body" maxlength="1200" required placeholder="关于这个词、这段历史，或你自己的世界……"></textarea></label>
-              <input class="comments-compact__trap" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-              <div class="comments-compact__actions"><p class="comments-compact__status" id="localCommentStatus" aria-live="polite">本地模拟，不会上传。</p><button type="submit">写入此页</button></div>
+              <label class="comments-compact__trap" aria-hidden="true"><span>Website</span><input name="website" tabindex="-1" autocomplete="off"></label>
+              <div class="comments-compact__verification"><span>安全验证 · 审核后公开</span><div class="comments-compact__turnstile" data-comments-turnstile></div></div>
+              <div class="comments-compact__actions"><p class="comments-compact__status" data-comments-status aria-live="polite"></p><button type="submit" data-comments-submit disabled>提交评论</button></div>
             </form>
           </div>
         </section>
@@ -939,38 +948,26 @@
       document.addEventListener('click', (event) => { if (!searchResults.contains(event.target) && event.target !== searchInput) closeSearch(); });
       searchInput.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closeSearch(); searchInput.blur(); } });
 
-      const commentStoreKey = 'crivu-world-record-comments-preview';
-      const commentForm = document.querySelector('#localCommentForm');
-      const commentList = document.querySelector('#localCommentList');
-      const commentCount = document.querySelector('#localCommentCount');
+      const commentsRoot = document.querySelector('[data-comments]');
+      const commentCount = document.querySelector('#commentCount');
       const commentsEntryCount = document.querySelector('#commentsEntryCount');
       const commentsEntryPreviews = document.querySelector('#commentsEntryPreviews');
-      const commentStatus = document.querySelector('#localCommentStatus');
       const commentsSheet = document.querySelector('#commentsSheet');
       const commentsEntry = document.querySelector('#commentsEntry');
       const commentsSheetClose = document.querySelector('#commentsSheetClose');
-      let localComments = [];
-      try {
-        const stored = JSON.parse(localStorage.getItem(commentStoreKey) || '[]');
-        if (Array.isArray(stored)) localComments = stored.filter((item) => item && typeof item.authorName === 'string' && typeof item.body === 'string').slice(-20);
-      } catch {}
-      const renderComments = () => {
-        commentList.replaceChildren();
+      const renderCommentPreviews = (comments) => {
+        const approvedComments = Array.isArray(comments) ? comments : [];
         commentsEntryPreviews.replaceChildren();
-        commentCount.textContent = `${localComments.length} 条评论`;
-        commentsEntryCount.textContent = `${localComments.length} 条评论`;
-        if (!localComments.length) {
-          const empty = document.createElement('p');
-          empty.className = 'comments-compact__empty';
-          empty.textContent = '暂无评论';
-          commentList.append(empty);
+        commentCount.textContent = `${approvedComments.length} 条评论`;
+        commentsEntryCount.textContent = `${approvedComments.length} 条评论`;
+        if (!approvedComments.length) {
           const entryEmpty = document.createElement('span');
           entryEmpty.className = 'comments-entry__empty';
           entryEmpty.textContent = '暂无评论';
           commentsEntryPreviews.append(entryEmpty);
           return;
         }
-        [...localComments].reverse().slice(0,2).forEach((item) => {
+        [...approvedComments].reverse().slice(0,2).forEach((item) => {
           const preview = document.createElement('span');
           preview.className = 'comments-entry__preview';
           const previewName = document.createElement('strong');
@@ -980,41 +977,13 @@
           preview.append(previewName, previewBody);
           commentsEntryPreviews.append(preview);
         });
-        [...localComments].reverse().forEach((item) => {
-          const article = document.createElement('article');
-          article.className = 'comment-mini';
-          const head = document.createElement('div');
-          head.className = 'comment-mini__head';
-          const name = document.createElement('strong');
-          name.textContent = item.authorName;
-          const time = document.createElement('time');
-          const date = new Date(item.createdAt);
-          time.dateTime = Number.isNaN(date.getTime()) ? '' : date.toISOString();
-          time.textContent = Number.isNaN(date.getTime()) ? '刚刚' : new Intl.DateTimeFormat('zh-CN', { year:'numeric', month:'2-digit', day:'2-digit' }).format(date);
-          const bodyText = document.createElement('p');
-          bodyText.textContent = item.body;
-          head.append(name, time);
-          article.append(head, bodyText);
-          commentList.append(article);
-        });
       };
-      commentForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const data = new FormData(commentForm);
-        const authorName = String(data.get('authorName') || '').trim();
-        const bodyText = String(data.get('body') || '').trim();
-        if (String(data.get('website') || '').trim()) return;
-        if (!authorName || !bodyText) { commentStatus.textContent = '请填写昵称与评论内容。'; return; }
-        localComments = [...localComments, { authorName: authorName.slice(0,32), body: bodyText.slice(0,1200), createdAt:new Date().toISOString() }].slice(-20);
-        try { localStorage.setItem(commentStoreKey, JSON.stringify(localComments)); } catch {}
-        commentForm.reset();
-        renderComments();
-        commentStatus.textContent = '已写入本地，仅保存在此浏览器。';
-      });
-      renderComments();
+      renderCommentPreviews([]);
+      commentsRoot.addEventListener('comments:loaded', (event) => renderCommentPreviews(event.detail?.comments || []));
 
       const openComments = () => {
         commentsSheet.hidden = false;
+        commentsRoot.dispatchEvent(new Event('comments:visible'));
         body.classList.add('comments-open');
         main.setAttribute('aria-hidden','true');
         siteHeader.setAttribute('aria-hidden','true');
@@ -1121,5 +1090,6 @@
       });
     })();
   </script>
+  <script src="/assets/js/comments.js?v=world-record-comments-20260723-1" type="module"></script>
 </body>
 </html>

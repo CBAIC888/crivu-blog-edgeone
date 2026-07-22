@@ -1,5 +1,3 @@
-import { escapeHtml } from '../../shared/content.js?v=__BUILD_VERSION__';
-
 const API_ORIGIN = window.location.hostname === 'eo.cbc688.com' ? 'https://cbc688.com' : window.location.origin;
 const API_URL = `${API_ORIGIN}/api/comments`;
 
@@ -47,23 +45,32 @@ const loadTurnstile = () =>
     document.head.appendChild(script);
   });
 
-const renderComments = (listEl, comments) => {
+const renderComments = (listEl, comments, emptyText = '暫無評論。') => {
   if (!comments.length) {
-    listEl.innerHTML = '<p class="comments__empty">暫無評論。</p>';
+    const empty = document.createElement('p');
+    empty.className = 'comments__empty';
+    empty.textContent = emptyText;
+    listEl.replaceChildren(empty);
     return;
   }
-  listEl.innerHTML = comments
-    .map(
-      (comment) => `
-        <article class="comment-item">
-          <header class="comment-item__head">
-            <strong>${escapeHtml(comment.authorName || '讀者')}</strong>
-            <time datetime="${escapeHtml(comment.createdAt || '')}">${escapeHtml(formatDate(comment.createdAt))}</time>
-          </header>
-          <p>${escapeHtml(comment.body || '')}</p>
-        </article>`
-    )
-    .join('');
+  const fragment = document.createDocumentFragment();
+  comments.forEach((comment) => {
+    const item = document.createElement('article');
+    item.className = 'comment-item';
+    const head = document.createElement('header');
+    head.className = 'comment-item__head';
+    const author = document.createElement('strong');
+    author.textContent = comment.authorName || '讀者';
+    const time = document.createElement('time');
+    time.dateTime = comment.createdAt || '';
+    time.textContent = formatDate(comment.createdAt);
+    const body = document.createElement('p');
+    body.textContent = comment.body || '';
+    head.append(author, time);
+    item.append(head, body);
+    fragment.append(item);
+  });
+  listEl.replaceChildren(fragment);
 };
 
 const setStatus = (el, message, tone = '') => {
@@ -81,6 +88,8 @@ const initComments = async () => {
   const statusEl = qs('[data-comments-status]', root);
   const submitBtn = qs('[data-comments-submit]', root);
   const turnstileEl = qs('[data-comments-turnstile]', root);
+  const emptyText = root.getAttribute('data-comments-empty') || '暫無評論。';
+  const deferTurnstile = root.hasAttribute('data-comments-defer-turnstile');
   if (!slug || !listEl || !form || !statusEl || !submitBtn || !turnstileEl) return;
 
   let turnstileWidget = '';
@@ -100,7 +109,9 @@ const initComments = async () => {
       fetchJson(`${API_URL}?slug=${encodeURIComponent(slug)}`),
     ]);
 
-    renderComments(listEl, Array.isArray(list.comments) ? list.comments : []);
+    const comments = Array.isArray(list.comments) ? list.comments : [];
+    renderComments(listEl, comments, emptyText);
+    root.dispatchEvent(new CustomEvent('comments:loaded', { detail: { comments } }));
 
     if (!config.enabled || !config.submissionEnabled) {
       form.hidden = true;
@@ -109,10 +120,16 @@ const initComments = async () => {
     }
 
     if (config.turnstileSiteKey) {
+      if (deferTurnstile && root.getClientRects().length === 0) {
+        await new Promise((resolve) => {
+          root.addEventListener('comments:visible', resolve, { once: true });
+        });
+      }
       const turnstile = await loadTurnstile();
       turnstileWidget = turnstile.render(turnstileEl, {
         sitekey: config.turnstileSiteKey,
         theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light',
+        size: turnstileEl.clientWidth < 300 ? 'compact' : 'flexible',
       });
     }
     canSubmit = true;
