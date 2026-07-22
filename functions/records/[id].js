@@ -70,7 +70,29 @@ export async function onRequest(context) {
 
   const standalonePage = sanitizeUrl(record.page, { allowHash: false });
   if (standalonePage !== '#') {
-    return Response.redirect(new URL(standalonePage, context.request.url).toString(), 302);
+    if (context.env?.ASSETS?.fetch) {
+      const assetPath = standalonePage.endsWith('/') ? `${standalonePage}index.html` : standalonePage;
+      const assetUrl = new URL(assetPath, context.request.url);
+      const assetResponse = await context.env.ASSETS.fetch(
+        new Request(assetUrl.toString(), { method: 'GET' })
+      );
+      if (assetResponse.ok) {
+        const headers = new Headers(assetResponse.headers);
+        headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+        return new Response(assetResponse.body, {
+          status: assetResponse.status,
+          headers,
+        });
+      }
+    }
+    const targetUrl = new URL(standalonePage, context.request.url);
+    if (targetUrl.pathname !== new URL(context.request.url).pathname) {
+      return Response.redirect(targetUrl.toString(), 302);
+    }
+    return new Response(renderNotFound(data.site), {
+      status: 404,
+      headers: PAGE_HEADERS,
+    });
   }
 
   const videos = Array.isArray(record.videos) ? record.videos.filter(isPublished) : [];
