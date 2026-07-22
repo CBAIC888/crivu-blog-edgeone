@@ -348,7 +348,7 @@ def main() -> None:
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
   <meta name="description" content="从汉语旧字、早期佛经翻译到现代全球观念，追索‘世界’一词近两千年的形成、流传与增义。">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#f1ede3">
@@ -510,6 +510,7 @@ def main() -> None:
     .article-toc h2 {{ margin:0 0 22px; color:var(--muted); font:650 10px/1 var(--sans); letter-spacing:.22em; }}
     .article-toc a {{ display:grid; grid-template-columns:30px 1fr; gap:10px; padding:9px 0; border-bottom:1px solid var(--line); color:var(--muted); text-decoration:none; font-size:13px; line-height:1.5; }}
     .article-toc a span {{ color:var(--gold); font:600 10px/1.6 var(--sans); }}
+    .mobile-toc {{ display:none; }}
     .article {{ min-width:0; }}
     .article-label {{ margin:0 0 70px; color:var(--muted); font:600 11px/1 var(--sans); letter-spacing:.18em; }}
     .article-section {{ scroll-margin-top:90px; margin-bottom:110px; }}
@@ -584,16 +585,37 @@ def main() -> None:
       .site-header.mobile-menu-open .mobile-menu-toggle .mm-line-mid {{ opacity:0; }}
       .site-header.mobile-menu-open .mobile-menu-toggle .mm-line-bot {{ transform:translateY(-5px) rotate(-45deg); transform-origin:center; }}
       .mobile-menu-toggle .mm-line {{ transition:transform .18s ease,opacity .18s ease; }}
-      .hero {{ padding-top:54px; }} .hero h1 {{ font-size:clamp(3.25rem,18vw,5rem); }}
-      .hero h1 span {{ transform:translateX(18px); }} .hero-deck {{ line-height:1.82; }}
-      .hero-facts div {{ padding-inline:7px; }} .hero-facts div+div {{ padding-left:7px; }}
-      .hero-facts dt {{ font-size:7px; letter-spacing:.07em; }} .hero-facts dd {{ font-size:8px; }}
-      .hero-side {{ margin-top:12px; }} .hero-cover {{ width:min(430px,86vw); }}
+      .site-header__search input,.comments-compact input,.comments-compact textarea {{ font-size:16px; }}
+      .hero {{ grid-template-columns:minmax(0,1fr); align-content:start; padding-top:32px; }}
+      .hero-copy,.hero-side {{ display:contents; }}
+      .hero-facts {{ display:none; }}
+      .eyebrow {{ order:1; width:min(690px,100%); justify-self:center; margin-bottom:20px; }}
+      .hero h1 {{ order:2; width:min(690px,100%); justify-self:center; font-size:clamp(3.25rem,18vw,5rem); }}
+      .hero h1 span {{ transform:translateX(12px); }}
+      .hero-cover {{ order:3; width:min(430px,86vw); margin-top:30px; }}
+      .hero-deck {{ order:4; width:min(690px,100%); justify-self:center; margin-top:30px; line-height:1.82; }}
+      .comments-entry {{ position:relative; order:5; width:min(460px,100%); justify-self:center; margin-top:25px; }}
+      .comments-entry::before {{ content:""; position:absolute; left:0; right:0; top:-13px; height:1px; background:var(--line); }}
+      .hero-actions {{ order:6; width:min(690px,100%); justify-self:center; }}
       .comments-sheet__inner {{ padding:16px 18px 20px; }}
       .comments-compact__body {{ grid-template-columns:1fr; gap:12px; overflow:auto; }}
       .comments-compact__list {{ max-height:100px; padding-right:0; border-right:0; border-bottom:1px solid var(--line); }}
       .article-section h2 {{ margin-bottom:32px; }} .article-conclusion {{ margin-inline:0!important; padding:28px 24px; }}
-      .archive {{ padding-inline:20px; }} .archive-card:nth-child(n) {{ grid-column:1/-1; }}
+      .mobile-toc {{ position:fixed; z-index:185; left:-36px; top:50%; display:block; opacity:0; pointer-events:none; transition:left .18s ease,opacity .18s ease; }}
+      .mobile-toc.is-visible {{ left:0; opacity:1; pointer-events:auto; }}
+      .mobile-toc__toggle {{ width:36px; min-height:68px; padding:10px 8px; border:1px solid var(--line); border-left:0; border-radius:0 9px 9px 0; color:var(--ink); background:color-mix(in srgb,var(--paper) 92%,transparent); box-shadow:8px 10px 26px rgba(35,31,24,.14); font:650 10px/1.45 var(--sans); letter-spacing:.12em; writing-mode:vertical-rl; transform:translateY(-50%); backdrop-filter:blur(12px); }}
+      .mobile-toc__panel {{ position:fixed; left:9px; top:103px; bottom:18px; width:min(310px,calc(100vw - 28px)); overflow:auto; padding:15px 16px 17px; border:1px solid var(--line); border-radius:11px; color:var(--ink); background:color-mix(in srgb,var(--paper) 96%,transparent); box-shadow:0 20px 55px rgba(35,31,24,.24); backdrop-filter:blur(18px); }}
+      .mobile-toc__head {{ position:sticky; top:-15px; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:16px; margin:-15px -16px 8px; padding:14px 15px 11px; border-bottom:1px solid var(--line); background:var(--paper); }}
+      .mobile-toc__head strong {{ font:650 11px/1 var(--sans); letter-spacing:.16em; }}
+      .mobile-toc__close {{ width:28px; height:28px; padding:0; border:1px solid var(--line); border-radius:50%; color:var(--ink); background:transparent; font:400 17px/1 var(--sans); }}
+      .mobile-toc__links a {{ display:grid; grid-template-columns:28px 1fr; gap:8px; padding:9px 0; border-bottom:1px solid var(--line); color:var(--muted); text-decoration:none; font-size:12px; line-height:1.45; }}
+      .mobile-toc__links a:last-child {{ border-bottom:0; }}
+      .mobile-toc__links a span {{ color:var(--gold); font:650 9px/1.6 var(--sans); }}
+      .archive {{ padding-inline:20px; }}
+      .archive-grid {{ display:flex; flex-direction:column; gap:58px; }}
+      .archive-card:nth-child(n) {{ width:100%; grid-column:auto; }}
+      .archive-image {{ width:100%; overflow:visible; }}
+      .archive-image img {{ width:100%; max-width:100%; height:auto; max-height:none; aspect-ratio:auto; object-fit:contain; }}
       .museum-title {{ display:none; }}
       .lightbox {{ padding:18px 8px 26px; }} .lightbox-stage {{ grid-template-columns:38px minmax(0,1fr) 38px; gap:4px; }}
       .lightbox button {{ width:36px; height:36px; }}
@@ -601,14 +623,14 @@ def main() -> None:
     @media (max-width:580px) {{
       body {{ overflow-x:hidden; }}
       .record-nav button {{ min-width:68px; padding-inline:10px; }}
-      .hero {{ padding:44px 18px 68px; }}
+      .hero {{ padding:22px 18px 58px; }}
       .hero h1 {{ font-size:clamp(3rem,17vw,4.5rem); }}
       .hero-deck {{ margin-top:27px; font-size:.98rem; }}
       .hero-actions {{ display:grid; grid-template-columns:1fr 1fr; }}
       .hero-actions .primary-action {{ grid-column:1/-1; }}
       .primary-action,.secondary-action {{ min-height:42px; padding-inline:13px; font-size:10px; }}
       .hero-cover {{ width:100%; }}
-      .comments-entry {{ margin-top:18px; padding-inline:14px; }}
+      .comments-entry {{ margin-top:25px; padding-inline:14px; }}
       .article-layout {{ gap:54px; padding:64px 18px 78px; }}
       .article-toc {{ padding:17px; }}
       .article-label {{ margin-bottom:44px; }}
@@ -617,7 +639,7 @@ def main() -> None:
       .article-section h2 {{ font-size:1.55rem; }}
       .article-notes .note {{ padding-left:31px; font-size:.82rem; overflow-wrap:anywhere; }}
       .archive-head {{ margin-bottom:48px; }}
-      .archive-grid {{ gap:48px; }}
+      .archive-grid {{ gap:52px; }}
       .archive-card figcaption {{ padding-top:15px; }}
       .record-footer {{ display:block; padding-inline:20px; }}
     }}
@@ -697,8 +719,16 @@ def main() -> None:
       </aside>
     </section>
 
+    <aside class="mobile-toc" id="mobileToc" aria-label="随行文章目录">
+      <button class="mobile-toc__toggle" id="mobileTocToggle" type="button" aria-expanded="false" aria-controls="mobileTocPanel">目录</button>
+      <div class="mobile-toc__panel" id="mobileTocPanel" hidden>
+        <header class="mobile-toc__head"><strong>文章目录</strong><button class="mobile-toc__close" id="mobileTocClose" type="button" aria-label="关闭文章目录">×</button></header>
+        <nav class="mobile-toc__links" id="mobileTocLinks" aria-label="文章章节"></nav>
+      </div>
+    </aside>
+
     <section class="article-layout" id="article">
-      <aside class="article-toc" aria-label="文章目录">
+      <aside class="article-toc" id="articleToc" aria-label="文章目录">
         <h2>文章目录</h2>
         {toc}
       </aside>
@@ -957,6 +987,42 @@ def main() -> None:
         progress.style.width = `${{value * 100}}%`;
       }};
       addEventListener('scroll', updateProgress, {{ passive:true }}); updateProgress();
+
+      const articleToc = document.querySelector('#articleToc');
+      const mobileToc = document.querySelector('#mobileToc');
+      const mobileTocToggle = document.querySelector('#mobileTocToggle');
+      const mobileTocPanel = document.querySelector('#mobileTocPanel');
+      const mobileTocClose = document.querySelector('#mobileTocClose');
+      const mobileTocLinks = document.querySelector('#mobileTocLinks');
+      articleToc.querySelectorAll('a').forEach((link) => mobileTocLinks.append(link.cloneNode(true)));
+      const closeMobileToc = (restoreFocus = false) => {{
+        if (mobileTocPanel.hidden) return;
+        mobileTocPanel.hidden = true;
+        mobileTocToggle.setAttribute('aria-expanded','false');
+        if (restoreFocus) mobileTocToggle.focus();
+      }};
+      const syncMobileToc = () => {{
+        const isMobile = matchMedia('(max-width:760px)').matches;
+        const tocBottom = articleToc.getBoundingClientRect().bottom + scrollY;
+        const passed = isMobile && scrollY > tocBottom - 96;
+        mobileToc.classList.toggle('is-visible', passed);
+        if (!passed) closeMobileToc();
+      }};
+      mobileTocToggle.addEventListener('click', () => {{
+        const opening = mobileTocPanel.hidden;
+        mobileTocPanel.hidden = !opening;
+        mobileTocToggle.setAttribute('aria-expanded', String(opening));
+        if (opening) mobileTocClose.focus();
+      }});
+      mobileTocClose.addEventListener('click', () => closeMobileToc(true));
+      mobileTocLinks.addEventListener('click', (event) => {{ if (event.target.closest('a')) closeMobileToc(); }});
+      document.addEventListener('click', (event) => {{
+        if (!mobileTocPanel.hidden && !mobileToc.contains(event.target)) closeMobileToc();
+      }});
+      addEventListener('keydown', (event) => {{ if (event.key === 'Escape') closeMobileToc(true); }});
+      addEventListener('scroll', syncMobileToc, {{ passive:true }});
+      addEventListener('resize', syncMobileToc, {{ passive:true }});
+      syncMobileToc();
 
       const gallery = Array.from(document.querySelectorAll('[data-archive-card]')).map((card) => ({{
         src: card.querySelector('img').src,
