@@ -10,8 +10,12 @@ if (grid && grid.childElementCount === 0) {
           .replaceAll('<', '&lt;')
           .replaceAll('>', '&gt;')
           .replaceAll('"', '&quot;');
+      const recordHref = (record) => {
+        const standalone = String(record?.page || '').trim();
+        return standalone.startsWith('/') ? standalone : `/records/${encodeURIComponent(record?.id || '')}`;
+      };
       grid.innerHTML = (data.records || []).filter((record) => record?.published === true).map((record) => `
-        <a class="record-card" href="/records/${encodeURIComponent(record.id || '')}">
+        <a class="record-card" href="${escapeHtml(recordHref(record))}">
           <span class="record-card__media"><img src="${escapeHtml(record.cover || '')}" alt="" loading="lazy" decoding="async" /></span>
           <span class="record-card__title">${escapeHtml(record.title || '')}</span>
           <span class="record-card__summary">${escapeHtml(record.summary || '')}</span>

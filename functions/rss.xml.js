@@ -16,6 +16,7 @@ import { loadSiteBundle } from '../shared/site-pages.js';
 
 const SITE_ORIGIN = 'https://cbc688.com';
 const MAX_ITEMS = 30;
+const FEATURED_RECORD_ID = 'world-word-exploration';
 
 const collapseWhitespace = (value) => String(value ?? '').replace(/\s+/g, ' ').trim();
 
@@ -52,6 +53,22 @@ const trim = (value, maxLength) => {
 
 const articleUrl = (slug) =>
   new URL(`/articles/${encodeURIComponent(String(slug || '').trim())}`, SITE_ORIGIN).toString();
+const recordUrl = (record) =>
+  new URL(record.page || `/records/${encodeURIComponent(String(record.id || '').trim())}/`, SITE_ORIGIN).toString();
+
+const asCdata = (value) => `<![CDATA[${String(value ?? '').replaceAll(']]>', ']]]]><![CDATA[>')}]]>`;
+
+const extractRecordArticle = (source, url) => {
+  const match = String(source || '').match(/<article class="article">([\s\S]*?)<\/article>/);
+  if (!match) return '';
+  return match[1]
+    .replace(/<p class="article-label">[\s\S]*?<\/p>/, '')
+    .replace(/<p class="section-index">[\s\S]*?<\/p>/g, '')
+    .replace(/<\/?section\b[^>]*>/g, '')
+    .replace(/\s(?:class|id|aria-label)="[^"]*"/g, '')
+    .replace(/href="#([^"]+)"/g, `href="${url}#$1"`)
+    .trim();
+};
 
 // 一切時間以北京時間（Asia/Shanghai, UTC+8）為準。
 const TZ_OFFSET_MINUTES = 8 * 60;
@@ -82,28 +99,38 @@ const pubDate = (date) => {
   return formatRfc822InBeijing(parsed);
 };
 
-const buildRss = ({ posts, site }) => {
+const buildRss = ({ posts, records, site, recordArticle }) => {
   const validPosts = posts
     .filter((post) => collapseWhitespace(post?.slug) && collapseWhitespace(post?.title))
+    .map((post) => ({ ...post, entryType: 'post' }));
+  const record = records.find((item) => item?.id === FEATURED_RECORD_ID);
+  const entries = [
+    ...validPosts,
+    ...(record && recordArticle ? [{ ...record, entryType: 'record' }] : []),
+  ]
+    .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')))
     .slice(0, MAX_ITEMS);
 
   const siteName = collapseWhitespace(site.siteName) || 'CRIVU';
   const siteDescription =
     collapseWhitespace(site.aboutBody) || `${siteName} 的個人博客更新。`;
-  const lastBuildDate = validPosts[0]?.date
-    ? pubDate(validPosts[0].date)
+  const lastBuildDate = entries[0]?.date
+    ? pubDate(entries[0].date)
     : formatRfc822InBeijing(new Date());
 
-  const items = validPosts
-    .map((post) => {
-      const url = articleUrl(post.slug);
-      const description = trim(stripMarkdown(post.excerpt) || stripMarkdown(post.body), 180);
+  const items = entries
+    .map((entry) => {
+      const isRecord = entry.entryType === 'record';
+      const url = isRecord ? recordUrl(entry) : articleUrl(entry.slug);
+      const description = isRecord
+        ? asCdata(recordArticle)
+        : escapeXml(trim(stripMarkdown(entry.excerpt) || stripMarkdown(entry.body), 180));
       return `    <item>
-      <title>${escapeXml(post.title)}</title>
+      <title>${escapeXml(entry.title)}</title>
       <link>${escapeXml(url)}</link>
       <guid isPermaLink="true">${escapeXml(url)}</guid>
-      <pubDate>${escapeXml(pubDate(post.date))}</pubDate>
-      <description>${escapeXml(description)}</description>
+      <pubDate>${escapeXml(pubDate(entry.date))}</pubDate>
+      <description>${description}</description>
     </item>`;
     })
     .join('\n');
@@ -124,8 +151,21 @@ ${items}
 };
 
 export async function onRequest(context) {
-  const { posts, site } = await loadSiteBundle(context);
-  const xml = buildRss({ posts, site });
+  const { posts, records, site } = await loadSiteBundle(context);
+  const record = records.find((item) => item?.id === FEATURED_RECORD_ID);
+  let recordArticle = '';
+  if (record) {
+    try {
+      const recordAssetUrl = new URL(record.page || `/records/${FEATURED_RECORD_ID}/`, context.request.url);
+      const response = context.env?.ASSETS?.fetch
+        ? await context.env.ASSETS.fetch(new Request(recordAssetUrl.toString(), { method: 'GET' }))
+        : await fetch(recordAssetUrl.toString());
+      if (response.ok) recordArticle = extractRecordArticle(await response.text(), recordUrl(record));
+    } catch {
+      recordArticle = '';
+    }
+  }
+  const xml = buildRss({ posts, records, site, recordArticle });
   return new Response(xml, {
     headers: {
       'Content-Type': 'application/xml; charset=UTF-8',

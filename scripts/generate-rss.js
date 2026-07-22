@@ -8,8 +8,10 @@ const SITE_ORIGIN = 'https://cbc688.com';
 const MAX_ITEMS = 30;
 
 const POSTS_FILE = path.join(ROOT, 'posts', 'posts.json');
+const RECORDS_FILE = path.join(ROOT, 'posts', 'records.json');
 const SITE_FILE = path.join(ROOT, 'posts', 'site.json');
 const RSS_FILE = path.join(ROOT, 'rss.xml');
+const FEATURED_RECORD_ID = 'world-word-exploration';
 
 const readJson = (file, fallback) => {
   try {
@@ -53,6 +55,29 @@ const trim = (value, maxLength) => {
 };
 
 const articleUrl = (slug) => new URL(`/articles/${encodeURIComponent(String(slug || '').trim())}`, SITE_ORIGIN).toString();
+const recordUrl = (record) =>
+  new URL(record.page || `/records/${encodeURIComponent(String(record.id || '').trim())}/`, SITE_ORIGIN).toString();
+
+const asCdata = (value) => `<![CDATA[${String(value ?? '').replaceAll(']]>', ']]]]><![CDATA[>')}]]>`;
+
+const extractRecordArticle = (record, url) => {
+  const id = collapseWhitespace(record.id);
+  const sourceFile = path.join(ROOT, 'records', id, 'index.html');
+  const source = fs.readFileSync(sourceFile, 'utf8');
+  const match = source.match(/<article class="article">([\s\S]*?)<\/article>/);
+  if (!match) throw new Error(`RSS article body missing for record: ${id}`);
+
+  const article = match[1]
+    .replace(/<p class="article-label">[\s\S]*?<\/p>/, '')
+    .replace(/<p class="section-index">[\s\S]*?<\/p>/g, '')
+    .replace(/<\/?section\b[^>]*>/g, '')
+    .replace(/\s(?:class|id|aria-label)="[^"]*"/g, '')
+    .replace(/href="#([^"]+)"/g, `href="${url}#$1"`)
+    .trim();
+
+  if (!article) throw new Error(`RSS article body empty for record: ${id}`);
+  return article;
+};
 
 // 一切時間以北京時間（Asia/Shanghai, UTC+8）為準。
 const TZ_OFFSET_MINUTES = 8 * 60;
@@ -84,27 +109,39 @@ const pubDate = (date) => {
 };
 
 const postsData = readJson(POSTS_FILE, { items: [] });
+const recordsData = readJson(RECORDS_FILE, { records: [] });
 const site = readJson(SITE_FILE, {});
 const posts = (Array.isArray(postsData.items) ? postsData.items : postsData)
   .filter((post) => post?.published !== false)
   .filter((post) => collapseWhitespace(post?.slug) && collapseWhitespace(post?.title))
+  .map((post) => ({ ...post, entryType: 'post' }));
+const record = (Array.isArray(recordsData.records) ? recordsData.records : []).find(
+  (item) => item?.published !== false && item?.id === FEATURED_RECORD_ID
+);
+const entries = [
+  ...posts,
+  ...(record ? [{ ...record, entryType: 'record' }] : []),
+]
   .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')))
   .slice(0, MAX_ITEMS);
 
 const siteName = collapseWhitespace(site.siteName) || 'CRIVU';
 const siteDescription = collapseWhitespace(site.aboutBody) || `${siteName} 的個人博客更新。`;
-const lastBuildDate = posts[0]?.date ? pubDate(posts[0].date) : formatRfc822InBeijing(new Date());
+const lastBuildDate = entries[0]?.date ? pubDate(entries[0].date) : formatRfc822InBeijing(new Date());
 
-const items = posts
-  .map((post) => {
-    const url = articleUrl(post.slug);
-    const description = trim(stripMarkdown(post.excerpt) || stripMarkdown(post.body), 180);
+const items = entries
+  .map((entry) => {
+    const isRecord = entry.entryType === 'record';
+    const url = isRecord ? recordUrl(entry) : articleUrl(entry.slug);
+    const description = isRecord
+      ? asCdata(extractRecordArticle(entry, url))
+      : escapeXml(trim(stripMarkdown(entry.excerpt) || stripMarkdown(entry.body), 180));
     return `    <item>
-      <title>${escapeXml(post.title)}</title>
+      <title>${escapeXml(entry.title)}</title>
       <link>${escapeXml(url)}</link>
       <guid isPermaLink="true">${escapeXml(url)}</guid>
-      <pubDate>${escapeXml(pubDate(post.date))}</pubDate>
-      <description>${escapeXml(description)}</description>
+      <pubDate>${escapeXml(pubDate(entry.date))}</pubDate>
+      <description>${description}</description>
     </item>`;
   })
   .join('\n');
@@ -124,4 +161,4 @@ ${items}
 `;
 
 fs.writeFileSync(RSS_FILE, rss);
-process.stdout.write(`Generated rss.xml with ${posts.length} items\n`);
+process.stdout.write(`Generated rss.xml with ${entries.length} items\n`);

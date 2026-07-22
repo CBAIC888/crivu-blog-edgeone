@@ -70,8 +70,12 @@ const renderStaticFallback = async () => {
 
   const recordSection = recordRail.closest('.home-section--records');
   if (recordSection) recordSection.hidden = records.length === 0;
+  const recordHref = (record) => {
+    const standalone = String(record?.page || '').trim();
+    return standalone.startsWith('/') ? standalone : `/records/${encodeURIComponent(record?.id || '')}`;
+  };
   recordRail.innerHTML = records.map((record) => `
-    <a class="record-card record-card--rail" href="/records/${encodeURIComponent(record.id || '')}">
+    <a class="record-card record-card--rail" href="${escapeHtml(recordHref(record))}">
       <span class="record-card__media"><img src="${escapeHtml(record.cover || '')}" alt="" loading="lazy" decoding="async" /></span>
       <span class="record-card__title">${escapeHtml(record.title || '')}</span>
     </a>`).join('');

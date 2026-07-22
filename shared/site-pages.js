@@ -7,6 +7,7 @@ import {
   normalizeText,
   renderNavItems,
   safeCoverUrl,
+  sanitizeUrl,
   simpleMarkdown,
   toDisplayDate,
 } from './content.js';
@@ -259,8 +260,13 @@ const renderIssueCover = (issue) => `
     <img src="${escapeHtml(safeCoverUrl(issue.cover))}" alt="${escapeHtml(issue.title || '')}" loading="lazy" decoding="async" />
   </a>`;
 
+const recordPath = (record) => {
+  const standalone = sanitizeUrl(record.page, { allowHash: false });
+  return standalone !== '#' ? standalone : `/records/${encodeURIComponent(record.id || '')}`;
+};
+
 const renderRecordCard = (record, options = {}) => `
-  <a class="${options.rail ? 'record-card record-card--rail' : 'record-card'}" href="/records/${encodeURIComponent(record.id || '')}">
+  <a class="${options.rail ? 'record-card record-card--rail' : 'record-card'}" href="${escapeHtml(recordPath(record))}">
     <span class="record-card__media">
       <img src="${escapeHtml(safeCoverUrl(record.cover))}" alt="" loading="lazy" decoding="async" />
     </span>

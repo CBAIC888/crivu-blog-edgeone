@@ -2,6 +2,15 @@
   "records": [
     {
       "published": true,
+      "date": "2026-07-23T04:00:00+08:00",
+      "id": "world-word-exploration",
+      "title": "世界一词的探索",
+      "cover": "/assets/img/uploads/20260723/world-word-exploration-cover.webp",
+      "summary": "从汉语旧字、早期佛经翻译到现代全球观念，追索“世界”一词近两千年的形成、流传与增义。",
+      "page": "/records/world-word-exploration/"
+    },
+    {
+      "published": true,
       "date": "2026-06-20T21:10:51+08:00",
       "id": "zrc",
       "title": "京劇程派趙榮琛唱段",

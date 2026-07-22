@@ -68,6 +68,11 @@ export async function onRequest(context) {
     });
   }
 
+  const standalonePage = sanitizeUrl(record.page, { allowHash: false });
+  if (standalonePage !== '#') {
+    return Response.redirect(new URL(standalonePage, context.request.url).toString(), 302);
+  }
+
   const videos = Array.isArray(record.videos) ? record.videos.filter(isPublished) : [];
   const photos = Array.isArray(record.photos) ? record.photos.filter(isPublished) : [];
   const mainHtml = `<main class="record-detail">
