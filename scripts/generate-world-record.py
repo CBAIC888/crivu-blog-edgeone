@@ -435,15 +435,9 @@ def main() -> None:
     .record-nav button {{ min-width:78px; padding:0 13px; border:0; border-bottom:1px solid transparent; color:var(--nav-ink-dim); background:transparent; font:600 9px/35px var(--sans); letter-spacing:.12em; }}
     .record-nav button:hover {{ color:var(--nav-ink); background:var(--nav-field); }}
     .record-nav button[aria-current="page"] {{ color:var(--nav-ink); border-bottom-color:var(--gold); }}
-    .hero {{ position:relative; min-height:calc(100svh - 92px); display:grid; grid-template-columns:minmax(330px,.98fr) minmax(320px,.72fr); align-items:center; gap:clamp(38px,7vw,108px); padding:clamp(46px,7vw,96px) max(6vw,42px); overflow:hidden; background:linear-gradient(135deg,var(--paper) 0 58%,var(--paper-deep) 58%); }}
+    .hero {{ position:relative; min-height:calc(88svh - 92px); display:grid; grid-template-columns:minmax(330px,.98fr) minmax(320px,.72fr); align-items:center; gap:clamp(38px,7vw,108px); padding:clamp(30px,4vw,58px) max(6vw,42px) clamp(68px,7vw,104px); overflow:hidden; background:linear-gradient(135deg,var(--paper) 0 58%,var(--paper-deep) 58%); }}
     .hero::before {{ content:"世"; position:absolute; right:-.03em; bottom:-.31em; color:rgba(78,63,36,.045); font-size:min(70vw,900px); line-height:1; pointer-events:none; }}
     .hero-copy {{ position:relative; z-index:1; width:min(690px,100%); justify-self:end; }}
-    .hero-facts {{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; width:100%; margin:0 0 24px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }}
-    .hero-facts div {{ min-width:0; padding:10px 12px 9px 0; border-right:1px solid var(--line); }}
-    .hero-facts div+div {{ padding-left:12px; }} .hero-facts div:last-child {{ border-right:0; }}
-    .hero-facts dt {{ color:var(--muted); font:650 8px/1 var(--sans); letter-spacing:.12em; white-space:nowrap; }}
-    .hero-facts dd {{ margin:5px 0 0; overflow:hidden; color:var(--ink); font:600 10px/1.3 var(--sans); text-overflow:ellipsis; white-space:nowrap; }}
-    .eyebrow {{ margin:0 0 26px; color:var(--gold); font:650 11px/1 var(--sans); letter-spacing:.25em; text-transform:uppercase; }}
     .hero h1 {{ margin:0; font-size:clamp(3.6rem,7.4vw,8.4rem); font-weight:500; line-height:.92; letter-spacing:-.075em; }}
     .hero h1 span {{ display:block; margin-top:.1em; color:transparent; -webkit-text-stroke:1px var(--ink); transform:translateX(clamp(24px,6vw,92px)); }}
     .hero-deck {{ margin:36px 0 0; max-width:38em; color:var(--muted); font-size:clamp(1rem,1.3vw,1.18rem); line-height:1.95; }}
@@ -457,22 +451,22 @@ def main() -> None:
     .hero-cover::before {{ content:""; position:absolute; inset:5% -6% -6% 7%; border:1px solid var(--line); }}
     .hero-cover img {{ position:relative; display:block; width:100%; height:auto; object-fit:contain; filter:saturate(.86) contrast(1.03); box-shadow:0 22px 54px rgba(43,38,27,.16); }}
     .hero-cover figcaption {{ margin-top:10px; color:var(--muted); font:500 9px/1.55 var(--sans); letter-spacing:.05em; }}
-    .comments-entry {{ width:100%; display:grid; gap:10px; margin-top:22px; padding:14px 16px 13px; overflow:hidden; border:1px solid var(--line); border-radius:11px; color:var(--ink); background:linear-gradient(135deg,var(--comments-panel-field),var(--comments-panel-bg)); box-shadow:0 12px 32px rgba(43,38,27,.09); text-align:left; transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease; }}
-    .comments-entry:hover {{ border-color:color-mix(in srgb,var(--gold) 42%,var(--line)); box-shadow:0 15px 36px rgba(43,38,27,.13); transform:translateY(-1px); }}
-    .comments-entry__head,.comments-entry__foot {{ display:flex; align-items:center; justify-content:space-between; gap:14px; font-family:var(--sans); }}
-    .comments-entry__title {{ display:flex; align-items:center; gap:7px; font-size:11px; font-weight:700; letter-spacing:.1em; }}
-    .comments-entry__title::before {{ content:""; width:5px; height:5px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 4px color-mix(in srgb,var(--gold) 12%,transparent); }}
+    .comments-band {{ padding:26px max(5vw,28px) 0; background:var(--paper); }}
+    .comments-entry {{ width:min(1080px,100%); display:grid; grid-template-columns:minmax(120px,.34fr) minmax(0,1.3fr) auto; align-items:center; gap:20px; margin:0 auto; padding:16px 18px; overflow:hidden; border:1px solid var(--line); border-radius:12px; color:var(--ink); background:var(--soft); box-shadow:0 9px 28px rgba(43,38,27,.07); text-align:left; transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease; }}
+    .comments-entry:hover {{ border-color:color-mix(in srgb,var(--gold) 38%,var(--line)); box-shadow:0 13px 32px rgba(43,38,27,.1); transform:translateY(-1px); }}
+    .comments-entry__head {{ display:grid; gap:7px; font-family:var(--sans); }}
+    .comments-entry__title {{ display:flex; align-items:center; gap:8px; font-size:11px; font-weight:700; letter-spacing:.12em; }}
+    .comments-entry__title::before {{ content:"“"; width:24px; height:24px; display:grid; place-items:center; border-radius:50%; color:var(--gold); background:color-mix(in srgb,var(--gold) 12%,transparent); font:600 16px/1 var(--serif); }}
     .comments-entry__count {{ color:var(--muted); font-size:9px; font-weight:600; letter-spacing:.04em; }}
-    .comments-entry__previews {{ display:grid; gap:6px; }}
-    .comments-entry__preview {{ display:grid; grid-template-columns:18px auto minmax(0,1fr); align-items:center; gap:7px; padding:8px 9px; border:1px solid var(--line); border-radius:8px; background:var(--comments-panel-field); font-family:var(--sans); }}
-    .comments-entry__preview::before {{ content:"“"; width:18px; height:18px; display:grid; place-items:center; border-radius:50%; color:var(--gold); background:color-mix(in srgb,var(--gold) 12%,transparent); font:600 13px/1 var(--serif); }}
+    .comments-entry__previews {{ min-width:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }}
+    .comments-entry__preview {{ display:grid; grid-template-columns:auto minmax(0,1fr); align-items:center; gap:8px; min-width:0; padding:9px 11px; border:1px solid var(--line); border-radius:8px; background:var(--comments-panel-field); font-family:var(--sans); }}
     .comments-entry__preview strong {{ max-width:7em; overflow:hidden; font-size:9px; text-overflow:ellipsis; white-space:nowrap; }}
     .comments-entry__preview em {{ min-width:0; overflow:hidden; color:var(--muted); font-size:9px; font-style:normal; text-overflow:ellipsis; white-space:nowrap; }}
-    .comments-entry__empty {{ padding:9px 0; color:var(--muted); font:500 9px/1.5 var(--sans); }}
-    .comments-entry__foot {{ color:var(--gold); font-size:9px; font-weight:700; letter-spacing:.08em; }}
-    .comments-entry__foot span:last-child {{ font-size:13px; }}
+    .comments-entry__empty {{ grid-column:1/-1; padding:9px 11px; border:1px dashed var(--line); border-radius:8px; color:var(--muted); background:var(--comments-panel-field); font:500 10px/1.5 var(--sans); }}
+    .comments-entry__foot {{ display:flex; align-items:center; gap:12px; padding-left:18px; border-left:1px solid var(--line); color:var(--gold); font:700 9px/1.4 var(--sans); letter-spacing:.08em; white-space:nowrap; }}
+    .comments-entry__foot span:last-child {{ font-size:15px; }}
     .comments-sheet {{ position:fixed; z-index:260; inset:0; display:grid; align-items:end; background:rgba(8,9,7,.46); backdrop-filter:blur(3px); }}
-    .comments-sheet__panel {{ height:50svh; min-height:360px; overflow:auto; border-top:1px solid var(--line); border-radius:16px 16px 0 0; background:var(--comments-panel-bg); box-shadow:0 -24px 70px rgba(0,0,0,.24); }}
+    .comments-sheet__panel {{ height:min(62svh,650px); min-height:430px; overflow:hidden; border-top:1px solid var(--line); border-radius:16px 16px 0 0; background:var(--comments-panel-bg); box-shadow:0 -24px 70px rgba(0,0,0,.24); }}
     .comments-sheet__inner {{ width:min(980px,100%); height:100%; display:grid; grid-template-rows:auto minmax(0,1fr); margin:0 auto; padding:20px 28px 24px; }}
     .comments-sheet__top {{ display:flex; align-items:center; justify-content:space-between; gap:20px; padding-bottom:15px; border-bottom:1px solid var(--line); }}
     .comments-sheet__top h2 {{ margin:0; font-size:clamp(1.35rem,2vw,1.8rem); font-weight:500; }}
@@ -481,7 +475,8 @@ def main() -> None:
     .comments-compact__head {{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:9px; }}
     .comments-compact__head h3 {{ margin:0; font:650 10px/1 var(--sans); letter-spacing:.13em; }}
     .comments-compact__count {{ color:var(--muted); font:600 9px/1 var(--sans); white-space:nowrap; }}
-    .comments-compact__body {{ min-height:0; display:grid; grid-template-columns:minmax(0,1fr) minmax(300px,.82fr); gap:28px; padding-top:16px; }}
+    .comments-mobile-tabs {{ display:none; }}
+    .comments-compact__body {{ min-height:0; display:grid; grid-template-columns:minmax(0,1fr) minmax(320px,.82fr); gap:24px; padding-top:12px; }}
     .comments-compact__list {{ min-height:0; overflow:auto; padding-right:12px; border-right:1px solid var(--line); scrollbar-width:thin; }}
     .comments-compact__list .comments__empty {{ margin:0; padding:14px 13px; border:1px dashed var(--line); border-radius:9px; color:var(--muted); background:var(--comments-panel-field); font:500 11px/1.5 var(--sans); }}
     .comments-compact__list .comment-item {{ margin:0 0 9px; padding:11px 13px 12px; border:1px solid var(--line); border-radius:9px; background:var(--comments-panel-field); box-shadow:0 6px 18px rgba(35,31,24,.06); }}
@@ -491,10 +486,10 @@ def main() -> None:
     .comments-compact__list .comment-item__head strong::before {{ content:""; width:5px; height:5px; border-radius:50%; background:var(--gold); }}
     .comments-compact__list .comment-item__head time {{ color:var(--muted); font-size:9px; white-space:nowrap; }}
     .comments-compact__list .comment-item p {{ margin:0; color:var(--ink); font-size:12px; line-height:1.62; white-space:pre-wrap; overflow-wrap:anywhere; }}
-    .comments-compact__form {{ position:relative; display:grid; align-content:start; gap:9px; }}
+    .comments-compact__form {{ position:relative; display:grid; align-content:start; gap:10px; padding:14px; border:1px solid var(--line); border-radius:10px; background:var(--comments-panel-field); overflow:auto; }}
     .comments-compact__fields {{ display:grid; grid-template-columns:1fr 1fr; gap:7px; }}
     .comments-compact label {{ display:grid; gap:3px; color:var(--muted); font:600 8px/1.2 var(--sans); letter-spacing:.06em; }}
-    .comments-compact input,.comments-compact textarea {{ width:100%; padding:6px 8px; border:1px solid var(--line); border-radius:4px; color:var(--ink); background:var(--comments-panel-field); font:11px/1.35 var(--sans); }}
+    .comments-compact input,.comments-compact textarea {{ width:100%; padding:7px 9px; border:1px solid var(--line); border-radius:5px; color:var(--ink); background:var(--comments-panel-bg); font:11px/1.35 var(--sans); }}
     .comments-compact textarea {{ height:48px; min-height:48px; resize:none; }}
     .comments-compact .comments-compact__trap {{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; pointer-events:none; }}
     .comments-compact input:focus,.comments-compact textarea:focus {{ outline:1px solid var(--gold); outline-offset:0; }}
@@ -558,7 +553,7 @@ def main() -> None:
     .lightbox-caption {{ margin:18px auto 0; color:#b9b2a5; font:500 12px/1.6 var(--sans); text-align:center; }}
     @media (max-width:900px) {{
       .site-header__inner {{ gap:18px; padding-inline:18px; }}
-      .hero {{ grid-template-columns:1fr; min-height:auto; padding:72px 24px 82px; background:linear-gradient(155deg,var(--paper) 0 60%,var(--paper-deep) 60%); }}
+      .hero {{ grid-template-columns:1fr; min-height:auto; padding:48px 24px 68px; background:linear-gradient(155deg,var(--paper) 0 60%,var(--paper-deep) 60%); }}
       .hero-copy {{ justify-self:center; }} .hero-side {{ width:min(460px,100%); justify-self:center; }}
       .hero-cover {{ width:min(430px,82vw); }}
       .article-layout {{ grid-template-columns:1fr; padding-inline:24px; }} .article-toc {{ position:relative; top:auto; max-height:none; padding:22px; border:1px solid var(--line); }}
@@ -586,20 +581,35 @@ def main() -> None:
       .site-header.mobile-menu-open .mobile-menu-toggle .mm-line-bot {{ transform:translateY(-5px) rotate(-45deg); transform-origin:center; }}
       .mobile-menu-toggle .mm-line {{ transition:transform .18s ease,opacity .18s ease; }}
       .site-header__search input,.comments-compact input,.comments-compact textarea {{ font-size:16px; }}
-      .hero {{ grid-template-columns:minmax(0,1fr); align-content:start; padding-top:32px; }}
+      .hero {{ grid-template-columns:minmax(0,1fr); align-content:start; padding-top:32px; padding-bottom:30px; }}
       .hero-copy,.hero-side {{ display:contents; }}
-      .hero-facts {{ display:none; }}
-      .eyebrow {{ order:1; width:min(690px,100%); justify-self:center; margin-bottom:20px; }}
-      .hero h1 {{ order:2; width:min(690px,100%); justify-self:center; font-size:clamp(3.25rem,18vw,5rem); }}
+      .hero h1 {{ order:1; width:min(690px,100%); justify-self:center; font-size:clamp(3.25rem,18vw,5rem); }}
       .hero h1 span {{ transform:translateX(12px); }}
-      .hero-cover {{ order:3; width:min(430px,86vw); margin-top:30px; }}
-      .hero-deck {{ order:4; width:min(690px,100%); justify-self:center; margin-top:30px; line-height:1.82; }}
-      .comments-entry {{ position:relative; order:5; width:min(460px,100%); justify-self:center; margin-top:25px; }}
-      .comments-entry::before {{ content:""; position:absolute; left:0; right:0; top:-13px; height:1px; background:var(--line); }}
-      .hero-actions {{ order:6; width:min(690px,100%); justify-self:center; }}
-      .comments-sheet__inner {{ padding:16px 18px 20px; }}
-      .comments-compact__body {{ grid-template-columns:1fr; gap:12px; overflow:auto; }}
-      .comments-compact__list {{ max-height:100px; padding-right:0; border-right:0; border-bottom:1px solid var(--line); }}
+      .hero-cover {{ order:2; width:min(430px,86vw); margin-top:30px; }}
+      .hero-deck {{ order:3; width:min(690px,100%); justify-self:center; margin-top:30px; line-height:1.82; }}
+      .hero-actions {{ order:4; width:min(690px,100%); justify-self:center; }}
+      .comments-band {{ padding:16px 18px 0; }}
+      .comments-entry {{ grid-template-columns:minmax(0,1fr) auto; gap:10px 12px; padding:14px; }}
+      .comments-entry__head {{ grid-column:1; grid-row:1; }}
+      .comments-entry__previews {{ grid-column:1/-1; grid-row:2; grid-template-columns:1fr; }}
+      .comments-entry__foot {{ grid-column:2; grid-row:1; padding:8px 10px; border:1px solid var(--line); border-radius:999px; }}
+      .comments-entry__foot span:first-child {{ font-size:0; }}
+      .comments-entry__foot span:first-child::after {{ content:"查看评论"; font-size:9px; }}
+      .comments-sheet__panel {{ height:58dvh; min-height:0; }}
+      .comments-sheet__inner {{ padding:14px 14px 16px; }}
+      .comments-sheet__top {{ padding-bottom:11px; }}
+      .comments-sheet__top h2 {{ font-size:1.22rem; }}
+      .comments-compact {{ grid-template-rows:auto auto minmax(0,1fr); }}
+      .comments-compact__head {{ margin:10px 0 7px; }}
+      .comments-mobile-tabs {{ display:grid; grid-template-columns:1fr 1fr; gap:4px; padding:3px; border:1px solid var(--line); border-radius:8px; background:var(--comments-panel-field); }}
+      .comments-mobile-tabs button {{ min-height:30px; border:0; border-radius:5px; color:var(--muted); background:transparent; font:650 10px/1 var(--sans); letter-spacing:.08em; }}
+      .comments-mobile-tabs button[aria-selected="true"] {{ color:var(--ink); background:var(--comments-panel-bg); box-shadow:0 2px 8px rgba(35,31,24,.08); }}
+      .comments-compact__body {{ display:block; min-height:0; padding-top:9px; overflow:hidden; }}
+      .comments-compact__list,.comments-compact__form {{ height:100%; }}
+      .comments-compact__list {{ max-height:none; padding-right:2px; border-right:0; border-bottom:0; overflow:auto; }}
+      .comments-compact__form {{ padding:11px; overflow:auto; }}
+      .comments-compact__body[data-mobile-tab="list"] .comments-compact__form {{ display:none; }}
+      .comments-compact__body[data-mobile-tab="form"] .comments-compact__list {{ display:none; }}
       .article-section h2 {{ margin-bottom:32px; }} .article-conclusion {{ margin-inline:0!important; padding:28px 24px; }}
       .mobile-toc {{ position:fixed; z-index:185; left:-36px; top:50%; display:block; opacity:0; pointer-events:none; transition:left .18s ease,opacity .18s ease; }}
       .mobile-toc.is-visible {{ left:0; opacity:1; pointer-events:auto; }}
@@ -623,15 +633,14 @@ def main() -> None:
     @media (max-width:580px) {{
       body {{ overflow-x:hidden; }}
       .record-nav button {{ min-width:68px; padding-inline:10px; }}
-      .hero {{ padding:22px 18px 58px; }}
+      .hero {{ padding:22px 18px 30px; }}
       .hero h1 {{ font-size:clamp(3rem,17vw,4.5rem); }}
       .hero-deck {{ margin-top:27px; font-size:.98rem; }}
       .hero-actions {{ display:grid; grid-template-columns:1fr 1fr; }}
       .hero-actions .primary-action {{ grid-column:1/-1; }}
       .primary-action,.secondary-action {{ min-height:42px; padding-inline:13px; font-size:10px; }}
       .hero-cover {{ width:100%; }}
-      .comments-entry {{ margin-top:25px; padding-inline:14px; }}
-      .article-layout {{ gap:54px; padding:64px 18px 78px; }}
+      .article-layout {{ gap:54px; padding:48px 18px 78px; }}
       .article-toc {{ padding:17px; }}
       .article-label {{ margin-bottom:44px; }}
       .article-section {{ margin-bottom:76px; }}
@@ -644,13 +653,13 @@ def main() -> None:
       .record-footer {{ display:block; padding-inline:20px; }}
     }}
     @media (max-width:420px) {{
-      .comments-sheet__panel {{ height:50dvh; min-height:0; }}
+      .comments-sheet__panel {{ height:58dvh; min-height:0; }}
       .comments-sheet__inner {{ padding:14px 10px 16px; }}
       .comments-compact__fields {{ grid-template-columns:1fr; }}
       .comments-compact__status {{ white-space:normal; }}
     }}
     @media (prefers-reduced-motion:reduce) {{ * {{ scroll-behavior:auto!important; transition-duration:.001ms!important; animation-duration:.001ms!important; }} }}
-    @media print {{ .site-header,.record-nav,.reading-progress,.hero-actions,.comments-entry,.comments-sheet,.article-toc,.archive,.record-footer {{ display:none!important; }} body {{ padding-top:0; }} .hero {{ min-height:0; padding:30px 0; background:white; }} .hero-cover {{ display:none; }} .article-layout {{ display:block; padding:0; }} .article-section {{ break-inside:auto; }} }}
+    @media print {{ .site-header,.record-nav,.reading-progress,.hero-actions,.comments-band,.comments-sheet,.article-toc,.archive,.record-footer {{ display:none!important; }} body {{ padding-top:0; }} .hero {{ min-height:0; padding:30px 0; background:white; }} .hero-cover {{ display:none; }} .article-layout {{ display:block; padding:0; }} .article-section {{ break-inside:auto; }} }}
   </style>
 </head>
 <body>
@@ -692,12 +701,6 @@ def main() -> None:
   <main id="recordMain">
     <section class="hero" aria-labelledby="recordTitle">
       <div class="hero-copy">
-        <dl class="hero-facts">
-          <div><dt>专题形式</dt><dd>文章 · 互动 · 图像</dd></div>
-          <div><dt>时间范围</dt><dd>先秦至现代</dd></div>
-          <div><dt>创新方式</dt><dd>文章 · 展览一体</dd></div>
-        </dl>
-        <p class="eyebrow">独立专题纪录 · 语言与历史</p>
         <h1 id="recordTitle">世界一词<span>的探索</span></h1>
         <p class="hero-deck">我们每天都在说“世界”。只是，这两个早已存在的汉字，究竟怎样在译经、诗歌、小说与近代知识中逐渐结合，容纳了我们今日所理解的地球、历史、网络与内心？阅读全文，或进入<a href="#chapter-00" data-open-museum>【互动网页】</a>。</p>
         <div class="hero-actions">
@@ -706,17 +709,20 @@ def main() -> None:
           <button class="secondary-action" type="button" data-view="gallery">查看图像档案</button>
         </div>
       </div>
-      <aside class="hero-side" aria-label="专题封面与评论">
+      <aside class="hero-side" aria-label="专题封面">
         <figure class="hero-cover">
           <img src="{cover}" alt="世界一词的探索专题封面" fetchpriority="high" decoding="async">
           <figcaption>从两个古老汉字出发，沿着近两千年的翻译与使用，重新辨认一个最熟悉的词。</figcaption>
         </figure>
-        <button class="comments-entry" id="commentsEntry" type="button" aria-haspopup="dialog">
+      </aside>
+    </section>
+
+    <section class="comments-band" aria-label="专题评论入口">
+      <button class="comments-entry" id="commentsEntry" type="button" aria-haspopup="dialog">
           <span class="comments-entry__head"><span class="comments-entry__title">最新评论</span><span class="comments-entry__count" id="commentsEntryCount">读取中</span></span>
           <span class="comments-entry__previews" id="commentsEntryPreviews"><span class="comments-entry__empty">暂无评论</span></span>
-          <span class="comments-entry__foot"><span>展开半屏评论</span><span aria-hidden="true">→</span></span>
-        </button>
-      </aside>
+          <span class="comments-entry__foot"><span>查看与写评论</span><span aria-hidden="true">→</span></span>
+      </button>
     </section>
 
     <aside class="mobile-toc" id="mobileToc" aria-label="随行文章目录">
@@ -754,7 +760,11 @@ def main() -> None:
         <header class="comments-sheet__top"><h2 id="commentsSheetTitle">专题评论</h2><button class="comments-sheet__close" id="commentsSheetClose" type="button" aria-label="关闭评论">×</button></header>
         <section class="comments-compact" aria-labelledby="commentsListTitle">
           <header class="comments-compact__head"><h3 id="commentsListTitle">已审核评论</h3><span class="comments-compact__count" id="commentCount">读取中</span></header>
-          <div class="comments-compact__body">
+          <div class="comments-mobile-tabs" role="tablist" aria-label="评论视图">
+            <button type="button" role="tab" aria-selected="true" data-comments-mobile-tab="list">评论列表</button>
+            <button type="button" role="tab" aria-selected="false" data-comments-mobile-tab="form">写评论</button>
+          </div>
+          <div class="comments-compact__body" data-mobile-tab="list">
             <div class="comments-compact__list" data-comments-list><p class="comments__empty">评论加载中…</p></div>
             <form class="comments-compact__form" data-comments-form>
               <div class="comments-compact__fields">
@@ -883,6 +893,30 @@ def main() -> None:
       const commentsSheet = document.querySelector('#commentsSheet');
       const commentsEntry = document.querySelector('#commentsEntry');
       const commentsSheetClose = document.querySelector('#commentsSheetClose');
+      const commentsHeading = document.querySelector('#commentsListTitle');
+      const commentsBody = document.querySelector('.comments-compact__body');
+      const commentsMobileTabs = Array.from(document.querySelectorAll('[data-comments-mobile-tab]'));
+      const setCommentsTab = (tab) => {{
+        const selected = tab === 'form' ? 'form' : 'list';
+        commentsBody.dataset.mobileTab = selected;
+        commentsHeading.textContent = selected === 'form' ? '写下评论' : '已审核评论';
+        commentCount.hidden = selected === 'form';
+        commentsMobileTabs.forEach((button) => {{
+          const active = button.dataset.commentsMobileTab === selected;
+          button.setAttribute('aria-selected', String(active));
+          button.tabIndex = active ? 0 : -1;
+        }});
+      }};
+      commentsMobileTabs.forEach((button) => button.addEventListener('click', () => setCommentsTab(button.dataset.commentsMobileTab)));
+      commentsMobileTabs.forEach((button, index) => button.addEventListener('keydown', (event) => {{
+        if (!['ArrowLeft','ArrowRight'].includes(event.key)) return;
+        event.preventDefault();
+        const direction = event.key === 'ArrowRight' ? 1 : -1;
+        const target = commentsMobileTabs[(index + direction + commentsMobileTabs.length) % commentsMobileTabs.length];
+        setCommentsTab(target.dataset.commentsMobileTab);
+        target.focus();
+      }}));
+      setCommentsTab('list');
       const renderCommentPreviews = (comments) => {{
         const approvedComments = Array.isArray(comments) ? comments : [];
         commentsEntryPreviews.replaceChildren();
@@ -910,6 +944,7 @@ def main() -> None:
       commentsRoot.addEventListener('comments:loaded', (event) => renderCommentPreviews(event.detail?.comments || []));
 
       const openComments = () => {{
+        setCommentsTab('list');
         commentsSheet.hidden = false;
         commentsRoot.dispatchEvent(new Event('comments:visible'));
         body.classList.add('comments-open');
@@ -1054,7 +1089,7 @@ def main() -> None:
       }});
     }})();
   </script>
-  <script src="/assets/js/comments.js?v=world-record-comments-20260723-1" type="module"></script>
+  <script src="/assets/js/comments.js?v=world-record-comments-20260723-2" type="module"></script>
 </body>
 </html>'''
 

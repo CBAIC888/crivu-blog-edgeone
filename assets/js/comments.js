@@ -1,5 +1,6 @@
 const API_ORIGIN = window.location.hostname === 'eo.cbc688.com' ? 'https://cbc688.com' : window.location.origin;
 const API_URL = `${API_ORIGIN}/api/comments`;
+const TURNSTILE_ACTION = 'comment_submit';
 
 const qs = (selector, root = document) => root.querySelector(selector);
 
@@ -94,6 +95,7 @@ const initComments = async () => {
 
   let turnstileWidget = '';
   let canSubmit = false;
+  let usesTurnstile = false;
   submitBtn.disabled = true;
 
   const fetchJson = async (url, options) => {
@@ -120,6 +122,7 @@ const initComments = async () => {
     }
 
     if (config.turnstileSiteKey) {
+      usesTurnstile = true;
       if (deferTurnstile && root.getClientRects().length === 0) {
         await new Promise((resolve) => {
           root.addEventListener('comments:visible', resolve, { once: true });
@@ -128,12 +131,28 @@ const initComments = async () => {
       const turnstile = await loadTurnstile();
       turnstileWidget = turnstile.render(turnstileEl, {
         sitekey: config.turnstileSiteKey,
+        action: TURNSTILE_ACTION,
         theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light',
         size: turnstileEl.clientWidth < 300 ? 'compact' : 'flexible',
+        callback: () => {
+          canSubmit = true;
+          submitBtn.disabled = false;
+        },
+        'expired-callback': () => {
+          canSubmit = false;
+          submitBtn.disabled = true;
+          setStatus(statusEl, '安全驗證已過期，請重新完成驗證。', 'error');
+        },
+        'error-callback': () => {
+          canSubmit = false;
+          submitBtn.disabled = true;
+          setStatus(statusEl, '安全驗證暫不可用，請稍後再試。', 'error');
+        },
       });
+    } else {
+      canSubmit = true;
+      submitBtn.disabled = false;
     }
-    canSubmit = true;
-    submitBtn.disabled = false;
   } catch (err) {
     form.hidden = true;
     setStatus(statusEl, err && err.message ? err.message : '評論暫不可用。', 'error');
@@ -161,9 +180,16 @@ const initComments = async () => {
         body: JSON.stringify(payload),
       });
       form.reset();
-      if (window.turnstile && turnstileWidget) window.turnstile.reset(turnstileWidget);
+      if (usesTurnstile && window.turnstile && turnstileWidget) {
+        canSubmit = false;
+        window.turnstile.reset(turnstileWidget);
+      }
       setStatus(statusEl, '已提交，待審核後顯示。', 'success');
     } catch (err) {
+      if (usesTurnstile && window.turnstile && turnstileWidget) {
+        canSubmit = false;
+        window.turnstile.reset(turnstileWidget);
+      }
       setStatus(statusEl, err && err.message ? err.message : '提交失敗。', 'error');
     } finally {
       submitBtn.disabled = !canSubmit;

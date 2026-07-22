@@ -3,12 +3,20 @@ const MAX_BODY_LENGTH = 1200;
 const MAX_EMAIL_LENGTH = 160;
 const RATE_LIMIT_WINDOW_SECONDS = 15 * 60;
 const RATE_LIMIT_MAX = 5;
+const MAX_REQUEST_LENGTH = 16_000;
+const TURNSTILE_ACTION = 'comment_submit';
 const MAIN_ORIGIN = 'https://cbc688.com';
 const ALLOWED_ORIGINS = new Set([
   'https://cbc688.com',
   'https://eo.cbc688.com',
   'http://localhost:8788',
   'http://127.0.0.1:8788',
+]);
+const ALLOWED_TURNSTILE_HOSTNAMES = new Set([
+  'cbc688.com',
+  'eo.cbc688.com',
+  'localhost',
+  '127.0.0.1',
 ]);
 
 const encoder = new TextEncoder();
@@ -59,7 +67,8 @@ const sha256Hex = async (value) => {
 const hashPrivateValue = async (value, env) => {
   const raw = String(value || '').trim();
   if (!raw) return '';
-  const salt = env.COMMENT_HASH_SALT || env.TURNSTILE_SECRET_KEY || 'crivu-comments-v1';
+  const salt = String(env.COMMENT_HASH_SALT || '').trim();
+  if (!salt) throw new Error('Comment privacy hashing is not configured');
   return sha256Hex(`${salt}:${raw}`);
 };
 
@@ -115,13 +124,26 @@ const ensureSchema = async (db) => {
 
 const turnstileConfigured = (env) => Boolean(env.TURNSTILE_SITE_KEY && env.TURNSTILE_SECRET_KEY);
 
-const submissionsEnabled = (env) =>
-  Boolean(getDb(env) && (turnstileConfigured(env) || env.COMMENTS_ALLOW_UNVERIFIED === 'true'));
+const isLocalRequest = (request) => {
+  const hostname = new URL(request.url).hostname;
+  return hostname === 'localhost' || hostname === '127.0.0.1';
+};
+
+const allowUnverified = (env, request) =>
+  env.COMMENTS_ALLOW_UNVERIFIED === 'true' && isLocalRequest(request);
+
+const submissionsEnabled = (env, request) =>
+  Boolean(
+    getDb(env) &&
+      String(env.COMMENT_HASH_SALT || '').trim() &&
+      (turnstileConfigured(env) || allowUnverified(env, request))
+  );
 
 const verifyTurnstile = async ({ env, request, token }) => {
-  if (env.COMMENTS_ALLOW_UNVERIFIED === 'true') return { ok: true };
+  if (allowUnverified(env, request)) return { ok: true };
   if (!env.TURNSTILE_SECRET_KEY) return { ok: false, error: 'Comments are not accepting submissions yet' };
-  if (!token) return { ok: false, error: 'Missing verification token' };
+  if (!token || typeof token !== 'string') return { ok: false, error: 'Missing verification token' };
+  if (token.length > 2048) return { ok: false, error: 'Invalid verification token' };
 
   const form = new FormData();
   form.append('secret', env.TURNSTILE_SECRET_KEY);
@@ -129,12 +151,22 @@ const verifyTurnstile = async ({ env, request, token }) => {
   const ip = clientIp(request);
   if (ip) form.append('remoteip', ip);
 
-  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-    method: 'POST',
-    body: form,
-  });
-  const data = await res.json().catch(() => ({}));
-  return data && data.success ? { ok: true } : { ok: false, error: 'Verification failed' };
+  try {
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: form,
+    });
+    if (!res.ok) return { ok: false, error: 'Verification service unavailable' };
+    const data = await res.json().catch(() => ({}));
+    if (!data?.success) return { ok: false, error: 'Verification failed' };
+    if (data.action !== TURNSTILE_ACTION) return { ok: false, error: 'Verification context mismatch' };
+    if (!ALLOWED_TURNSTILE_HOSTNAMES.has(String(data.hostname || '').toLowerCase())) {
+      return { ok: false, error: 'Verification hostname mismatch' };
+    }
+    return { ok: true };
+  } catch {
+    return { ok: false, error: 'Verification service unavailable' };
+  }
 };
 
 const notifyTelegram = async ({ env, slug, authorName, body }) => {
@@ -169,7 +201,7 @@ const handleConfig = (env, request) =>
   json(
     {
       enabled: Boolean(getDb(env)),
-      submissionEnabled: submissionsEnabled(env),
+      submissionEnabled: submissionsEnabled(env, request),
       turnstileSiteKey: env.TURNSTILE_SITE_KEY || '',
       moderation: 'manual',
       apiOrigin: MAIN_ORIGIN,
@@ -208,15 +240,24 @@ const listComments = async (env, request, slug) => {
 const createComment = async (env, request, context) => {
   const db = getDb(env);
   if (!db) return json({ error: 'Comments are not configured' }, 503, request);
-  if (!submissionsEnabled(env)) return json({ error: 'Comments are not accepting submissions yet' }, 503, request);
+  if (!submissionsEnabled(env, request)) return json({ error: 'Comments are not accepting submissions yet' }, 503, request);
 
   const origin = request.headers.get('Origin') || '';
   if (origin && !ALLOWED_ORIGINS.has(origin)) return json({ error: 'Origin not allowed' }, 403, request);
 
+  if (!String(request.headers.get('Content-Type') || '').toLowerCase().includes('application/json')) {
+    return json({ error: 'Content type must be application/json' }, 415, request);
+  }
+
   let payload;
   try {
-    payload = await request.json();
+    const raw = await request.text();
+    if (raw.length > MAX_REQUEST_LENGTH) return json({ error: 'Request body too large' }, 413, request);
+    payload = JSON.parse(raw);
   } catch {
+    return json({ error: 'Invalid JSON body' }, 400, request);
+  }
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
     return json({ error: 'Invalid JSON body' }, 400, request);
   }
 
