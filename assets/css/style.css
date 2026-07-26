@@ -1487,9 +1487,9 @@ body::before { display: none !important; }
     white-space: nowrap;
   }
   .site-header__nav a[href="/"],
-  .site-header__nav a[href="/feed.xml"],
+  .site-header__nav a[href="/rss.xml"],
   .nav a[href="/"],
-  .nav a[href="/feed.xml"] {
+  .nav a[href="/rss.xml"] {
     display: none;
   }
   .site-header__search,
@@ -1539,9 +1539,9 @@ body::before { display: none !important; }
     color: var(--nav-ink);
   }
   .site-header.mobile-menu-open .site-header__nav a[href="/"],
-  .site-header.mobile-menu-open .site-header__nav a[href="/feed.xml"],
+  .site-header.mobile-menu-open .site-header__nav a[href="/rss.xml"],
   .site-header.mobile-menu-open .nav a[href="/"],
-  .site-header.mobile-menu-open .nav a[href="/feed.xml"] {
+  .site-header.mobile-menu-open .nav a[href="/rss.xml"] {
     display: flex;
   }
   .site-header.mobile-menu-open .site-header__nav a:hover,

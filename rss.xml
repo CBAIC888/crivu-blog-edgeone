@@ -3,15 +3,15 @@
   <channel>
     <title>CRIVU</title>
     <link>https://cbc688.com/</link>
-    <atom:link href="https://cbc688.com/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://cbc688.com/rss.xml" rel="self" type="application/rss+xml" />
     <description>CRIVU 收錄京劇、閱讀、語言史與個人生活的文章、期刊和專題紀錄。</description>
     <language>zh-Hant</language>
-    <lastBuildDate>Thu, 23 Jul 2026 04:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 26 Jul 2026 11:48:00 +0800</lastBuildDate>
     <item>
       <title>「世界」一词真的是佛教带进汉语的吗？</title>
       <link>https://cbc688.com/records/world-word-exploration/</link>
-      <guid isPermaLink="true">https://cbc688.com/records/world-word-exploration/</guid>
-      <pubDate>Thu, 23 Jul 2026 04:00:00 +0800</pubDate>
+      <guid isPermaLink="false">urn:crivu:world-word-exploration:2026-07-26-final</guid>
+      <pubDate>Sun, 26 Jul 2026 11:48:00 +0800</pubDate>
       <dc:creator>CRIVU</dc:creator>
       <category>语言史</category>
       <description>从先秦两汉的旧字、东汉译经与佛教宇宙论出发，追索「世界」一词近两千年的形成、传播与意义变化。</description>

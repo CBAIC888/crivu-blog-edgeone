@@ -75,7 +75,7 @@ const renderPage = ({ currentPath, description, origin, post, site }) => {
   <meta name="twitter:title" content="${escapeHtml(title)}" />
   <meta name="twitter:description" content="${escapeHtml(description)}" />
   <link rel="canonical" href="${escapeHtml(canonicalUrl)}" />
-  <link rel="alternate" type="application/rss+xml" title="${escapeHtml(siteName)} RSS" href="/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="${escapeHtml(siteName)} RSS" href="/rss.xml" />
   <link rel="stylesheet" href="/assets/css/style.css?v=__BUILD_VERSION__" />
   <link rel="icon" href="${escapeHtml(favicon)}" type="image/png" />
   <script src="/assets/js/theme.js?v=__BUILD_VERSION__"></script>

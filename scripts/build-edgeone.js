@@ -18,7 +18,7 @@ const FILES = [
   'post.html',
   'records.html',
   'robots.txt',
-  'feed.xml',
+  'rss.xml',
 ];
 const DIRECTORIES = ['assets', 'posts', 'records', 'shared'];
 const VERSION_TARGETS = [

@@ -68,7 +68,7 @@ const renderShell = ({ bodyHtml, currentPath, description, origin, site, title }
   <meta name="build-version" content="__BUILD_VERSION__" />
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}" />
-  <link rel="alternate" type="application/rss+xml" title="${escapeHtml(siteName)} RSS" href="/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="${escapeHtml(siteName)} RSS" href="/rss.xml" />
   <link rel="stylesheet" href="/assets/css/style.css?v=__BUILD_VERSION__" />
   <link rel="icon" href="/assets/img/favicon.png" type="image/png" />
   <script src="/assets/js/theme.js?v=__BUILD_VERSION__"></script>

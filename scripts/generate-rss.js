@@ -10,7 +10,7 @@ const MAX_ITEMS = 30;
 const POSTS_FILE = path.join(ROOT, 'posts', 'posts.json');
 const RECORDS_FILE = path.join(ROOT, 'posts', 'records.json');
 const SITE_FILE = path.join(ROOT, 'posts', 'site.json');
-const RSS_FILE = path.join(ROOT, 'feed.xml');
+const RSS_FILE = path.join(ROOT, 'rss.xml');
 const FEATURED_RECORD_ID = 'world-word-exploration';
 
 const readJson = (file, fallback) => {
@@ -106,14 +106,18 @@ const entries = [
   ...posts,
   ...(record && !recordAlreadyListed ? [{ ...record, entryType: 'record' }] : []),
 ]
-  .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')))
+  .sort((a, b) =>
+    String(b.rssDate || b.date || '').localeCompare(String(a.rssDate || a.date || ''))
+  )
   .slice(0, MAX_ITEMS);
 
 const siteName = collapseWhitespace(site.siteName) || 'CRIVU';
 const siteDescription =
   collapseWhitespace(site.siteDescription) ||
   `${siteName} 收錄文章、期刊與專題紀錄。`;
-const lastBuildDate = entries[0]?.date ? pubDate(entries[0].date) : formatRfc822InBeijing(new Date());
+const lastBuildDate = entries[0]?.rssDate || entries[0]?.date
+  ? pubDate(entries[0].rssDate || entries[0].date)
+  : formatRfc822InBeijing(new Date());
 
 const items = entries
   .map((entry) => {
@@ -133,11 +137,13 @@ const items = entries
       )
     );
     const category = collapseWhitespace(entry.category || entry.issue || (isRecord ? '專題紀錄' : '文章'));
+    const customGuid = collapseWhitespace(entry.rssGuid);
+    const guid = customGuid || url;
     return `    <item>
       <title>${escapeXml(entry.title)}</title>
       <link>${escapeXml(url)}</link>
-      <guid isPermaLink="true">${escapeXml(url)}</guid>
-      <pubDate>${escapeXml(pubDate(entry.date))}</pubDate>
+      <guid isPermaLink="${customGuid ? 'false' : 'true'}">${escapeXml(guid)}</guid>
+      <pubDate>${escapeXml(pubDate(entry.rssDate || entry.date))}</pubDate>
       <dc:creator>${escapeXml(siteName)}</dc:creator>
       <category>${escapeXml(category)}</category>
       <description>${description}</description>
@@ -150,7 +156,7 @@ const rss = `<?xml version="1.0" encoding="UTF-8"?>
   <channel>
     <title>${escapeXml(siteName)}</title>
     <link>${escapeXml(`${SITE_ORIGIN}/`)}</link>
-    <atom:link href="${escapeXml(`${SITE_ORIGIN}/feed.xml`)}" rel="self" type="application/rss+xml" />
+    <atom:link href="${escapeXml(`${SITE_ORIGIN}/rss.xml`)}" rel="self" type="application/rss+xml" />
     <description>${escapeXml(siteDescription)}</description>
     <language>zh-Hant</language>
     <lastBuildDate>${escapeXml(lastBuildDate)}</lastBuildDate>
@@ -160,4 +166,4 @@ ${items}
 `;
 
 fs.writeFileSync(RSS_FILE, rss);
-process.stdout.write(`Generated feed.xml with ${entries.length} items\n`);
+process.stdout.write(`Generated rss.xml with ${entries.length} items\n`);
