@@ -35,9 +35,9 @@ const isBlockedPath = (pathname) => {
 };
 
 const resolveBuildVersion = (env) => {
+  if (env && env.BUILD_VERSION) return String(env.BUILD_VERSION).slice(0, 40);
   const sha = env && (env.CF_PAGES_COMMIT_SHA || env.COMMIT_REF || env.GITHUB_SHA);
   if (sha) return String(sha).slice(0, 7);
-  if (env && env.BUILD_VERSION) return String(env.BUILD_VERSION).slice(0, 40);
   return 'runtime';
 };
 

@@ -14,6 +14,7 @@ const TARGETS = [
   'issues.html',
   'post.html',
   'records.html',
+  path.join('records', 'world-word-exploration', 'index.html'),
   path.join('assets', 'js', 'app.js'),
   path.join('assets', 'js', 'comments.js'),
   path.join('assets', 'js', 'issues.js'),

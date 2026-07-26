@@ -58,27 +58,6 @@ const articleUrl = (slug) => new URL(`/articles/${encodeURIComponent(String(slug
 const recordUrl = (record) =>
   new URL(record.page || `/records/${encodeURIComponent(String(record.id || '').trim())}/`, SITE_ORIGIN).toString();
 
-const asCdata = (value) => `<![CDATA[${String(value ?? '').replaceAll(']]>', ']]]]><![CDATA[>')}]]>`;
-
-const extractRecordArticle = (record, url) => {
-  const id = collapseWhitespace(record.id);
-  const sourceFile = path.join(ROOT, 'records', id, 'index.html');
-  const source = fs.readFileSync(sourceFile, 'utf8');
-  const match = source.match(/<article class="article">([\s\S]*?)<\/article>/);
-  if (!match) throw new Error(`RSS article body missing for record: ${id}`);
-
-  const article = match[1]
-    .replace(/<p class="article-label">[\s\S]*?<\/p>/, '')
-    .replace(/<p class="section-index">[\s\S]*?<\/p>/g, '')
-    .replace(/<\/?section\b[^>]*>/g, '')
-    .replace(/\s(?:class|id|aria-label)="[^"]*"/g, '')
-    .replace(/href="#([^"]+)"/g, `href="${url}#$1"`)
-    .trim();
-
-  if (!article) throw new Error(`RSS article body empty for record: ${id}`);
-  return article;
-};
-
 // 一切時間以北京時間（Asia/Shanghai, UTC+8）為準。
 const TZ_OFFSET_MINUTES = 8 * 60;
 const RFC822_DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -118,36 +97,56 @@ const posts = (Array.isArray(postsData.items) ? postsData.items : postsData)
 const record = (Array.isArray(recordsData.records) ? recordsData.records : []).find(
   (item) => item?.published !== false && item?.id === FEATURED_RECORD_ID
 );
+const recordAlreadyListed = record && posts.some(
+  (post) =>
+    collapseWhitespace(post.page) === collapseWhitespace(record.page) ||
+    collapseWhitespace(post.slug) === collapseWhitespace(record.id)
+);
 const entries = [
   ...posts,
-  ...(record ? [{ ...record, entryType: 'record' }] : []),
+  ...(record && !recordAlreadyListed ? [{ ...record, entryType: 'record' }] : []),
 ]
   .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')))
   .slice(0, MAX_ITEMS);
 
 const siteName = collapseWhitespace(site.siteName) || 'CRIVU';
-const siteDescription = collapseWhitespace(site.aboutBody) || `${siteName} 的個人博客更新。`;
+const siteDescription =
+  collapseWhitespace(site.siteDescription) ||
+  `${siteName} 收錄文章、期刊與專題紀錄。`;
 const lastBuildDate = entries[0]?.date ? pubDate(entries[0].date) : formatRfc822InBeijing(new Date());
 
 const items = entries
   .map((entry) => {
     const isRecord = entry.entryType === 'record';
-    const url = isRecord ? recordUrl(entry) : articleUrl(entry.slug);
-    const description = isRecord
-      ? asCdata(extractRecordArticle(entry, url))
-      : escapeXml(trim(stripMarkdown(entry.excerpt) || stripMarkdown(entry.body), 180));
+    const url = collapseWhitespace(entry.page)
+      ? new URL(entry.page, SITE_ORIGIN).toString()
+      : isRecord
+        ? recordUrl(entry)
+        : articleUrl(entry.slug);
+    const description = escapeXml(
+      trim(
+        stripMarkdown(entry.excerpt) ||
+        stripMarkdown(entry.summary) ||
+        stripMarkdown(entry.plainText) ||
+        stripMarkdown(entry.body),
+        180
+      )
+    );
+    const category = collapseWhitespace(entry.category || entry.issue || (isRecord ? '專題紀錄' : '文章'));
     return `    <item>
       <title>${escapeXml(entry.title)}</title>
       <link>${escapeXml(url)}</link>
       <guid isPermaLink="true">${escapeXml(url)}</guid>
       <pubDate>${escapeXml(pubDate(entry.date))}</pubDate>
+      <dc:creator>${escapeXml(siteName)}</dc:creator>
+      <category>${escapeXml(category)}</category>
       <description>${description}</description>
     </item>`;
   })
   .join('\n');
 
 const rss = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>${escapeXml(siteName)}</title>
     <link>${escapeXml(`${SITE_ORIGIN}/`)}</link>

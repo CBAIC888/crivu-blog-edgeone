@@ -92,6 +92,11 @@ export const articlePath = (slug) => {
   return normalized ? `/articles/${encodeURIComponent(normalized)}` : '/articles.html';
 };
 
+export const postPath = (post) => {
+  const direct = normalizeText(post?.page, { allowPlaceholder: true });
+  return direct || articlePath(post?.slug);
+};
+
 export const formatDate = (iso) => {
   const raw = normalizeText(iso, { allowPlaceholder: true });
   const match = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);

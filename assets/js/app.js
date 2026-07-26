@@ -1,11 +1,11 @@
 import {
-  articlePath,
   buildDescription,
   withBuildVersion,
   buildSearchSnippet,
   buildSearchText,
   escapeHtml,
   normalizeText,
+  postPath,
   renderNavItems,
   safeCoverUrl,
   simpleMarkdown,
@@ -211,7 +211,7 @@ const setupMobileMenu = () => {
 };
 
 const renderCard = (post, index) => {
-  const safeLink = articlePath(post.slug);
+  const safeLink = postPath(post);
   const excerpt = buildDescription(post, 72);
   const displayDate = toDisplayDate(post.date);
   const metaBits = [
@@ -286,7 +286,7 @@ const setupSearch = () => {
     results.innerHTML = matches
       .map(
         (p) => `
-          <a class="search-item" href="${escapeHtml(articlePath(p.slug))}">
+          <a class="search-item" href="${escapeHtml(postPath(p))}">
             <span class="search-item-main">
               <span class="search-item-title">${escapeHtml(p.title)}</span>
               <small class="search-item-meta">${escapeHtml([p.issue, toDisplayDate(p.date)].filter(Boolean).join(' · '))}</small>

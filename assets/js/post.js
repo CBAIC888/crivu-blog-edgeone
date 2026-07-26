@@ -1,4 +1,4 @@
-import { articlePath, buildSearchSnippet, buildSearchText, escapeHtml, renderNavItems, toDisplayDate, withBuildVersion } from '../../shared/content.js?v=__BUILD_VERSION__';
+import { buildSearchSnippet, buildSearchText, escapeHtml, postPath, renderNavItems, toDisplayDate, withBuildVersion } from '../../shared/content.js?v=__BUILD_VERSION__';
 
 const qs = (sel) => document.querySelector(sel);
 
@@ -30,7 +30,7 @@ const setupSearch = (posts) => {
     results.innerHTML = matches
       .map(
         (post) => `
-          <a class="search-item" href="${escapeHtml(articlePath(post.slug))}">
+          <a class="search-item" href="${escapeHtml(postPath(post))}">
             <span class="search-item-main">
               <span class="search-item-title">${escapeHtml(post.title)}</span>
               <small class="search-item-meta">${escapeHtml(toDisplayDate(post.date))}</small>

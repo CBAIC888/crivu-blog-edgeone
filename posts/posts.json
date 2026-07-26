@@ -1,6 +1,26 @@
 {
   "items": [
     {
+      "id": "post_world_word_exploration",
+      "published": true,
+      "title": "「世界」一词真的是佛教带进汉语的吗？",
+      "slug": "world-word-exploration",
+      "page": "/records/world-word-exploration/",
+      "date": "2026-07-23T04:00:00+08:00",
+      "updatedAt": "2026-07-26T00:00:00+08:00",
+      "category": "语言史",
+      "issue": "专题纪录",
+      "cover": "/assets/img/uploads/20260723/world-word-exploration-cover.png",
+      "excerpt": "从先秦两汉的旧字、东汉译经与佛教宇宙论出发，追索「世界」一词近两千年的形成、传播与意义变化。",
+      "plainText": "从先秦两汉的旧字、东汉译经与佛教宇宙论出发，追索「世界」一词近两千年的形成、传播与意义变化。",
+      "tags": [
+        "语言史",
+        "佛教",
+        "翻译"
+      ],
+      "language": "zh-Hans"
+    },
+    {
       "id": "post_5f70aff6dc99216e9c91aeb5bfc7d5d4",
       "published": true,
       "title": "2026年4月14日",

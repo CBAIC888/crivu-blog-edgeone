@@ -1,4 +1,4 @@
-import { articlePath, buildSearchSnippet, buildSearchText, escapeHtml, renderNavItems, safeCoverUrl, toDisplayDate, withBuildVersion } from '../../shared/content.js?v=__BUILD_VERSION__';
+import { buildSearchSnippet, buildSearchText, escapeHtml, postPath, renderNavItems, safeCoverUrl, toDisplayDate, withBuildVersion } from '../../shared/content.js?v=__BUILD_VERSION__';
 
 const qs = (sel) => document.querySelector(sel);
 
@@ -132,7 +132,7 @@ const setupSearch = (posts) => {
     results.innerHTML = matches
       .map(
         (p) => `
-          <a class="search-item" href="${escapeHtml(articlePath(p.slug))}">
+          <a class="search-item" href="${escapeHtml(postPath(p))}">
             <span class="search-item-main">
               <span class="search-item-title">${escapeHtml(p.title)}</span>
               <small class="search-item-meta">${escapeHtml([p.issue, toDisplayDate(p.date)].filter(Boolean).join(' · '))}</small>
@@ -185,7 +185,7 @@ const renderIssue = (issue, posts) => {
         <img src="${escapeHtml(cover)}" alt="" loading="lazy" decoding="async" />
       </div>
       <div class="book__meta">
-        <p class="book__id">Issue ${escapeHtml(issue.id || '')}${issue.publishDate ? ` · ${escapeHtml(toDisplayDate(issue.publishDate))}` : ''}</p>
+        ${issue.publishDate ? `<p class="book__id">${escapeHtml(toDisplayDate(issue.publishDate))}</p>` : ''}
         <p class="book__title">${escapeHtml(issue.title || '')}</p>
         ${issue.theme ? `<p class="book__theme">${escapeHtml(issue.theme)}</p>` : ''}
         <p class="book__count">${countText}</p>

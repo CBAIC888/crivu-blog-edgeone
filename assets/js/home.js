@@ -75,9 +75,8 @@ const renderStaticFallback = async () => {
     return standalone.startsWith('/') ? standalone : `/records/${encodeURIComponent(record?.id || '')}`;
   };
   recordRail.innerHTML = records.map((record) => `
-    <a class="record-card record-card--rail" href="${escapeHtml(recordHref(record))}">
-      <span class="record-card__media"><img src="${escapeHtml(record.cover || '')}" alt="" loading="lazy" decoding="async" /></span>
-      <span class="record-card__title">${escapeHtml(record.title || '')}</span>
+    <a class="home-cover" href="${escapeHtml(recordHref(record))}" aria-label="${escapeHtml(record.title || '')}">
+      <img src="${escapeHtml(record.cover || '')}" alt="${escapeHtml(record.title || '')}" loading="lazy" decoding="async" />
     </a>`).join('');
 };
 

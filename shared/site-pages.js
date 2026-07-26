@@ -1,10 +1,10 @@
 import {
-  articlePath,
   buildDescription,
   escapeHtml,
   isConfirmedRecord,
   isPublished,
   normalizeText,
+  postPath,
   renderNavItems,
   safeCoverUrl,
   sanitizeUrl,
@@ -199,7 +199,7 @@ export const renderPageShell = ({
 /* ---------- 共用片段 ---------- */
 
 const renderTocRow = (post, index) => {
-  const href = articlePath(post.slug);
+  const href = postPath(post);
   const num = String(index + 1).padStart(2, '0');
   const displayDate = toDisplayDate(post.date);
   const metaBits = [
@@ -247,7 +247,7 @@ const renderBook = (issue, posts, site) => {
         <img src="${escapeHtml(cover)}" alt="" loading="lazy" decoding="async" />
       </div>
       <div class="book__meta">
-        <p class="book__id">Issue ${escapeHtml(issue.id || '')}${issue.publishDate ? ` · ${escapeHtml(toDisplayDate(issue.publishDate))}` : ''}</p>
+        ${issue.publishDate ? `<p class="book__id">${escapeHtml(toDisplayDate(issue.publishDate))}</p>` : ''}
         <p class="book__title">${escapeHtml(issue.title || '')}</p>
         ${issue.theme ? `<p class="book__theme">${escapeHtml(issue.theme)}</p>` : ''}
         <p class="book__count">${countText}</p>
@@ -265,14 +265,28 @@ const recordPath = (record) => {
   return standalone !== '#' ? standalone : `/records/${encodeURIComponent(record.id || '')}`;
 };
 
-const renderRecordCard = (record, options = {}) => `
-  <a class="${options.rail ? 'record-card record-card--rail' : 'record-card'}" href="${escapeHtml(recordPath(record))}">
-    <span class="record-card__media">
-      <img src="${escapeHtml(safeCoverUrl(record.cover))}" alt="" loading="lazy" decoding="async" />
-    </span>
-    <span class="record-card__title">${escapeHtml(record.title || '')}</span>
-    ${!options.rail && normalizeText(record.summary) ? `<span class="record-card__summary">${escapeHtml(normalizeText(record.summary))}</span>` : ''}
+const renderRecordCard = (record, options = {}) => {
+  const href = escapeHtml(recordPath(record));
+  const title = escapeHtml(record.title || '');
+  const cover = escapeHtml(safeCoverUrl(record.cover));
+  if (options.rail) {
+    return `
+  <a class="home-cover" href="${href}" aria-label="${title}">
+    <img src="${cover}" alt="${title}" loading="lazy" decoding="async" />
   </a>`;
+  }
+  const summary = normalizeText(record.summary);
+  const date = toDisplayDate(record.date);
+  return `
+  <a class="book record-book" href="${href}" aria-label="${title}">
+    <div class="book__cover"><img src="${cover}" alt="" loading="lazy" decoding="async" /></div>
+    <div class="book__meta">
+      ${date ? `<p class="book__id">${escapeHtml(date)}</p>` : ''}
+      <p class="book__title">${title}</p>
+      ${summary ? `<p class="book__theme">${escapeHtml(summary)}</p>` : ''}
+    </div>
+  </a>`;
+};
 
 /* ---------- 頁面渲染 ---------- */
 

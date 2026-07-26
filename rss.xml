@@ -1,274 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>CRIVU</title>
     <link>https://cbc688.com/</link>
     <atom:link href="https://cbc688.com/rss.xml" rel="self" type="application/rss+xml" />
-    <description>出生於2006年。 喜歡京劇、閱讀與亂寫一通。 也想成為幸福者。 最近在看《溫柔的夜》、《李煜詞集》和校課本... 最近在聽張國榮的《至少還有你》... ![](/assets/img/uploads/20260531/img_0483-9402e0a24be4.jpeg) &lt;!-- preset:article-1200x800 --&gt;</description>
+    <description>CRIVU 收錄京劇、閱讀、語言史與個人生活的文章、期刊和專題紀錄。</description>
     <language>zh-Hant</language>
     <lastBuildDate>Thu, 23 Jul 2026 04:00:00 +0800</lastBuildDate>
     <item>
-      <title>世界一词的探索</title>
+      <title>「世界」一词真的是佛教带进汉语的吗？</title>
       <link>https://cbc688.com/records/world-word-exploration/</link>
       <guid isPermaLink="true">https://cbc688.com/records/world-word-exploration/</guid>
       <pubDate>Thu, 23 Jul 2026 04:00:00 +0800</pubDate>
-      <description><![CDATA[<h2>引言</h2>
-<p>我们每天都在说「世界」。</p>
-<p>全世界、世界史、世界观、虚拟世界，还有一个人的内心世界。</p>
-<p>一个人离开家乡，旁人会说他要去看看外面的世界。一个人长久沉默，我们又会说他似乎只活在自己的世界里。</p>
-<p>这个词已经平常得几乎看不见来历。可若将这个词拆开来看，事情似乎并没有那么简单。</p>
-<p>「世」，常与时间相连，一世、世代、前世、来世。</p>
-<p>「界」，则常与范围和分际有关，边界、疆界、界限。</p>
-<p>一边是时间，一边是空间与范围。它们究竟从什么时候开始合在一起，成了我们今天所说的「世界」？</p>
-<p>许多人会给出一个很快的答案，「世界」这个词，来自佛经。</p>
-<p>这个答案有其根据。只是，若说得太快，便容易把几千年的语言变化，压成一句轻巧的冷知识。</p>
-<p>因为，「来自佛经」这四个字，至少牵涉四个不同层面的问题。</p>
-<p>第一，在佛教传入汉地以前，「世」与「界」各自已有怎样的含义与用法？</p>
-<p>第二，在佛经翻译以前，汉语中是否已经出现过「世界」二字连用？译经活动又在其中起了什么作用？</p>
-<p>第三，佛经中的「世界」究竟指什么？它与现代汉语中的「世界」，有哪些重合，又有哪些差异？</p>
-<p>第四，从中古到近代，「世界」的意义和用法又经历了怎样的变化？</p>
-<p>这四个问题，须得一一分开来看。</p>
-
-<h2>一、佛教传入以前，汉语如何描述人所处的整体？</h2>
-<p>佛教大约在公元一世纪前后，开始进入汉地。</p>
-<p>关于佛教初传，后世最常提到的，是「汉明帝夜梦金人」的故事。南朝宋范晔所撰《后汉书·西域传》记载：「世传明帝梦见金人，长大，顶有光明。」明帝询问群臣，遂有人回答，西方有神，名为佛。<a href="https://cbc688.com/records/world-word-exploration/#note-1">[1]</a></p>
-<p>这段记载开头用了「世传」二字。它能够证明，至迟在五世纪，正史已经收录了这则故事；至于梦金人、遣使求法等细节，则不能未经辨析，便直接视为公元一世纪的现场记录。</p>
-<p>比这则传说更为具体的，是《后汉书·楚王英传》所载永平八年，也就是公元65年的诏书。诏书中已经出现「伊蒲塞」与「桑门」等佛教用语，说明至迟在公元一世纪中叶，汉地上层社会已经出现佛教信众与僧侣活动的迹象。到了公元二世纪中后期，佛经翻译逐渐成为可以连续观察的历史活动。东汉桓帝、灵帝时期，安世高、支娄迦谶等来自西域的译者先后来到洛阳，译出一批佛教经典。汉语也由此开始较大规模地面对一套来自印度与中亚的宗教概念。</p>
-<p>这些材料只能帮助我们确定佛教进入汉地并逐渐传播的大致年代，却不能直接回答某个汉语词汇究竟出现于何时。</p>
-<p>若要追问「世界」的来历，仍须回到更早的汉语文献，分别考察「世」「界」以及「世界」二字的实际用法。</p>
-<p>先看「世」和「界」。</p>
-<p>在先秦文献中，「世」常与世代和时间延续有关。《论语》说「如有王者，必世而后仁。」这里的「世」，大致指一代或三十年左右的时间。</p>
-<p>「界」则有疆界、分限之意。《孟子》说「域民不以封疆之界。」这里的「界」，指划定地域的界线。<a href="https://cbc688.com/records/world-word-exploration/#note-2">[2]</a></p>
-<p>由此可见，「世」与「界」都是佛教传入以前便已存在的汉语语素。佛教没有创造「世」，也没有创造「界」。</p>
-<p>那么，在「世界」尚未成为常用词以前，汉语是否缺少描述天地万物整体的表达？</p>
-<p>自然不是。</p>
-<p>首先是「天地」。</p>
-<p>《诗经·小雅·正月》已经将天、地对举「谓天盖高，不敢不局；谓地盖厚，不敢不蹐。」到了《周易·系辞下》，又有「天地之大德曰生」之语。<a href="https://cbc688.com/records/world-word-exploration/#note-3">[3]</a></p>
-<p>在这些文献中，天与地构成万物存在的基本范围。二者并举时，也不只表示头顶的天空与脚下的土地，还涉及万物的生成、运行及其秩序。</p>
-<p>「天地」所强调的，是万物生长于其间的自然整体。</p>
-<p>另一种重要表达是「天下」。</p>
-<p>「天下」原本可以从字面理解为天之下的全部地域，但在先秦文献中，它很早便进入政治语境。《尚书》《左传》《孟子》等典籍所说的「得天下」「治天下」与「失天下」，往往同时牵涉土地、人民、王权与统治秩序。<a href="https://cbc688.com/records/world-word-exploration/#note-4">[4]</a></p>
-<p>所谓「得天下」，并非仅仅占有一片地域，也意味着获得对一个政治共同体的统治权及其正当性。「失天下」同样不止表示疆域缩减，还意味着统治秩序的瓦解。</p>
-<p>因此，「天下」既有空间范围，也有鲜明的政治含义。它所描述的，是一个以王权、人民与秩序相互维系的政治整体。</p>
-<p>此外，还有「宇宙」。</p>
-<p>《庄子·齐物论》已有「旁日月，挟宇宙」之语。《庄子·庚桑楚》又分别解释「宇」与「宙」，「有实而无乎处者，宇也；有长而无本剽者，宙也。」</p>
-<p>到了西汉《淮南子·齐俗训》，这层含义被表达得更为整齐「往古来今谓之宙，四方上下谓之宇。」<a href="https://cbc688.com/records/world-word-exploration/#note-5">[5]</a></p>
-<p>在这里，「宙」指向从古至今的时间延续，「宇」则指向上下四方的空间范围。「宇宙」因而能够同时容纳时间与空间，表示一个比「天下」更少依赖政治秩序的整体。</p>
-<p>当然，这并不意味着先秦两汉文献中的每一次「宇宙」，都已经等同于现代天文学意义上的宇宙。古今词义之间仍有距离。只是可以确定，在佛教大规模译经以前，汉语已经能够将时间与空间放在同一个概念中加以理解。</p>
-<p>由此看来，佛教带来的，并非中国人关于天地万物的第一个整体观念。</p>
-<p>在佛教传入以前，汉语已经有「天地」「天下」「宇宙」等不同表达。「天地」偏重万物生成与自然秩序，「天下」偏重地域、人民与政治统治，「宇宙」则能够同时指向时间与空间。</p>
-<p>它们彼此交叠，却各有侧重。</p>
-<p>真正需要追问的是：既然「世」与「界」早已分别存在，汉语中也已有多种描述整体的词汇，那么，「世」与「界」究竟从何时开始连用？佛经翻译又在这一过程中起了怎样的作用？</p>
-
-<h2>二、佛教传入以前，已经有「世界」这个词了吗？</h2>
-<p>要追问佛经翻译在「世界」一词的形成中起了什么作用，先得回答一个更基本的问题：佛教传入以前，汉语中是否已经出现过「世界」？</p>
-<p>就目前能够核查的先秦、两汉传世文献以及相关语言研究来看，尚未发现「世界」二字作为一个整体名词使用的明确例证。<a href="https://cbc688.com/records/world-word-exploration/#note-6">[6]</a></p>
-<p>这里需要格外谨慎。</p>
-<p>在现存文献中未能检出，并不等于这个词在当时绝对不存在。古代文献多有散佚，今日所见只是历史语言材料的一部分；不同数据库的收录范围、文本年代与检索方式，也各有局限。</p>
-<p>因此，我们能够作出的判断，只能限定在现有材料之内：在目前可见的前佛教汉语文献中，「世」与「界」早已分别存在，但尚未见到二字稳定结合、共同指称某种存在范围的确切用例。</p>
-<p>现存较早且较为明确的「世界」用例，主要集中在东汉末年以来的汉译佛经中。</p>
-<p>线索由此转入早期译经活动。</p>
-
-<h2>三、「世界」第一次清楚地出现在哪里？</h2>
-<p>公元二世纪后半叶，洛阳不仅是东汉的政治中心，也逐渐成为早期佛经翻译的重要地点。</p>
-<p>当时的译经，往往并非一人独自完成。外国僧人可能口授或诵出原典，通晓不同语言者负责转译，汉地学者或信众则从事笔录、校订与润饰。不同译经活动的具体流程并不一致，也未必已经形成后世那种组织严密的译场制度，但其协作性质，大体可以确定。<a href="https://cbc688.com/records/world-word-exploration/#note-7">[7]</a></p>
-<p>译经者所面对的，也不只是几个发音陌生的词语。</p>
-<p>佛、菩萨、涅槃、劫、佛国等概念，背后牵连着关于生命、时间、空间、修行与解脱的另一套理解。中土原有的「天地」「天下」「宇宙」虽然能够表达某些相近意义，却往往难以与这些佛教概念完全对应。</p>
-<p>于是，一个具体而困难的问题摆在译经者面前，这些来自另一种语言与思想传统的概念，应当如何被安置进汉字之中？</p>
-<p>支娄迦谶便活动于这样的历史环境中。他来自月氏，大约在公元二世纪后期于洛阳从事译经，是现存记载中较早系统翻译大乘佛经的译者之一。</p>
-<p>现行《阿閦佛国经》题作后汉支娄迦谶译。经中有一句「佛告舍利弗：『有世界名阿比罗提，其佛名大目，于彼为诸菩萨摩诃萨说法及六度无极之行。』」<a href="https://cbc688.com/records/world-word-exploration/#note-8">[8]</a></p>
-<p>这句话可以直译为，有一个世界，名叫阿比罗提，其中有一位佛，名叫大目。</p>
-<p>从句法上看，这里的「世界」已经作为一个整体名词使用。它前接「有」，后接「名阿比罗提」，指向一个能够被命名和辨别的存在范围。</p>
-<p>「世」与「界」在这里已经很难再被分别解释。二字共同承担了一个完整的指称功能。</p>
-<p>传统上同样归于支娄迦谶译出的《佛说般舟三昧经》中，也有类似用例：「如一佛国之世界，皆破坏碎以为尘。」<a href="https://cbc688.com/records/world-word-exploration/#note-9">[9]</a></p>
-<p>这里设想一个佛国中的世界被彻底击碎，化为微尘。「世界」同样是句中的一个完整单位，并非「世」与「界」偶然相邻。</p>
-<p>这两处材料至少可以说明，至迟在公元二世纪后期，「世界」已经在部分汉译佛经中作为复合名词使用。</p>
-<p>不过，这仍不足以证明支娄迦谶本人，或某一位参与译经的人，在某一天「发明」了这个词。</p>
-<p>现存佛经文本经历过漫长的抄写、校勘与编藏过程。即使接受经录中的传统署名，也不能无条件地把现行文本中的每一个字，都视为东汉初译时毫无变动的原貌。</p>
-<p>再者，词语的形成通常不是一个可以精确定位的瞬间。它可能在不同译者的口头讨论与译文实践中反复出现，经过沿用、调整与筛选，才逐渐成为较稳定的书面表达。</p>
-<p>因此，较为谨慎的说法应当是，在现存较早且能够核查的材料中，「世界」作为复合名词的早期书面用例，明确见于东汉末年的汉译佛经。佛经翻译活动至少是这个词得以书面化、传播并逐渐定型的重要环境。</p>
-<p>到了西晋，相关用法已经更为丰富。</p>
-<p>太康七年，即公元286年，竺法护译出《光赞经》。经中有言「是时世尊则演如来清净真妙志性光明，照此三千大千世界，普及十方各江河沙等诸佛国土。」<a href="https://cbc688.com/records/world-word-exploration/#note-10">[10]</a></p>
-<p>这里的「世界」已经进入「三千大千世界」这一完整的佛教宇宙论表达之中，并与「十方」「诸佛国土」等词语共同出现。</p>
-<p>此时的「世界」，不再只是偶尔用于指称某一佛国。它已经能够与数量、方位和不同佛土组合，成为描述佛教空间体系的常用词语。</p>
-<p>若仅依据现存材料，大致可以勾勒出这样一条线索。公元二世纪后期，汉译佛经中已经出现较早而明确的「世界」用例，到了公元三世纪后期，它在佛典中的组合方式与使用范围都已更加丰富。</p>
-<p>这条时间线仍然无法告诉我们，「世界」究竟由谁最先说出。</p>
-<p>它所呈现的，更像是一个词语逐渐形成的过程：旧有的「世」与「界」，在数代译者的反复取舍、沿用与调整中，被组合起来，用以承载一种此前汉语尚未以同样方式表达的空间观念。</p>
-<p>「世界」或许没有一个可以确定姓名的发明者。它是在翻译中，慢慢成为一个词的。</p>
-
-<h2>四、「世界」究竟翻译了什么？</h2>
-<p>到了这里，问题似乎变得具体了。</p>
-<p>既然「世界」出现在佛经中，那么，它究竟翻译的是哪个梵语词？</p>
-<p>许多人会说，「世界」就是梵语 lokadhātu的意译。</p>
-<p>这个回答有其根据，却仍不完整。</p>
-<p>佛经翻译并非一张整齐的一对一词表。同一个梵语词，在不同经文、不同译者手中，可能有不同译法。同一个汉语词，也可能被用来翻译几个相近却并不完全相同的概念。</p>
-<p>还须说明，东汉早期佛经的原本并不一定都是我们今天所说的古典梵语文本。以支娄迦谶的部分译经为例，有研究认为，其原语可能与犍陀罗语等中古印度语言有关。<a href="https://cbc688.com/records/world-word-exploration/#note-11">[11]</a> 因此，今日利用现存梵本与汉译本对读，只能帮助我们辨认某些段落中的对应关系，不能直接还原东汉译者案前那一份已经散佚的原本。</p>
-<p>先看lokadhātu。</p>
-<p>其中，loka 通常与世间、众生所处的世界有关；dhātu 的含义较为复杂，可以表示构成部分、要素、范围或领域。二者结合为 lokadhātu 后，在佛教语境中通常指一个「世界系统」或「世界领域」，不宜只凭两个词素，将它机械地拆解成现代汉语中的「时间加空间」。<a href="https://cbc688.com/records/world-word-exploration/#note-11">[11]</a></p>
-<p>鸠摩罗什所译《金刚经》中有一句，「世尊！如来说世界，非世界，是名世界。」</p>
-<p>现存梵本的相应段落使用了 lokadhātu；在前文提到「三千大千世界」时，则使用完整的复合形式 trisāhasramahāsāhasra-lokadhātu。<a href="https://cbc688.com/records/world-word-exploration/#note-12">[12]</a></p>
-<p>在这一处经文中，汉语「世界」与 lokadhātu 之间，确实存在清楚的对应关系。</p>
-<p>这里所说的「世界」，也并非现代地理意义上的一颗地球。它是佛教宇宙论中的一个世界系统：其中有须弥山、日月、四洲以及不同层次的众生居处；许多这样的基本世界，又可以依一定数量关系组成更大的世界系统。</p>
-<p>因此，「三千大千世界」并非三个彼此并列的「千世界」，也并非三千个世界的简单总和。它是一套层层扩展的宇宙结构名称。</p>
-<p>然而，汉译佛经中的「世界」，并不只对应 lokadhātu。</p>
-<p>鸠摩罗什译《法华经》时，写佛陀眉间放光，「照东方万八千世界。」现存梵本的相应段落使用的却是 aṣṭādaśa-buddhakṣetra-sahasrāṇi，也就是「一万八千佛国」或「一万八千佛土」。其中的核心词是 buddhakṣetra，并非 lokadhātu。<a href="https://cbc688.com/records/world-word-exploration/#note-13">[13]</a></p>
-<p>buddhakṣetra 由 buddha 与 kṣetra 构成。kṣetra 原有田地、区域或领域之意，进入佛教语境以后，buddhakṣetra 通常指一尊佛所住持、教化或显现其功德的国土，汉译中常见「佛国」「佛土」「佛国土」与「佛刹」等表达。</p>
-<p>「世界」与「佛国」的意义可以重合，却不能完全等同。</p>
-<p>lokadhātu 较偏向宇宙结构中的世界系统，buddhakṣetra 则较偏向一尊佛所教化的领域。不过，在具体经文中，一尊佛的国土往往也以一个或多个世界系统为范围，二者因而时有交叠。译者根据上下文，将它们译成「世界」「国土」「佛国」或「佛刹」，并不奇怪。</p>
-<p>由此可见，「世界」并不是某一个印度语词永远固定的汉语标签它有时对应 lokadhātu，强调世界系统；有时对应 buddhakṣetra，指向佛国或佛土。至于其他经文中的具体对应，还须逐句比较原典、异译与现存梵本，不能一概而论。<a href="https://cbc688.com/records/world-word-exploration/#note-11">[11]</a></p>
-<p>这种译词尚未完全固定的状态，在早期译经中尤其明显。</p>
-<p>支娄迦谶所译《道行般若经》中，可以看到「千天下」「三千大国土」「恒边沙佛刹」等不同表达。<a href="https://cbc688.com/records/world-word-exploration/#note-14">[14]</a></p>
-<p>「天下」「国土」「佛刹」共同进入相近的佛教宇宙论语境，说明早期译者并非一开始便只用「世界」来承载这些外来概念。</p>
-<p>他们手中原本已有许多汉语材料：天地、天下、国土、世间、疆界，以及后来逐渐普及的佛国、佛土与佛刹。</p>
-<p>翻译所做的，并非将一个外语词机械地换成两个汉字。译者需要在汉语已有的词义与表达习惯之间不断选择，有些词直接沿用，有些词被赋予新的含义，还有一些旧有语素，则在翻译中被重新组合。</p>
-<p>「世界」很可能便是在这样的过程中逐渐形成并稳定下来的。</p>
-<p>「世」与「界」都是佛教传入以前便已存在的汉语语素。译经活动将它们组合成一个整体，使之能够指称众生所居的领域、佛陀所教化的国土，以及由许多基本世界构成的宇宙系统。</p>
-<p>不过，这仍是一种依据现存语料作出的历史解释。</p>
-<p>目前没有哪一部文献记载，某位译者曾有意识地说「我要以『世』表示时间，以『界』表示空间，再把它们合成一个新词。」我们能够看到的，只是翻译完成之后留下的文字，以及这些文字在数百年间逐渐增加、扩展和稳定的过程。</p>
-<p>佛教经典带来了一套新的空间结构，汉语提供了已有的字词。翻译使旧字承担了新的关系。</p>
-<p>「世界」便是在这场相遇之中，慢慢成为了「世界」。</p>
-
-<h2>五、「世为迁流，界为方位」是真正的词源吗？</h2>
-<p>说到这里，许多人会想到《楞严经》中的一句名言，「世为迁流，界为方位。」</p>
-<p>经文接着说：「汝今当知，东西南北、东南西南、东北西北、上下为界；过去未来现在为世。」<a href="https://cbc688.com/records/world-word-exploration/#note-15">[15]</a></p>
-<p>按照这段解释，「世」是过去、现在与未来的迁流，「界」则是上下四方的空间分位。「世界」二字合在一起，便仿佛同时包含了时间与空间。</p>
-<p>只是，它所提供的是一种词义解释，不能直接视为「世界」一词最初形成的历史证据。</p>
-<p>原因首先在于年代。</p>
-<p>现行《楞严经》的题署，将其译出时间系于唐中宗神龙元年，也就是公元705年，并列中天竺沙门般剌蜜帝「译出」、清河房融「笔授」、乌长国沙门弥伽释迦「译语」。不过，《开元释教录》又留下了怀迪与一位未载姓名的梵僧共同译出此经的另一种说法。有关这部经的具体传译过程，早期记载并不完全一致。<a href="https://cbc688.com/records/world-word-exploration/#note-15">[15]</a></p>
-<p>与之相比，前文所见《阿閦佛国经》《般舟三昧经》等早期译经传统中的「世界」用例，已经可以追溯到公元二世纪后期。两者之间相隔约五百年。</p>
-<p>近现代学界对于《楞严经》的成书与翻译来源，也长期存在分歧。有的研究者将其视为中国编纂的疑伪经典，或认为其现行文本带有深刻的汉地改造；另有研究则重新检讨传译史料，主张它具有印度原典及翻译活动的基础。<a href="https://cbc688.com/records/world-word-exploration/#note-16">[16]</a></p>
-<p>无论采取何种立场，有一点是可以确定的「世为迁流，界为方位」这一解释，出现的时间明显晚于「世界」这一词语本身的形成与使用。因此，它更适合被理解为唐代汉语佛教语境中，对既有词汇所作的一种训释性阐发。</p>
-<p>经过数百年的使用，「世界」已经成为佛典中的常见词汇。到了《楞严经》这段文字中，二字又被重新拆开，「世」被置于过去、现在、未来的时间结构中；「界」则被置于十方空间的方位结构中。</p>
-<p>原本已经结合成词的两个语素，由此获得了一套完整而对称的解释。这种解释可以称为后起的语义阐发。它说明唐代佛教语境如何理解「世界」，却不能反向证明，东汉译经者最初正是按照「时间加空间」的思路创造了这个词。</p>
-<p>同样，上一节谈到的 loka、lokadhātu 与 buddhakṣetra，也不能按照汉字的字面意义，机械地拆成「世」与「界」。印度语言中的词义结构，与汉字自身携带的语义联想，并不完全重合。</p>
-<p>外来的概念先借助汉语获得表达，经过长期流传，汉语自身的字义与思维习惯，又反过来参与了对这些概念的解释。</p>
-<p>一个词在翻译中产生，随后又被使用者重新理解。</p>
-<p>「世为迁流，界为方位」解释的，正是「世界」后来如何被理解，它没有告诉我们，这个词最初究竟如何产生。</p>
-
-<h2>六、佛经中的一个「世界」，究竟有多大？</h2>
-<p>在现代日常汉语中，「世界」可以指地球及生活在地球上的人类社会。所谓「世界地图」，通常是对地球表面的描绘，所谓「世界人口」，则是对这颗星球上人口总数的统计。</p>
-<p>然而，在汉译佛经中，「世界」并不是一个尺度始终相同的单位。在不同经文与不同语境中，它可以指众生所居的一处范围，可以指一尊佛所住持或教化的国土，也可以指由日月、须弥山、四大洲、诸天等共同组成的世界体系。</p>
-<p>《阿閦佛国经》中，不仅有一个名为阿比罗提的世界，也多次谈到「他方世界」。经中有言「若有菩萨摩诃萨于是世界若他方世界……」</p>
-<p>其中的「于是世界」，即「在这个世界」，「他方世界」，则指位于其他方所的世界。<a href="https://cbc688.com/records/world-word-exploration/#note-8">[8]</a></p>
-<p>这类表述说明，在佛典的空间想象中，「世界」可以使用复数。一个世界之外，还可以有其他世界；不同世界可以被命名、辨别，也可以分别位于不同方向。</p>
-<p>佛教宇宙论又提出小千世界、中千世界与大千世界的层级。</p>
-<p>玄奘所译《阿毗达磨俱舍论》卷十一说「四大洲日月，苏迷卢欲天，梵世各一千，名一小千界；此小千千倍，说名一中千；此千倍大千，皆同一成坏。」<a href="https://cbc688.com/records/world-word-exploration/#note-17">[17]</a></p>
-<p>论中接着解释，一千组由四大洲、日月、须弥山、欲界诸天乃至梵世构成的基本世界，合称一个小千界，一千个小千界，构成一个中千界，一千个中千界，再构成一个大千界。</p>
-<p>所谓「三千大千世界」中的「三千」，并非说总共只有三千个世界。它所表示的，是「千」这一数量关系先后经过小千、中千、大千三个层次。</p>
-<p>这套计算具体包含多少日月、山洲与天界，此处不必继续展开。</p>
-<p>我们只需把握一点。佛典中的「世界」，通常并不等同于一颗孤立的地球。它可以被命名，可以被计数，可以区分此方与他方，还可以依照一定层级，被组合成更广大的世界体系。</p>
-<p>这种空间结构，与「天下」在先秦两汉政治语境中的典型用法有所不同。</p>
-<p>「天下」虽然也可以指极为广阔的地域，但在「治天下」「得天下」「失天下」等表述中，它往往被理解为一个可以统一治理的政治整体，其中牵涉王权、人民、疆域与秩序。</p>
-<p>佛典中的诸世界，则可以在十方同时存在。此世界之外尚有他方世界，一个世界体系之外，又可以有更多世界体系。</p>
-<p>这里比较的是两种概念在特定文献中的侧重点，并不意味着古代中国思想只有一种单一、封闭的「天下观」，也不意味着佛教宇宙观内部没有中心、方位与等级。</p>
-<p>较为准确的说法是，佛经的传入，使汉语读者更为集中地面对一种复数的世界结构。</p>
-<p>世界不再只是一片可以被统一描述的「天下」，也可以是许多个彼此并存、层层展开的「世界」。</p>
-
-<h2>七、一个佛教词，怎样离开佛经？</h2>
-<p>一个词被写进佛经，只能说明它已经进入译经语言。要进入更广泛的汉语，它还需要被反复抄写、诵读和讲解，随后被诗人、学者、小说家乃至普通说话者不断借用。</p>
-<p>这种过程并不意味着佛教含义逐渐消失，更多时候，是旧义仍然留在原处，新的用法却从它身旁慢慢生长出来。</p>
-<p>晚唐诗人李商隐在《北青萝》中写，「世界微尘里，吾宁爱与憎。」<a href="https://cbc688.com/records/world-word-exploration/#note-18">[18]</a></p>
-<p>李商隐生活于公元九世纪。到了这里，「世界」已经可以自然进入文人诗歌，不再只是一项需要解释的译经术语。</p>
-<p>不过，这句诗仍有浓厚的佛教意味。「微尘」本就是佛典中常见的表达，爱与憎也属于佛教反复讨论的执著。诗人将「世界」与「微尘」并置，人的得失与爱憎，似乎也随之被放进了一个更为渺小的尺度之中。</p>
-<p>这说明，至晚唐时期，「世界」已经走出经文的句法，却仍携带着经文留下的意义。</p>
-<p>到了南宋，朱熹在讨论「经」与「权」时出现过一句很口语化的话，「若日日时时用之，则成甚世界了！」<a href="https://cbc688.com/records/world-word-exploration/#note-19">[19]</a></p>
-<p>这里所说的「权」，是特殊情势下的权宜处置。朱熹的意思是，若把不得已的例外手段当作日常原则，事情还会变成什么样子？</p>
-<p>因此，「成甚世界」大致相当于后来的「成什么局面」「成什么世道」。</p>
-<p>此处的「世界」，已经不再专指佛国、众生居处或宇宙系统。它开始指向现实人间的状态、秩序与局面。</p>
-<p>到了明代后期，《西游记》开篇又写，「感盘古开辟，三皇治世，五帝定伦，世界之间，遂分为四大部洲。」<a href="https://cbc688.com/records/world-word-exploration/#note-20">[20]</a></p>
-<p>「世界」在这里已经成为小说叙事中的普通词语。作者不必停下来说明它的来源，便可以直接用它铺陈故事发生的广大空间。</p>
-<p>只是，这里的四大部洲，东胜神洲、西牛贺洲、南赡部洲与北俱芦洲——仍然来自佛教宇宙观。</p>
-<p>中国上古传说中的盘古、三皇与五帝，同佛教所说的四大部洲，被安置进同一个叙事开端。不同来源的观念已经彼此交织，很难再分出一条清楚的界线。</p>
-<p>这几处材料并不能构成一部完整的词义演变史，也未必都是各自义项最早的例证。</p>
-<p>但它们至少显示了「世界」扩展的大致方向。</p>
-<p>在佛经中，它可以指众生所居的领域、佛国或世界系统。进入诗歌以后，它可以承载人的爱憎与生命感受。进入讲学语录以后，它又可以表示现实的局面与世道。到了通俗小说中，它已经能够成为故事展开的日常背景。</p>
-<p>直到今天，我们仍会说「极乐世界」与「三千大千世界」，也会说「花花世界」「儿童世界」「网络世界」与「内心世界」。</p>
-<p>这些用法来自不同年代，却共同留在同一个词中。</p>
-
-<h2>八、现代汉语的「世界」，是不是又从日本传回来的？</h2>
-<p>到了十九世纪，「世界」又经历了一次重要的意义扩展。</p>
-<p>西方地理、历史、政治与哲学知识不断进入东亚。地球各处不再只是遥远而零散的地域，也逐渐被组织成一套由国家、贸易、战争、交通与知识共同联系的全球结构。</p>
-<p>原有的汉字词语，开始被用于承载这些新的概念。</p>
-<p>明治时期的日本，大量使用「世界」翻译和整理这些西方概念。甲午战争以后，尤其是公元一八九五年以后，大量日文书刊、译著与留学生带来的现代词汇进入中国。<a href="https://cbc688.com/records/world-word-exploration/#note-21">[21]</a></p>
-<p>因此，有人认为，现代汉语中的「世界」，其实是一个由日本重新传回中国的词。</p>
-<p>这句话需要分开来看。</p>
-<p>从词形和早期词义而言，「世界」显然并非日本创造。它在汉语佛经中已经使用了一千多年，又先后进入诗歌、语录与小说。</p>
-<p>在甲午战争以前，中国境内的中西翻译已经开始用「世界」对应英文 world。</p>
-<p>一八二二年，英国传教士马礼逊出版《华英字典》的英汉部分，在 world 条目下，他已经列出「地球」「普天下」「世间」「世界」等中文表达。1866至1869年间出版的罗存德《英华字典》，也在 world条下并列「世」「世界」「天下」「寰宇」等译词。<a href="https://cbc688.com/records/world-word-exploration/#note-22">[22]</a></p>
-<p>这说明，至迟在十九世纪六十年代，「世界」已经能够在中文翻译环境中，直接作为 world 的基本对应词之一。</p>
-<p>这个过程早于甲午战争，也并非只能通过日本发生。</p>
-<p>然而，由此便否认日本的作用，同样不妥。</p>
-<p>日本没有创造「世界」这个词，却在明治时期的现代知识体系中，大量使用并重新组织了它。「世界史」「世界文学」「世界经济」「世界主义」等复合表达，使「世界」获得了更强的构词能力，也逐渐成为描述全球政治、历史与社会的基础词汇。</p>
-<p>十九世纪末至二十世纪初，中国读者通过日文书刊、翻译作品和留学活动，集中接触到这些已经系统化的表达。</p>
-<p>因此，从日本进入中国的，并非「世界」二字本身，而是这个旧词在现代知识体系中的一批新用法、新搭配和新位置。</p>
-<p>金观涛、刘青峰曾以一批一八三〇年至一九二六年的中文文献为材料，统计「天下」「万国」和「世界」的使用变化。<a href="https://cbc688.com/records/world-word-exploration/#note-23">[23]</a></p>
-<p>按照他们采用的语料，甲午战争以前，「世界」的使用仍然较少。</p>
-<p>一八九五年以后，它的出现频率迅速上升，一八九八年以后超过「万国」，到一九〇三年以后，又超过「天下」。<a href="https://cbc688.com/records/world-word-exploration/#note-23">[23]</a></p>
-<p>这项统计有自己的语料范围，不能代表所有中文文献。</p>
-<p>不过，它仍然显示出晚清政治语言中一个值得注意的转折。</p>
-<p>在传统政治论述中，「天下」往往被理解为一个可以获得、治理和维持的整体。它包含土地与人民，也包含以某种中心和秩序组织起来的政治空间。</p>
-<p>「万国」则更明确地承认许多国家并列存在。中国与外国之间，开始被放入一种列国相交的关系之中。</p>
-<p>到了晚清的现代语境中，「世界」又进一步指向一个不断变化的全球整体。各国不仅彼此并存，也在贸易、战争、技术与制度竞争中相互影响。</p>
-<p>中国自身，也开始被理解为这个整体中的一个国家。</p>
-<p>甲午战争并非这场变化唯一的起点，却使旧有秩序受到更为直接的冲击。战败之后，中国知识界不得不更加迫切地追问，自身在列国之间处于什么位置，又应当如何进入这个正在变化的世界。</p>
-<p>于是，「世界」不再只是佛经中的世界系统，也不再只是人间的局面与世道。</p>
-<p>它开始成为一个现代政治与历史空间。</p>
-<p>日本没有把一个遗失的古词重新送回中国。</p>
-<p>被带回来的，是一个古老词语的现代用法，而这种用法，又在中国自身的翻译、战争与思想变化中，被重新接纳和改写。</p>
-
-<h2>九、「世界」到底是不是佛教带进汉语的？</h2>
-<p>现在，我们可以回到最初的问题。</p>
-<p>「世界」真的是佛教带进汉语的吗？</p>
-<p>「世」与「界」并非佛教创造。早在佛教传入以前，这两个字便已分别存在于汉语之中，「世」常与世代和时间延续有关，「界」则常指疆界、范围与分限。</p>
-<p>佛教传入以前，中国也并不缺少描述天地万物整体的语言。「天地」「天下」「宇宙」各有其用，先秦两汉思想中，同样已有关于空间、时间、生成与秩序的丰富理解。</p>
-<p>佛教没有使中国人第一次看见天地，也没有带来中国人关于万物整体的第一个观念。</p>
-<p>然而，就目前能够核查的传世材料而言，「世界」二字作为一个完整复合词的较早明确用例，确实集中见于公元二世纪后期的汉译佛经。到了公元三世纪后期，它在佛典中的使用范围与组合方式已经更为丰富。<a href="https://cbc688.com/records/world-word-exploration/#note-8">[8]</a><a href="https://cbc688.com/records/world-word-exploration/#note-10">[10]</a></p>
-<p>这并不意味着某位译者曾在一个可以确定的时刻，亲手「发明」了这个词。</p>
-<p>更可能的情形是，译经者面对来自印度与中亚的宗教概念，在「天下」「国土」「佛国」「佛刹」「世间」等多种汉语表达之间不断选择、调整与沿用。「世」与「界」这两个旧有语素，也在这一过程中逐渐结合，成为能够稳定承担指称功能的词语。</p>
-<p>佛经中的「世界」，同样没有一个永远固定的原语对应。</p>
-<p>它有时对应 lokadhātu，偏重一个世界领域或世界系统；有时又对应 buddhakṣetra，指向一尊佛所教化的佛国与佛土。不同原语之间本有差异，进入汉语之后，却可能共同被译作「世界」。<a href="https://cbc688.com/records/world-word-exploration/#note-11">[11]</a>—<a href="https://cbc688.com/records/world-word-exploration/#note-14">[14]</a></p>
-<p>因此，佛典中的「世界」与现代汉语中的「世界」，既有延续，也有距离。</p>
-<p>早期佛经所说的「世界」，可以被命名、计数和区分，可以有此方与他方，也可以层层组合成更广大的世界体系。它通常不等同于今天所说的一颗地球，更不天然包含现代政治、社会与全球历史的全部意义。</p>
-<p>这些后来的含义，是在漫长使用中逐渐生长出来的。</p>
-<p>唐宋以后，「世界」进入诗歌、讲学语录与通俗叙事。它仍可保留佛教意味，也开始表示人间、局面、世道与现实秩序。<a href="https://cbc688.com/records/world-word-exploration/#note-18">[18]</a>—<a href="https://cbc688.com/records/world-word-exploration/#note-20">[20]</a></p>
-<p>到了十九世纪，中西翻译与中日词汇交流又使这个旧词获得新的位置。它开始广泛对应英文 world，并进入「世界史」「世界文学」「世界经济」等现代知识分类之中，逐渐指向一个由众多国家组成、彼此联系又彼此竞争的全球整体。<a href="https://cbc688.com/records/world-word-exploration/#note-21">[21]</a>—<a href="https://cbc688.com/records/world-word-exploration/#note-23">[23]</a></p>
-<p>所以，较接近现有证据的回答是，</p>
-<p>佛教没有创造「世」，也没有创造「界」，在佛教传入以前，汉语同样已有关于天地万物的整体表达。不过，「世界」作为一个稳定的汉语复合词，其早期形成、书面化与传播，确实同汉译佛经有着直接而深刻的关系。</p>
-<p>佛教带来的是一套新的宇宙结构，也促使两个早已存在的汉语语素，获得了一种新的结合方式。</p>
-<p>此后的近两千年里，僧人、诗人、理学家、小说家、传教士与近代译者，又不断扩展这个词所能容纳的事物。</p>
-<p>于是，今天的「世界」，既保存着佛典中的遥远回声，也容纳了现代地理、国家秩序、社会生活与个人经验。</p>
-<p>我们用它描述地球，描述历史，描述网络与游戏，也描述一个人不愿让旁人进入的内心。</p>
-
-<h2>参考注释</h2>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[1]</a>范晔《后汉书·楚王英传》，记永平八年（65）诏书「其还赎，以助伊蒲塞、桑门之盛馔」，<a href="https://www.shidianguji.com/zh/book/LS0003/chapter/1j7lpovv5qf5l_141" target="_blank" rel="noopener noreferrer">[识典古籍录文]</a>。范晔《后汉书·西域传》，「世传明帝梦见金人……」，<a href="https://ctext.org/text.pl?if=gb&amp;node=77782&amp;show=parallel" target="_blank" rel="noopener noreferrer">[中国哲学书电子化计划]</a>。<a href="https://openlibrary.org/books/OL17924229M/The_Buddhist_conquest_of_China" target="_blank" rel="noopener noreferrer">[Open Library书目信息]</a> （Erik Zürcher, The Buddhist Conquest of China, 3rd ed., Leiden: Brill, 2007, pp.18—80）。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[2]</a>《论语·子路》「如有王者，必世而后仁」。《孟子·公孙丑下》「域民不以封疆之界」。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[3]</a>《诗经·小雅·正月》「『谓天盖高』『谓地盖厚』」。《周易·系辞下》「天地之大德曰生」。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[4]</a>《孟子·离娄上》，如「得天下有道：得其民，斯得天下矣」。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[5]</a>《庄子·齐物论》「旁日月，挟宇宙」。《庄子·庚桑楚》「有实而无乎处者，宇也；有长而无本剽者，宙也」。《淮南子·齐俗训》「往古来今谓之宙，四方上下谓之宇」。《尸子》「上下四方曰宇，往古来今曰宙」。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[6]</a><a href="https://ctext.org/pre-qin-and-han?searchu=%E4%B8%96%E7%95%8C&amp;reqtype=stats" target="_blank" rel="noopener noreferrer">[中国哲学书电子化计划]</a>，「先秦两汉」范围精确检索「世界」，零命中。不能证明所有佚书、出土文献与异体写法中绝无此词。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[7]</a>Zhejie Jiang, Were Buddhist Scriptures in China Translated for Chinese?, Religions13.10 (2022), article 947, <a href="https://doi.org/10.3390/rel13100947" target="_blank" rel="noopener noreferrer">[DOI]</a>。Jinhua Chen, Some Aspects of the Buddhist Translation Procedure in Early Medieval China, Journal Asiatique 293.2 (2005), pp.603—661, <a href="https://doi.org/10.2143/JA.293.2.2011780" target="_blank" rel="noopener noreferrer">[DOI]</a>。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[8]</a>传统署后汉支娄迦谶译《阿閦佛国经》卷上，T11, no.313, p.751c20—22：「有世界名阿比罗提，其佛名大目……」，<a href="https://cbetaonline.dila.edu.tw/zh/T0313_001" target="_blank" rel="noopener noreferrer">[CBETA]</a>。Jan Nattier, A Guide to the Earliest Chinese Buddhist Translations, Tokyo: IRIAB, 2008, pp.73—88，<a href="https://iriab.soka.ac.jp/content/pdf/bppb/Vol.%20X.%20J.%20Nattier,%20A%20Guide%20to%20the%20Earliest%20Chinese%20Buddhist%20Translations%20Texts%20from%20the%20Eastern%20Han%20and%20Three%20Kingdoms%20Periods%20(2008)%20ISBN%20978-4-904234-00-6.pdf" target="_blank" rel="noopener noreferrer">[IRIAB全文PDF]</a>。Erik Zürcher, A New Look at the Earliest Chinese Buddhist Texts, in From Benares to Beijing, 1991, pp.277—304，<a href="https://buddhism.lib.ntu.edu.tw/en/search/search_detail.jsp?seq=281552" target="_blank" rel="noopener noreferrer">[书目信息]</a>。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[9]</a>传统署后汉支娄迦谶译《佛说般舟三昧经》一卷，T13, no.417, p.900c7—8「如一佛国之世界，皆破坏碎以为尘」，<a href="https://cbetaonline.dila.edu.tw/zh/T0417_001" target="_blank" rel="noopener noreferrer">[CBETA]</a>。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[10]</a>西晋竺法护译《光赞经》卷一，T08, no.222, p.147c3—4「照此三千大千世界，普及十方各江河沙等诸佛国土」，<a href="https://cbetaonline.dila.edu.tw/zh/T0222_001" target="_blank" rel="noopener noreferrer">[CBETA]</a>。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[11]</a>Seishi Karashima, A Glossary of Lokakṣema’s Translation of the Aṣṭasāhasrikā Prajñāpāramitā, Tokyo: IRIAB, 2011, pp.180、421，<a href="https://glossaries.dila.edu.tw/data/lokaksema.dila.pdf" target="_blank" rel="noopener noreferrer">[全文PDF]</a>。Robert E. Buswell Jr. and Donald S. Lopez Jr., The Princeton Dictionary of Buddhism, Princeton: Princeton University Press, 2014, s.v. loka, lokadhātu,buddhakṣetra。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[12]</a>姚秦鸠摩罗什译《金刚般若波罗蜜经》，T08, no.235, p.750a17—20，<a href="https://cbetaonline.dila.edu.tw/zh/T0235_001" target="_blank" rel="noopener noreferrer">[CBETA]</a>。Vajracchedikā Prajñāpāramitā，<a href="https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/buddh/vchedppu.htm" target="_blank" rel="noopener noreferrer">[GRETIL梵本]</a>。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[13]</a>姚秦鸠摩罗什译《妙法莲华经》卷一，T09, no.262, p.2b17—19，<a href="https://cbetaonline.dila.edu.tw/zh/T0262_001" target="_blank" rel="noopener noreferrer">[CBETA]</a>。Saddharmapuṇḍarīkasūtra，<a href="https://gretil.sub.uni-goettingen.de/gretil/corpustei/transformations/html/sa_saddharmapuNDarIkasUtra.htm" target="_blank" rel="noopener noreferrer">[GRETIL梵本]</a>。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[14]</a>后汉支娄迦谶译《道行般若经》卷三，T08, no.224, p.433a6—7、p.439b10—12，见「三千天下」「三千大国土」「恒边沙佛刹」，<a href="https://cbetaonline.dila.edu.tw/zh/T0224_003" target="_blank" rel="noopener noreferrer">[CBETA]</a>。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[15]</a>传统署唐般剌蜜帝译《大佛顶首楞严经》卷一、卷四，T19, no.945, p.106b6—11、p.122c11—18，<a href="https://cbetaonline.dila.edu.tw/zh/T0945_001" target="_blank" rel="noopener noreferrer">[卷一题署及异文]</a>、<a href="https://cbetaonline.dila.edu.tw/zh/T0945_004" target="_blank" rel="noopener noreferrer">[卷四原文]</a>。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[16]</a>Jia Jinhua, Translation and Interaction: A New Examination of the Controversy over the Translation and Authenticity of the Śūraṃgama-sūtra, Religions 13.6 (2022), article 474, <a href="https://doi.org/10.3390/rel13060474" target="_blank" rel="noopener noreferrer">[DOI]</a>。George A. Keyworth, Chinese and Tibetan Sources on the Dhāraṇī in Roll Seven of the Śūraṃgama-sūtra, 2024, <a href="https://www.taylorfrancis.com/chapters/edit/10.4324/9781003434917-3/chinese-tibetan-sources-dh%C4%81ra%E1%B9%87%C4%AB-roll-seven-%C5%9B%C5%ABra%E1%B9%83gama-s%C5%ABtra-george-keyworth" target="_blank" rel="noopener noreferrer">[Routledge]</a>。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[17]</a>唐玄奘译《阿毗达磨俱舍论》卷十一，T29, no.1558, p.61a5—11「梵世各一千，名一小千界；此小千千倍，说名一中千；此千倍大千」<a href="https://cbetaonline.dila.edu.tw/zh/T1558_011" target="_blank" rel="noopener noreferrer">[CBETA]</a>。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[18]</a>李商隐《北青萝》「世界微尘里，吾宁爱与憎」。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[19]</a>朱熹讲、黎靖德编《朱子语类》卷三十七「若日日时时用之，则成甚世界了」。语录为门人记录、后人编定，不能等同逐字现场录音。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[20]</a>吴承恩传统署名《西游记》第一回。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[21]</a>沈国威《新语往还：中日近代语言交涉史》。陈力卫《试论近代汉语文体中的日语影响》。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[22]</a>Robert Morrison, A Dictionary of the Chinese Language, Part III, vol.2, Macao: East India Company’s Press, 1822, “WORLD”，<a href="https://archive.org/details/b2201178x_0006/page/n490/mode/1up" target="_blank" rel="noopener noreferrer">[Internet Archive扫描页]</a>。Wilhelm Lobscheid, English and Chinese Dictionary, vol.4, Hong Kong: Daily Press Office, 1866—1869, pp.1997—1998, “WORLD”，<a href="https://archive.org/details/lobscheid-english-and-chinese-dictionary-1866-69-volumes-1-4/page/n2020/mode/1up" target="_blank" rel="noopener noreferrer">[Internet Archive扫描页]</a>。</p>
-<p><a href="https://cbc688.com/records/world-word-exploration/#article">[23]</a>金观涛、刘青峰《从「天下」、「万国」到「世界」——晚清民族主义形成的中间环节》，《二十一世纪》总第94期，2006年4月，页41—54，尤其页49—51，<a href="https://www.cuhk.edu.hk/ics/21c/media/articles/c094-200511104.pdf" target="_blank" rel="noopener noreferrer">[全文PDF]</a>。</p>]]></description>
+      <dc:creator>CRIVU</dc:creator>
+      <category>语言史</category>
+      <description>从先秦两汉的旧字、东汉译经与佛教宇宙论出发，追索「世界」一词近两千年的形成、传播与意义变化。</description>
     </item>
     <item>
       <title>丙午夏至</title>
       <link>https://cbc688.com/articles/bwxz</link>
       <guid isPermaLink="true">https://cbc688.com/articles/bwxz</guid>
       <pubDate>Sun, 21 Jun 2026 23:26:59 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>節氣</category>
       <description>今日夏至。 人总是在不知不觉间长大，可年岁的增长，与精神的成熟往往并不同步。兜兜转转，细算下来，已是五年。这五年里，我似乎一直在走，却又一直困在原处。 五年来，我四处寻求解脱，试着去远方游荡，抹去旧日的联络痕迹，也狠下心清理了些人际牵绊，欲从旧秩序中抽身。可如今静下心来盘算，这些刻意的剥离，未必真能换来绝对的自由，反倒更像是教我学会了隐忍。 或许我所求的自…</description>
     </item>
     <item>
@@ -276,6 +30,8 @@
       <link>https://cbc688.com/articles/ng</link>
       <guid isPermaLink="true">https://cbc688.com/articles/ng</guid>
       <pubDate>Sun, 21 Jun 2026 02:59:37 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>隨記</category>
       <description>这些日子，忽然很馋年糕，是那种细细的年糕。 在韩式炸鸡盒子里，酱料厚厚地裹在炸鸡上，也顺势覆住角落里几条年糕。最后撒一点芝麻，白的、黑的，落在发亮的酱汁上。 煮甜酒时，年糕切成小段，丢进微滚的水里，待它慢慢浮起，便软而带黏。甜酒的香气裹着酒意，入口时热，咽下去又暖。 在老家的煤火上烤来吃时，年糕外面焦出一层薄壳，里头仍是软的。趁热蘸一点白糖，或蘸一点辣椒面…</description>
     </item>
     <item>
@@ -283,6 +39,8 @@
       <link>https://cbc688.com/articles/bwmz</link>
       <guid isPermaLink="true">https://cbc688.com/articles/bwmz</guid>
       <pubDate>Fri, 05 Jun 2026 14:21:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>節氣</category>
       <description>芒種已至。 到這一日，四年前於院中制定的以“兩自”為基礎的實踐計劃也算結束了。 那時所求，不過是自由與自信。四年來，許多事並不順遂，亦不體面。可終究是走過來了。 經幾年修養，身體漸漸好些，心氣也慢慢回來。從前停下的，如今也到了該重啓的時候。 芒種時節，田間有種有收，人亦如此。 期一切順利，待一年後不負。</description>
     </item>
     <item>
@@ -290,6 +48,8 @@
       <link>https://cbc688.com/articles/zw</link>
       <guid isPermaLink="true">https://cbc688.com/articles/zw</guid>
       <pubDate>Sun, 31 May 2026 15:06:58 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>隨記</category>
       <description>前些年看柯南时记住了诸伏高明那句「掌中之物未必在掌握之中。」如今想来，感触竟深了些。 一支笔握在手里，未必写得出最想说的话；一张从前特地夹在书页中的照片，未必能将人带到心念的那座城；一笔钱到了帐上，也未必能安稳留到月底。 人心、命运、缘分、前程，哪一样我不曾以为可以从容安排？可它们偏在毫无预兆的片刻，悄悄偏了方向。 我深惧那些突发的事。怕门外无端响动，怕既…</description>
     </item>
     <item>
@@ -297,6 +57,8 @@
       <link>https://cbc688.com/articles/wjgh</link>
       <guid isPermaLink="true">https://cbc688.com/articles/wjgh</guid>
       <pubDate>Fri, 15 May 2026 14:39:58 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>京劇</category>
       <description>前言：本文為《文姬归汉》全本劇本排版整理。整理依据于《中国京剧戏考》、bilibili《刘桂娟首演全折全本〈文姬归汉〉》。本剧本仅供学习、研究及非商业性分享使用，严禁以任何形式用于商业用途或牟利。文末附相关伴奏资料，供排练与欣赏时参考。 \## 第一场 \（侍琴引蔡琰同上。）\ \\蔡琰（引子）\\ 才华空把青春误，薄命难赓白首吟。 \\（念）\\ 镜鸾孤…</description>
     </item>
     <item>
@@ -304,6 +66,8 @@
       <link>https://cbc688.com/articles/jiyi</link>
       <guid isPermaLink="true">https://cbc688.com/articles/jiyi</guid>
       <pubDate>Wed, 13 May 2026 20:23:15 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>隨記</category>
       <description>二零xx年，香港。 弥敦道的霓虹被全息广告取代，日夜不息地展示新款仿生眼、记忆保险、情绪管理药剂的宣传。重庆大厦外依旧聚着换汇的人群，咖哩与电子烟的气味混杂一处，阿澈的工作室便于此，门牌挂着「记忆修复师」，他帮客户从脑内晶片提取磨损的记忆数据，进行数字化修复与封存。 来找他的人大多年老。他们带着模糊的旧照片、残缺的信或一段旋律，求他打捞沉没在时光里的清晰画…</description>
     </item>
     <item>
@@ -311,6 +75,8 @@
       <link>https://cbc688.com/articles/shu</link>
       <guid isPermaLink="true">https://cbc688.com/articles/shu</guid>
       <pubDate>Mon, 11 May 2026 06:44:35 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>隨記</category>
       <description>也不知这棵树在此多久了。 若每一个路过的人都抬头看「它」，若都看它看得分明；那它会不会与风为鬼？借一副树的皮囊，藏身枝叶间，以树的模样伫立在春光下，凝望着，那些来来去去、不曾真正注视过它的人。 「如果这些人儿不爱我，就不要望向我。」 它不想被爱得轻浮。 它愿意伫立。 末了，正在一场悄无声息的盛放中，慢慢，慢慢落叶。</description>
     </item>
     <item>
@@ -318,13 +84,17 @@
       <link>https://cbc688.com/articles/dbyg</link>
       <guid isPermaLink="true">https://cbc688.com/articles/dbyg</guid>
       <pubDate>Tue, 14 Apr 2026 12:51:00 +0800</pubDate>
-      <description>用豆包軟體，讓她唱歌，她唱了一首《在你的身邊》。聽完後又去聽原曲，思緒頓時就拉回到了三年多前。 那時候在住院，客廳裡的電視播放著這首歌，外面天氣很好，我站在窗前望著電視。 很多病友也在聽這首歌。不知道如果他們再聽此曲，會不會像我一樣把思緒拉回去呢。</description>
+      <dc:creator>CRIVU</dc:creator>
+      <category>隨記</category>
+      <description>用豆包軟體，讓她唱歌，她唱了一首《在你的身邊》。聽完後又去聽原曲，思緒頓時就拉回到了三年多前。 那時候在住院，客廳裡的電視播放著這首歌，外面天氣很好，我站在窗前望著電視。 很多病友也在聽這首歌。不知道如果他們再聽此曲，會不會像我一樣把思緒拉回去呢。 ￼</description>
     </item>
     <item>
       <title>丙午清明</title>
       <link>https://cbc688.com/articles/bwqm</link>
       <guid isPermaLink="true">https://cbc688.com/articles/bwqm</guid>
       <pubDate>Tue, 14 Apr 2026 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>節氣</category>
       <description>四月五日。 昨夜一念既定，今晨便动身去凯里。清晨四五点醒来，洗漱时觉得身体难得轻快，气力亦自内而生。想来是近日调养有得。 此行乘高铁，以护照验行，一路顺遂。九点过抵达凯里，便急往酒店安顿。早餐匆匆，未及细嚼，便携了随身之物，转乘七路公交，往下司古镇去。 春的清晨，游人寥落，正好成全了这份独行的清净。 沿路而行，不久至桥上。两侧江风迎面，带着水气与春意。我倚…</description>
     </item>
     <item>
@@ -332,6 +102,8 @@
       <link>https://cbc688.com/articles/bwcf</link>
       <guid isPermaLink="true">https://cbc688.com/articles/bwcf</guid>
       <pubDate>Fri, 20 Mar 2026 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>節氣</category>
       <description>春分已至，黔地天气仍在冷暖之间反覆拉扯。乍暖还寒，阴晴未定。草木未必立刻见新，那些伏在泥土深处的根脉，只是在暗处积蓄，挣脱往日沉滞，等一场透雨，将生机唤醒。 原来新生从不热闹。它总要经过一段反覆与迟疑，在泥泞里试探，在寒意中忍耐，才肯真正长出来。人亦如此。 近来心绪倒是沉静。常把《荒山泪》放在枕畔，一遍遍地听。不同的人唱，腔口各异，气息却都往同一处去。 张…</description>
     </item>
     <item>
@@ -339,6 +111,8 @@
       <link>https://cbc688.com/articles/bwjz</link>
       <guid isPermaLink="true">https://cbc688.com/articles/bwjz</guid>
       <pubDate>Thu, 05 Mar 2026 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>節氣</category>
       <description>记得那日线上聊天时，我们曾认真地约定过一次「见面」。说来平常，只当日后总会实现。只是直到今日，那个约仍未赴成。回头想想，那段聊天竟也成了我们最后一次「再见」。 其实我常想与你说说近况。只是每每想到这里，话便停住。即便真要说，也不知从哪一句开始。日子过得很快，许多事情尚未厘清，人却已各自走远，彼此竟没有了联系。 有时我也会想，你如今过得如何？是否一切安好？又…</description>
     </item>
     <item>
@@ -346,6 +120,8 @@
       <link>https://cbc688.com/articles/tuise-zhesi</link>
       <guid isPermaLink="true">https://cbc688.com/articles/tuise-zhesi</guid>
       <pubDate>Sun, 08 Feb 2026 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>隨記</category>
       <description>一、詩意中的悖論 「事物一旦褪色，便屬於永恆」——這句話表面上帶有浪漫主義色彩，但深入分析，它恰好觸及了辯證法與歷史唯物主義中的一個核心矛盾：事物如何在被遺忘、毀損或衰變之後仍獲得歷史性的意義，甚至被視為永恆。詩意的表述背後，是關於存在、記憶與歷史的思考。 張若虛《春江花月夜》中的幾句詩提供了極具張力的文本基礎： 「江畔何年初見月，江月何年初照人？」 「不…</description>
     </item>
     <item>
@@ -353,6 +129,8 @@
       <link>https://cbc688.com/articles/xinfu</link>
       <guid isPermaLink="true">https://cbc688.com/articles/xinfu</guid>
       <pubDate>Thu, 01 Jan 2026 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>隨記</category>
       <description>在談到幸福時，想到之前寫的一篇小記。 「幸福就是知足和追逐某一目標的過程，追逐是知足的前提。」 它是「靜」與「動」、「有」與「無」間的聯繫。 「知足」是對現實和心靈的肯定；「追逐」則是對未知的展望，是意志的運動。 知足即止，追逐則行；一靜一動，一滿一空。它互為因果。 若人無知足心，那追逐易成盲動，永遠覺得不夠、永遠被慾望拖行。 若人只知知足而無追逐，則易陷…</description>
     </item>
     <item>
@@ -360,6 +138,8 @@
       <link>https://cbc688.com/articles/bei-suiji</link>
       <guid isPermaLink="true">https://cbc688.com/articles/bei-suiji</guid>
       <pubDate>Wed, 24 Dec 2025 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>書信</category>
       <description>我恨著的事物，至今仍是很多。 翻回過往筆記，那些字句瑣碎。艱難、委屈、怨意，被反復書寫。那不是在控訴誰，也談不上伸冤；只是將當時那些恨意暫時擱置，免得在體內腐壞。 奇怪的是，我原以為自己早已麻木，也以為時間已經替我處理妥當，可再讀時，悲聲仍在。 它不是尖銳的，而是低沈的，持續的嗚咽。它不吵人，卻不肯離去。是內也有、外也有，一聲疊一聲，讓我無法假裝一切已然過…</description>
     </item>
     <item>
@@ -367,6 +147,8 @@
       <link>https://cbc688.com/articles/ysjz</link>
       <guid isPermaLink="true">https://cbc688.com/articles/ysjz</guid>
       <pubDate>Wed, 05 Mar 2025 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>節氣</category>
       <description>【寺路】 上周，與友人去學校附近的寺。 一路行走，陽光灑落。我們頻頻按下快門，想要將這稍縱即逝的瞬間留存。可事物一旦褪色便屬於永恆了。 寺門緊閉，我們止步於廊下，聽著悠悠傳來的誦經與鐘磬聲。風自檐下穿過，拂動紅幡，「萬籟此都寂，但余鐘磬音」。只剩下時間流轉的回音。 寺前一木，枯瘦靜立。乾枝嶙峋，縱然無花無葉，卻固守著自己的位置。它見過多少來往，見過多少春秋…</description>
     </item>
     <item>
@@ -374,6 +156,8 @@
       <link>https://cbc688.com/articles/gaob</link>
       <guid isPermaLink="true">https://cbc688.com/articles/gaob</guid>
       <pubDate>Wed, 19 Feb 2025 01:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>隨記</category>
       <description>當雨水濕潤的觸感傳遞到鼻尖時，終於明白——那個人，不會出現在明天了。 兩年前，我和 W 在學校附近合租，兩年後，W 先我一步離開。生活依舊喧囂，房間卻空了。 站在 W 的房門口許久，屋內已恢復最初的模樣，彷彿那些日夜從未發生。 只是我清楚記得，那張床上曾有人枕過的痕跡，書桌前亮過的燈光，窗邊懸著的晾衣架，一切都曾有溫度，如今卻只剩沈寂。 心裡一酸，舊時種種…</description>
     </item>
     <item>
@@ -381,6 +165,8 @@
       <link>https://cbc688.com/articles/ysys</link>
       <guid isPermaLink="true">https://cbc688.com/articles/ysys</guid>
       <pubDate>Tue, 18 Feb 2025 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>節氣</category>
       <description>時至雨水，春寒料峭。外出，舊時氣息仍未散去，遲遲不願「褪去」。 近來總感憔悴，就連「可憐」的體重也降了些去；眼神時常迷離，甚至有時撥不清夢與實。你予我的方法，我一定試試。只是不知這羸弱，究竟因季節，還是… 習《春閨夢》沙場一折，才知何謂真正的可怖與哀痛。二黃導板起，張氏自塵土中緩緩起身，「回龍」後，四望，滿目破碎景象。其立於無定河畔，荒草間伏著餓烏，屍首縱…</description>
     </item>
     <item>
@@ -388,6 +174,8 @@
       <link>https://cbc688.com/articles/yslc</link>
       <guid isPermaLink="true">https://cbc688.com/articles/yslc</guid>
       <pubDate>Mon, 03 Feb 2025 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>節氣</category>
       <description>不覺間，又是立春。寒意未盡，枝頭的芽孢卻在夜裡悄悄舒展，新一年的輪回已然開啓了。 【新年】 前不久是農歷新年。不同以往，是在家裡過的。屋子還是那個屋子，燈光還是舊時顏色，可終究不一樣了。 自母親走後，那角落里的富貴竹枯了，牆上的壁畫落了，展示櫃里曾經白得透亮的天鵝，如今也是落滿灰塵了。 是歲月的塵，是時間的褪色，是一些東西的緩緩消亡。 一切都有預兆。只是我…</description>
     </item>
     <item>
@@ -395,6 +183,8 @@
       <link>https://cbc688.com/articles/jcdh</link>
       <guid isPermaLink="true">https://cbc688.com/articles/jcdh</guid>
       <pubDate>Mon, 20 Jan 2025 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>節氣</category>
       <description>到這一日上，甲辰年終於也將盡了。前些日子，微信與J閒聊，他是我許多興趣的“啓蒙老師”。聊了約莫半個鐘頭，話題來來回回，最終概括成一句話：「行有所止，欲有所制」。 寒暄後，我問他：慾望滿足時，是真的快樂嗎？ 他說，慾望滿足的快樂，像是飲鴆止渴。真正的快樂，不在於滿足，而在於超越慾望的過程。內心找到一種無求而自足的平靜。 慾望滿足的快樂是短暫且淺薄的。一個慾望…</description>
     </item>
     <item>
@@ -402,6 +192,8 @@
       <link>https://cbc688.com/articles/jcxh</link>
       <guid isPermaLink="true">https://cbc688.com/articles/jcxh</guid>
       <pubDate>Sun, 05 Jan 2025 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>節氣</category>
       <description>【捨】 昨晚遲睡，醒來已是中午，懶懶起身，回味做的夢。夢中x提著什麼來回往垃圾車送，步履匆匆。再詳細卻記不清了。竟生釋然，或許也該捨去經月累積之物。 是裝滿了一個袋子的。欲放入垃圾桶時，意外掉出一張黃山的照片。既然落出，便是緣分未盡。將它拾起，才發現是七年前同學們互贈的明信片。 大體內容是，望一切如意。 不禁微微發怔，那時人事，未全散去。 【因果】 日前迎…</description>
     </item>
     <item>
@@ -409,6 +201,8 @@
       <link>https://cbc688.com/articles/jcdz</link>
       <guid isPermaLink="true">https://cbc688.com/articles/jcdz</guid>
       <pubDate>Sat, 21 Dec 2024 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>節氣</category>
       <description>【隱霧】 入冬月以来，愈觉昏沉。有時看一則簡短的文字，都要停顿片刻才能理清；有時頭疼難捱。這或是難以入眠的緣故，再吃安睡也無了之前的效果。我稱它為“隱霧”。遇到它，我的應對辦法是「隱」一陣。在這一陣裡，避見一些人事。 【期間】 看一部新劇，每週三到週日晚上六點就守著更新，情节引人。 閒步至書店，挑三本舊書帶回，想要再憶過去。太多時間沒感受過紙張的觸感了。怎…</description>
     </item>
     <item>
@@ -416,6 +210,8 @@
       <link>https://cbc688.com/articles/jcdx</link>
       <guid isPermaLink="true">https://cbc688.com/articles/jcdx</guid>
       <pubDate>Fri, 06 Dec 2024 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>節氣</category>
       <description>我友， 年關漸近，天氣愈發冷。今年的舊賬未及清算，倒也不急，心裡卻早已拾掇起了過冬的姿態。 貴陽的雨下得連綿，天寒又裹著潮氣，直往骨縫里鑽。原本外出的計劃只得作罷了，不由心裡空空。只好坐在暖桌邊，書翻幾頁，字臨幾行，聽幾首歌；若是坐得不舒服，便起身，模仿著角咿咿呀呀。 夜裡聽不熟悉的鋼琴曲入眠，曲調里有種說不清的悲戚，像是積年的舊淚流下；卻奇怪，聽著竟心安…</description>
     </item>
     <item>
@@ -423,6 +219,8 @@
       <link>https://cbc688.com/articles/jcxx</link>
       <guid isPermaLink="true">https://cbc688.com/articles/jcxx</guid>
       <pubDate>Fri, 22 Nov 2024 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>節氣</category>
       <description>我友， 往年的冬天來得早，這年卻晚，晨昏都冷冽。於近窗的書桌邊久坐，有呵氣成冰的錯覺。好幾夜窩在暖氣旁重讀舊書。 靜氣養人，不知源自何處的說法，但聽來總是有幾分道理的。夜愈深，我也愈發靜；心似落塵的古鏡，不再急著映照，只是等著光陰的灰塵覆滿。靜，是無言的沈寂，是深藏的隱流。 夢倒是常做，夢里常見x。那種深邃，同冬夜裡的靜湖一般，看似無波，卻有些暗湧的意思。…</description>
     </item>
     <item>
@@ -430,6 +228,8 @@
       <link>https://cbc688.com/articles/hsl</link>
       <guid isPermaLink="true">https://cbc688.com/articles/hsl</guid>
       <pubDate>Mon, 01 Jan 2024 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>京劇</category>
       <description>一、注意 1.本剧本整理依据《中国京剧戏考》及《〈荒山泪〉（迟小秋演出）》等公开资料。 2.本剧本仅供学习、研究及非商业性分享使用，严禁以任何形式用于商业用途或牟利。 3.若需伴奏文件，請訪問公眾號「程待」獲取。 二、剧情介绍 《荒山泪》是程派代表作之一，故事拟托明末。明王朝战乱，朝廷肆意加派杂税、征丁抓夫，正是「苛政猛于虎」的戏曲化呈现。河南济源县，佃农…</description>
     </item>
     <item>
@@ -437,6 +237,8 @@
       <link>https://cbc688.com/articles/sln</link>
       <guid isPermaLink="true">https://cbc688.com/articles/sln</guid>
       <pubDate>Mon, 01 Jan 2024 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>京劇</category>
       <description>根据《翁偶虹剧作选》整理 注意： 1.资料主要整理于“《翁偶虹剧作选》”，仅供学习交流使用，严禁用于任何商业用途； 2.此剧本为整理后发布； 3.该资源完全免费，仅限于学习用途，请勿作其他用途传播。 一、情节 登州富戶薛姥嫁女薛湘靈予周庭訓，嫁前按當地習俗予女鎖麟囊，內貯珠寶。婚期花轎中途遇雨，至春秋亭暫避；又來一花轎，轎中為貧女趙守貞，感世態炎涼而啼哭。…</description>
     </item>
     <item>
@@ -444,6 +246,8 @@
       <link>https://cbc688.com/articles/cgm</link>
       <guid isPermaLink="true">https://cbc688.com/articles/cgm</guid>
       <pubDate>Mon, 01 Jan 2024 00:00:00 +0800</pubDate>
+      <dc:creator>CRIVU</dc:creator>
+      <category>京劇</category>
       <description>注意： 1.资料主要整理于“张火丁2016年北京实况演出”，仅供学习交流使用，严禁用于任何商业用途； 2.此剧本为整理后发布，附有PDF版本，及有部分《春闺梦》伴奏文件，方便学习； 3.该资源完全免费，仅限于学习用途，请勿作其他用途传播； 4.资料中，主要角色唱段业已标红。 一、情节介绍 东汉末年，奋威将军公孙瓒与刘虞争地，各地征兵。百姓王恢与妻张氏新婚不…</description>
     </item>
   </channel>

@@ -21,7 +21,7 @@ SOURCE_ROOT = Path("/Users/cbaic/Desktop/自媒體文件/世界專題")
 MANUSCRIPT = Path("/tmp/world-record.93MVYs/總稿.txt")
 MUSEUM = ROOT / "private/7a531e1b4bcab1950e2214b8/index.html"
 OUTPUT = ROOT / "records/world-word-exploration/index.html"
-CARD_COVER = ROOT / "assets/img/uploads/20260723/world-word-exploration-cover.webp"
+CARD_COVER = ROOT / "assets/img/uploads/20260723/world-word-exploration-cover.png"
 
 
 GALLERY = [
@@ -230,7 +230,7 @@ def write_card_cover(source: Path) -> None:
         image.thumbnail((900, 1200), Image.Resampling.LANCZOS)
         if image.mode not in ("RGB", "RGBA"):
             image = image.convert("RGB")
-        image.save(CARD_COVER, "WEBP", quality=82, method=6)
+        image.save(CARD_COVER, "PNG", optimize=True)
 
 
 def inline_note_refs(text: str, notes: bool = False, note_number: int | None = None) -> str:
@@ -349,10 +349,21 @@ def main() -> None:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-  <meta name="description" content="从汉语旧字、早期佛经翻译到现代全球观念，追索‘世界’一词近两千年的形成、流传与增义。">
+  <meta name="description" content="从先秦两汉的旧字、东汉译经与佛教宇宙论出发，追索「世界」一词近两千年的形成、传播与意义变化。">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#f1ede3">
-  <title>世界一词的探索 · CRIVU</title>
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="「世界」一词真的是佛教带进汉语的吗？">
+  <meta property="og:description" content="从先秦两汉的旧字、东汉译经与佛教宇宙论出发，追索「世界」一词近两千年的形成、传播与意义变化。">
+  <meta property="og:url" content="https://cbc688.com/records/world-word-exploration/">
+  <meta property="og:site_name" content="CRIVU">
+  <meta property="og:image" content="https://cbc688.com/assets/img/uploads/20260723/world-word-exploration-cover.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="「世界」一词真的是佛教带进汉语的吗？">
+  <meta name="twitter:description" content="从先秦两汉的旧字、东汉译经与佛教宇宙论出发，追索「世界」一词近两千年的形成、传播与意义变化。">
+  <meta name="twitter:image" content="https://cbc688.com/assets/img/uploads/20260723/world-word-exploration-cover.png">
+  <title>「世界」一词真的是佛教带进汉语的吗？ · CRIVU</title>
+  <link rel="canonical" href="https://cbc688.com/records/world-word-exploration/">
   <script>
     (() => {{
       try {{
@@ -402,19 +413,19 @@ def main() -> None:
     .skip-link {{ position:fixed; left:16px; top:-80px; z-index:200; padding:10px 14px; background:var(--ink); color:white; }}
     .skip-link:focus {{ top:12px; }}
     .reading-progress {{ position:fixed; z-index:195; left:0; top:91px; width:0; height:1px; background:var(--gold); }}
-    .site-header {{ position:fixed; inset:0 0 auto; z-index:200; height:56px; color:var(--nav-ink); border-bottom:1px solid var(--nav-line); background:var(--nav-bg-fallback); font-family:var(--sans); backdrop-filter:saturate(160%) blur(14px); }}
+    .site-header {{ position:fixed; inset:0 0 auto; z-index:200; height:56px; color:var(--nav-ink); border-bottom:1px solid var(--nav-line); background:var(--nav-bg-fallback); font-family:"Helvetica Neue","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC",sans-serif; backdrop-filter:saturate(160%) blur(14px); }}
     @supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))) {{ .site-header {{ background:var(--nav-bg); }} }}
     .site-header__inner {{ max-width:1180px; height:100%; display:flex; align-items:center; gap:24px; margin:0 auto; padding:0 24px; }}
-    .site-header__brand {{ flex:none; padding-right:.18em; color:var(--nav-ink); text-decoration:none; font:600 19px/1 var(--serif); letter-spacing:.18em; }}
+    .site-header__brand {{ flex:none; padding-right:.18em; color:var(--nav-ink); text-decoration:none; font-family:"Iowan Old Style","Palatino Linotype","Noto Serif SC","Source Han Serif SC","Songti SC","STSong","PingFang SC",serif; font-size:19px; font-weight:600; line-height:1.75; letter-spacing:.18em; }}
     .site-header__nav {{ display:flex; align-items:center; gap:4px; margin-left:8px; }}
-    .site-header__nav a {{ padding:6px 12px; border-radius:3px; color:var(--nav-ink-dim); text-decoration:none; font:500 12px/1.4 var(--sans); letter-spacing:.18em; transition:background .15s,color .15s; }}
+    .site-header__nav a {{ padding:6px 12px; border-radius:3px; color:var(--nav-ink-dim); text-decoration:none; font-family:"Helvetica Neue","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC",sans-serif; font-size:12px; font-weight:500; line-height:1.75; letter-spacing:.18em; transition:background .15s,color .15s; }}
     .site-header__nav a:hover {{ color:var(--nav-ink); background:var(--nav-field); }}
     .site-header__nav a.active {{ color:var(--nav-ink); background:var(--nav-field-focus); }}
     .site-header__actions {{ display:flex; align-items:center; gap:10px; margin-left:auto; }}
     .site-header__search {{ position:relative; }}
     .site-header__search .icon {{ position:absolute; left:12px; top:50%; width:14px; height:14px; border:1.5px solid currentColor; border-radius:50%; opacity:.55; pointer-events:none; transform:translateY(-50%); }}
     .site-header__search .icon::after {{ content:""; position:absolute; top:100%; left:100%; width:7px; height:1.5px; background:currentColor; transform:translate(-3px,-3px) rotate(45deg); transform-origin:0 0; }}
-    .site-header__search input {{ width:208px; padding:7px 12px 7px 34px; border:1px solid var(--nav-line); border-radius:4px; color:var(--nav-ink); background:var(--nav-field); font:13px/1.4 var(--sans); letter-spacing:.04em; transition:background .2s,border-color .2s,width .2s; }}
+    .site-header__search input {{ width:208px; padding:7px 12px 7px 34px; border:1px solid var(--nav-line); border-radius:4px; color:var(--nav-ink); background:var(--nav-field); font-family:"Helvetica Neue","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC",sans-serif; font-size:13px; line-height:1.75; letter-spacing:.04em; transition:background .2s,border-color .2s,width .2s; }}
     .site-header__search input::placeholder {{ color:var(--nav-ink-dim); }}
     .site-header__search input:focus {{ width:244px; outline:0; border-color:var(--line); background:var(--nav-field-focus); }}
     .search-results {{ position:absolute; top:calc(100% + 10px); right:0; z-index:210; display:none; width:380px; max-height:440px; overflow:auto; border:1px solid var(--nav-line); border-radius:4px; background:var(--dropdown-bg); box-shadow:0 18px 40px -20px rgba(0,0,0,.45); }}
@@ -425,7 +436,8 @@ def main() -> None:
     .theme-toggle,.mobile-menu-toggle {{ width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; padding:0; border:1px solid var(--nav-line); border-radius:4px; color:var(--nav-ink); background:var(--nav-field); transition:background .2s,border-color .2s,transform .2s; }}
     .theme-toggle:hover,.mobile-menu-toggle:hover {{ background:var(--nav-field-focus); }}
     .theme-toggle:active,.mobile-menu-toggle:active {{ transform:scale(.94); }}
-    .theme-toggle svg,.mobile-menu-toggle svg {{ width:16px; height:16px; }}
+    .theme-toggle svg {{ width:16px; height:16px; }}
+    .mobile-menu-toggle svg {{ width:18px; height:18px; }}
     .theme-toggle .sun {{ display:none; }}
     :root[data-theme="light"] .theme-toggle .sun,:root[data-theme="dark"] .theme-toggle .sun {{ display:block; }}
     :root[data-theme="light"] .theme-toggle .moon,:root[data-theme="dark"] .theme-toggle .moon {{ display:none; }}
@@ -560,22 +572,20 @@ def main() -> None:
       .archive-card:nth-child(n) {{ grid-column:span 6; }}
     }}
     @media (max-width:760px) {{
-      .site-header__inner {{ position:relative; gap:7px; padding:0 4vw; }}
-      .site-header__brand {{ padding-right:0; font-size:16px; letter-spacing:.14em; }}
-      .site-header__nav {{ min-width:0; flex:1 1 auto; justify-content:center; gap:0; margin-left:0; }}
-      .site-header__nav a {{ padding:5px 5px; font-size:10px; letter-spacing:.06em; }}
+      .site-header__inner {{ position:relative; gap:7px; padding:0 24px; }}
+      .site-header__brand {{ padding-right:.18em; font-size:16px; letter-spacing:.12em; }}
+      .site-header__nav {{ min-width:0; flex:1 1 auto; justify-content:space-evenly; gap:0; margin-left:0; }}
+      .site-header__nav a {{ padding:5px 3px; font-size:10px; letter-spacing:.04em; white-space:nowrap; }}
       .site-header__nav a[href="/"],.site-header__nav a[href="/rss.xml"] {{ display:none; }}
-      .site-header__actions {{ flex:none; gap:5px; margin-left:0; }}
+      .site-header__actions {{ flex:none; gap:6px; margin-left:0; }}
       .site-header__search {{ display:none; }} .mobile-menu-toggle {{ display:inline-flex; }}
       .theme-toggle,.mobile-menu-toggle {{ width:30px; height:30px; }}
-      .site-header.mobile-menu-open {{ height:100%; overflow:auto; background:var(--dropdown-bg); }}
-      .site-header.mobile-menu-open + .record-nav {{ display:none; }}
-      .site-header.mobile-menu-open .site-header__inner {{ height:auto; min-height:56px; align-items:center; flex-wrap:wrap; }}
-      .site-header.mobile-menu-open .site-header__nav {{ order:3; flex-basis:100%; display:grid; grid-template-columns:1fr; padding:13px 0 18px; border-top:1px solid var(--nav-line); }}
-      .site-header.mobile-menu-open .site-header__nav a,.site-header.mobile-menu-open .site-header__nav a[href="/"],.site-header.mobile-menu-open .site-header__nav a[href="/rss.xml"] {{ display:block; padding:12px 8px; font-size:13px; letter-spacing:.14em; }}
-      .site-header.mobile-menu-open .site-header__search {{ position:relative; order:4; display:block; width:100%; margin:0 0 20px; }}
-      .site-header.mobile-menu-open .site-header__search input {{ width:100%; }}
-      .site-header.mobile-menu-open .search-results {{ position:relative; top:8px; width:100%; max-height:280px; }}
+      .site-header.mobile-menu-open .site-header__nav {{ position:absolute; top:calc(100% + 6px); left:4vw; right:4vw; display:flex; flex-direction:column; align-items:stretch; gap:4px; margin:0; padding:66px 8px 8px; border:1px solid var(--nav-line); border-radius:14px; background:var(--dropdown-bg); box-shadow:0 10px 24px -10px rgba(0,0,0,.25); z-index:80; }}
+      .site-header.mobile-menu-open .site-header__nav a,.site-header.mobile-menu-open .site-header__nav a[href="/"],.site-header.mobile-menu-open .site-header__nav a[href="/rss.xml"] {{ display:flex; align-items:center; min-height:44px; padding:12px 14px; border-radius:10px; color:var(--nav-ink); font-size:14px; letter-spacing:.06em; }}
+      .site-header.mobile-menu-open .site-header__search {{ position:absolute; top:calc(100% + 18px); left:calc(4vw + 9px); right:calc(4vw + 9px); z-index:81; display:block; margin:0; }}
+      .site-header.mobile-menu-open .site-header__search input {{ width:100%; padding:11px 14px 11px 40px; border-radius:8px; font-size:16px; background:var(--dropdown-bg); }}
+      .site-header.mobile-menu-open .site-header__search .icon {{ left:14px; opacity:1; }}
+      .site-header.mobile-menu-open .search-results {{ position:absolute; top:calc(100% + 8px); left:0; right:0; width:auto; max-height:280px; }}
       .site-header.mobile-menu-open .mobile-menu-toggle .mm-line-top {{ transform:translateY(5px) rotate(45deg); transform-origin:center; }}
       .site-header.mobile-menu-open .mobile-menu-toggle .mm-line-mid {{ opacity:0; }}
       .site-header.mobile-menu-open .mobile-menu-toggle .mm-line-bot {{ transform:translateY(-5px) rotate(-45deg); transform-origin:center; }}
@@ -661,6 +671,7 @@ def main() -> None:
     @media (prefers-reduced-motion:reduce) {{ * {{ scroll-behavior:auto!important; transition-duration:.001ms!important; animation-duration:.001ms!important; }} }}
     @media print {{ .site-header,.record-nav,.reading-progress,.hero-actions,.comments-band,.comments-sheet,.article-toc,.archive,.record-footer {{ display:none!important; }} body {{ padding-top:0; }} .hero {{ min-height:0; padding:30px 0; background:white; }} .hero-cover {{ display:none; }} .article-layout {{ display:block; padding:0; }} .article-section {{ break-inside:auto; }} }}
   </style>
+  <link rel="stylesheet" href="/assets/css/world-reader.css?v=__BUILD_VERSION__">
 </head>
 <body>
   <a class="skip-link" href="#article">跳至正文</a>
@@ -702,7 +713,7 @@ def main() -> None:
     <section class="hero" aria-labelledby="recordTitle">
       <div class="hero-copy">
         <h1 id="recordTitle">世界一词<span>的探索</span></h1>
-        <p class="hero-deck">我们每天都在说“世界”。只是，这两个早已存在的汉字，究竟怎样在译经、诗歌、小说与近代知识中逐渐结合，容纳了我们今日所理解的地球、历史、网络与内心？阅读全文，或进入<a href="#chapter-00" data-open-museum>【互动网页】</a>。</p>
+        <p class="hero-deck">我们每天都在说“世界”。只是，这两个早已存在的汉字，究竟怎样在译经、诗歌、小说与近代知识中逐渐结合，容纳了我们今日所理解的地球、历史、网络与内心？若想先从时间线、译词与历史场景理解这段变化，可进入<a href="#chapter-00" data-open-museum>[互动展览]</a>浏览。</p>
         <div class="hero-actions">
           <button class="primary-action" type="button" data-view="article">开始阅读</button>
           <button class="secondary-action" type="button" data-view="museum">进入互动展览</button>
@@ -1089,6 +1100,7 @@ def main() -> None:
       }});
     }})();
   </script>
+  <script src="/assets/js/world-reader.js?v=__BUILD_VERSION__" defer></script>
   <script src="/assets/js/comments.js?v=world-record-comments-20260723-2" type="module"></script>
 </body>
 </html>'''

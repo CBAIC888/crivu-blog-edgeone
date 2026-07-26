@@ -125,7 +125,7 @@
 
     results.innerHTML = matched
       .map(({ post }) => {
-        const href = articlePath(post.slug || '');
+        const href = post.page || articlePath(post.slug || '');
         const title = highlight(post.title || '', q);
         const meta = escapeHtml(toDisplayDate(post.date));
         const snip = highlight(snippet(post.excerpt || post.body, q), q);

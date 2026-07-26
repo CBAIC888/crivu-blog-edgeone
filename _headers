@@ -40,6 +40,11 @@
 /rss.xml
   Cache-Control: public, max-age=3600
 
+/records/world-word-exploration/museum
+  ! X-Frame-Options
+  Content-Security-Policy: frame-ancestors 'self'
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+
 /.well-known/security.txt
   Cache-Control: public, max-age=86400
   Content-Type: text/plain; charset=UTF-8
