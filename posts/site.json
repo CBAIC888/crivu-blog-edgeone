@@ -24,7 +24,7 @@
     },
     {
       "label": "rss",
-      "href": "/rss.xml"
+      "href": "/feed.xml"
     }
   ],
   "issuesPageIntro": "全部期刊",

@@ -1,6 +1,6 @@
 User-agent: BlogFinderbot
 Allow: /
-Allow: /rss.xml
+Allow: /feed.xml
 Allow: /articles/
 
 User-agent: *

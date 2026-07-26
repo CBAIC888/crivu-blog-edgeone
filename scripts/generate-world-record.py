@@ -364,6 +364,7 @@ def main() -> None:
   <meta name="twitter:image" content="https://cbc688.com/assets/img/uploads/20260723/world-word-exploration-cover.png">
   <title>「世界」一词真的是佛教带进汉语的吗？ · CRIVU</title>
   <link rel="canonical" href="https://cbc688.com/records/world-word-exploration/">
+  <link rel="alternate" type="application/rss+xml" title="CRIVU RSS" href="/feed.xml">
   <script>
     (() => {{
       try {{
@@ -576,12 +577,12 @@ def main() -> None:
       .site-header__brand {{ padding-right:.18em; font-size:16px; letter-spacing:.12em; }}
       .site-header__nav {{ min-width:0; flex:1 1 auto; justify-content:space-evenly; gap:0; margin-left:0; }}
       .site-header__nav a {{ padding:5px 3px; font-size:10px; letter-spacing:.04em; white-space:nowrap; }}
-      .site-header__nav a[href="/"],.site-header__nav a[href="/rss.xml"] {{ display:none; }}
+      .site-header__nav a[href="/"],.site-header__nav a[href="/feed.xml"] {{ display:none; }}
       .site-header__actions {{ flex:none; gap:6px; margin-left:0; }}
       .site-header__search {{ display:none; }} .mobile-menu-toggle {{ display:inline-flex; }}
       .theme-toggle,.mobile-menu-toggle {{ width:30px; height:30px; }}
       .site-header.mobile-menu-open .site-header__nav {{ position:absolute; top:calc(100% + 6px); left:4vw; right:4vw; display:flex; flex-direction:column; align-items:stretch; gap:4px; margin:0; padding:66px 8px 8px; border:1px solid var(--nav-line); border-radius:14px; background:var(--dropdown-bg); box-shadow:0 10px 24px -10px rgba(0,0,0,.25); z-index:80; }}
-      .site-header.mobile-menu-open .site-header__nav a,.site-header.mobile-menu-open .site-header__nav a[href="/"],.site-header.mobile-menu-open .site-header__nav a[href="/rss.xml"] {{ display:flex; align-items:center; min-height:44px; padding:12px 14px; border-radius:10px; color:var(--nav-ink); font-size:14px; letter-spacing:.06em; }}
+      .site-header.mobile-menu-open .site-header__nav a,.site-header.mobile-menu-open .site-header__nav a[href="/"],.site-header.mobile-menu-open .site-header__nav a[href="/feed.xml"] {{ display:flex; align-items:center; min-height:44px; padding:12px 14px; border-radius:10px; color:var(--nav-ink); font-size:14px; letter-spacing:.06em; }}
       .site-header.mobile-menu-open .site-header__search {{ position:absolute; top:calc(100% + 18px); left:calc(4vw + 9px); right:calc(4vw + 9px); z-index:81; display:block; margin:0; }}
       .site-header.mobile-menu-open .site-header__search input {{ width:100%; padding:11px 14px 11px 40px; border-radius:8px; font-size:16px; background:var(--dropdown-bg); }}
       .site-header.mobile-menu-open .site-header__search .icon {{ left:14px; opacity:1; }}
@@ -685,7 +686,7 @@ def main() -> None:
         <a href="/issues.html">期刊</a>
         <a class="active" href="/records.html">紀錄</a>
         <a href="/about.html">關於</a>
-        <a href="/rss.xml">rss</a>
+        <a href="/feed.xml">rss</a>
       </nav>
       <div class="site-header__actions">
         <form class="site-header__search" id="globalSearchForm" onsubmit="return false" role="search">

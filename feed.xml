@@ -3,7 +3,7 @@
   <channel>
     <title>CRIVU</title>
     <link>https://cbc688.com/</link>
-    <atom:link href="https://cbc688.com/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://cbc688.com/feed.xml" rel="self" type="application/rss+xml" />
     <description>CRIVU 收錄京劇、閱讀、語言史與個人生活的文章、期刊和專題紀錄。</description>
     <language>zh-Hant</language>
     <lastBuildDate>Thu, 23 Jul 2026 04:00:00 +0800</lastBuildDate>

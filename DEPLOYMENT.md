@@ -26,7 +26,7 @@
 
 ## Cloudflare Pages Build Settings
 - Root directory: `/Users/cbaic/Desktop/開發/網站/blog`
-- Build command: `node scripts/inject-build-version.js` (this also regenerates `rss.xml` automatically)
+- Build command: `node scripts/inject-build-version.js` (this also regenerates `feed.xml` automatically)
 - Build output directory: `.`
 - The build step must run in Cloudflare Pages so `__BUILD_VERSION__` placeholders are replaced during deployment.
 - Cloudflare Cache Rules for `/assets/*` must respect query strings; do not enable ignore-query-string behavior for asset caching.

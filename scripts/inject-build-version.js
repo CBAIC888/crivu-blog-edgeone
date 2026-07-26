@@ -24,7 +24,7 @@ const TARGETS = [
   path.join('functions', 'issues', '[id].js'),
 ];
 
-// Always regenerate rss.xml from the latest posts/posts.json before stamping
+// Always regenerate feed.xml from the latest posts/posts.json before stamping
 // the build version. This makes RSS self-heal on every deploy regardless of
 // which Cloudflare Pages build command is configured.
 try {

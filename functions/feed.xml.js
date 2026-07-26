@@ -1,25 +1,22 @@
-#!/usr/bin/env node
+/*
+ * Dynamic RSS feed served from the new canonical `/feed.xml` address.
+ *
+ * Cloudflare Pages's configured build step for this project does not actually
+ * run `node scripts/inject-build-version.js` (which would have regenerated
+ * `feed.xml` from `posts/posts.json` on every deploy). As a result, the static
+ * `feed.xml` committed to the repo became stale whenever a new post was
+ * published via CMS.
+ *
+ * This Pages Function serves `/feed.xml` dynamically by reading the current
+ * `posts/posts.json` and `posts/site.json` via the ASSETS binding, so the feed
+ * is always in sync with the latest content — no build step required.
+ */
 
-const fs = require('node:fs');
-const path = require('node:path');
+import { loadSiteBundle } from '../shared/site-pages.js';
 
-const ROOT = path.resolve(__dirname, '..');
 const SITE_ORIGIN = 'https://cbc688.com';
 const MAX_ITEMS = 30;
-
-const POSTS_FILE = path.join(ROOT, 'posts', 'posts.json');
-const RECORDS_FILE = path.join(ROOT, 'posts', 'records.json');
-const SITE_FILE = path.join(ROOT, 'posts', 'site.json');
-const RSS_FILE = path.join(ROOT, 'feed.xml');
 const FEATURED_RECORD_ID = 'world-word-exploration';
-
-const readJson = (file, fallback) => {
-  try {
-    return JSON.parse(fs.readFileSync(file, 'utf8'));
-  } catch {
-    return fallback;
-  }
-};
 
 const collapseWhitespace = (value) => String(value ?? '').replace(/\s+/g, ' ').trim();
 
@@ -54,7 +51,8 @@ const trim = (value, maxLength) => {
   return `${text.slice(0, Math.max(0, maxLength - 1)).trimEnd()}…`;
 };
 
-const articleUrl = (slug) => new URL(`/articles/${encodeURIComponent(String(slug || '').trim())}`, SITE_ORIGIN).toString();
+const articleUrl = (slug) =>
+  new URL(`/articles/${encodeURIComponent(String(slug || '').trim())}`, SITE_ORIGIN).toString();
 const recordUrl = (record) =>
   new URL(record.page || `/records/${encodeURIComponent(String(record.id || '').trim())}/`, SITE_ORIGIN).toString();
 
@@ -87,53 +85,55 @@ const pubDate = (date) => {
   return formatRfc822InBeijing(parsed);
 };
 
-const postsData = readJson(POSTS_FILE, { items: [] });
-const recordsData = readJson(RECORDS_FILE, { records: [] });
-const site = readJson(SITE_FILE, {});
-const posts = (Array.isArray(postsData.items) ? postsData.items : postsData)
-  .filter((post) => post?.published !== false)
-  .filter((post) => collapseWhitespace(post?.slug) && collapseWhitespace(post?.title))
-  .map((post) => ({ ...post, entryType: 'post' }));
-const record = (Array.isArray(recordsData.records) ? recordsData.records : []).find(
-  (item) => item?.published !== false && item?.id === FEATURED_RECORD_ID
-);
-const recordAlreadyListed = record && posts.some(
-  (post) =>
-    collapseWhitespace(post.page) === collapseWhitespace(record.page) ||
-    collapseWhitespace(post.slug) === collapseWhitespace(record.id)
-);
-const entries = [
-  ...posts,
-  ...(record && !recordAlreadyListed ? [{ ...record, entryType: 'record' }] : []),
-]
-  .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')))
-  .slice(0, MAX_ITEMS);
+const buildRss = ({ posts, records, site }) => {
+  const validPosts = posts
+    .filter((post) => post?.published !== false)
+    .filter((post) => collapseWhitespace(post?.slug) && collapseWhitespace(post?.title))
+    .map((post) => ({ ...post, entryType: 'post' }));
+  const record = records.find(
+    (item) => item?.published !== false && item?.id === FEATURED_RECORD_ID
+  );
+  const recordAlreadyListed = record && validPosts.some(
+    (post) =>
+      collapseWhitespace(post.page) === collapseWhitespace(record.page) ||
+      collapseWhitespace(post.slug) === collapseWhitespace(record.id)
+  );
+  const entries = [
+    ...validPosts,
+    ...(record && !recordAlreadyListed ? [{ ...record, entryType: 'record' }] : []),
+  ]
+    .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')))
+    .slice(0, MAX_ITEMS);
 
-const siteName = collapseWhitespace(site.siteName) || 'CRIVU';
-const siteDescription =
-  collapseWhitespace(site.siteDescription) ||
-  `${siteName} 收錄文章、期刊與專題紀錄。`;
-const lastBuildDate = entries[0]?.date ? pubDate(entries[0].date) : formatRfc822InBeijing(new Date());
+  const siteName = collapseWhitespace(site.siteName) || 'CRIVU';
+  const siteDescription =
+    collapseWhitespace(site.siteDescription) ||
+    `${siteName} 收錄文章、期刊與專題紀錄。`;
+  const lastBuildDate = entries[0]?.date
+    ? pubDate(entries[0].date)
+    : formatRfc822InBeijing(new Date());
 
-const items = entries
-  .map((entry) => {
-    const isRecord = entry.entryType === 'record';
-    const url = collapseWhitespace(entry.page)
-      ? new URL(entry.page, SITE_ORIGIN).toString()
-      : isRecord
-        ? recordUrl(entry)
-        : articleUrl(entry.slug);
-    const description = escapeXml(
-      trim(
-        stripMarkdown(entry.excerpt) ||
-        stripMarkdown(entry.summary) ||
-        stripMarkdown(entry.plainText) ||
-        stripMarkdown(entry.body),
-        180
-      )
-    );
-    const category = collapseWhitespace(entry.category || entry.issue || (isRecord ? '專題紀錄' : '文章'));
-    return `    <item>
+  const items = entries
+    .map((entry) => {
+      const isRecord = entry.entryType === 'record';
+      const url = collapseWhitespace(entry.page)
+        ? new URL(entry.page, SITE_ORIGIN).toString()
+        : isRecord
+          ? recordUrl(entry)
+          : articleUrl(entry.slug);
+      const description = escapeXml(
+        trim(
+          stripMarkdown(entry.excerpt) ||
+          stripMarkdown(entry.summary) ||
+          stripMarkdown(entry.plainText) ||
+          stripMarkdown(entry.body),
+          180
+        )
+      );
+      const category = collapseWhitespace(
+        entry.category || entry.issue || (isRecord ? '專題紀錄' : '文章')
+      );
+      return `    <item>
       <title>${escapeXml(entry.title)}</title>
       <link>${escapeXml(url)}</link>
       <guid isPermaLink="true">${escapeXml(url)}</guid>
@@ -142,10 +142,10 @@ const items = entries
       <category>${escapeXml(category)}</category>
       <description>${description}</description>
     </item>`;
-  })
-  .join('\n');
+    })
+    .join('\n');
 
-const rss = `<?xml version="1.0" encoding="UTF-8"?>
+  return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>${escapeXml(siteName)}</title>
@@ -158,6 +158,17 @@ ${items}
   </channel>
 </rss>
 `;
+};
 
-fs.writeFileSync(RSS_FILE, rss);
-process.stdout.write(`Generated feed.xml with ${entries.length} items\n`);
+export async function onRequest(context) {
+  const { posts, records, site } = await loadSiteBundle(context);
+  const xml = buildRss({ posts, records, site });
+  return new Response(xml, {
+    headers: {
+      'Content-Type': 'application/xml; charset=UTF-8',
+      // Let feed readers revalidate but allow cheap conditional caching.
+      'Cache-Control': 'public, max-age=0, must-revalidate',
+      'Access-Control-Allow-Origin': '*',
+    },
+  });
+}

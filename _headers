@@ -37,7 +37,7 @@
 /robots.txt
   Cache-Control: public, max-age=3600
 
-/rss.xml
+/feed.xml
   Cache-Control: public, max-age=3600
 
 /records/world-word-exploration/museum

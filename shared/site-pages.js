@@ -36,7 +36,7 @@ const DEFAULT_NAV = [
   { label: '期刊', href: '/issues.html' },
   { label: '紀錄', href: '/records.html' },
   { label: '關於', href: '/about.html' },
-  { label: 'rss', href: '/rss.xml' },
+  { label: 'rss', href: '/feed.xml' },
 ];
 
 const fetchStaticJson = async (context, pathname) => {
@@ -177,7 +177,7 @@ export const renderPageShell = ({
   <meta name="twitter:card" content="${twitterCard}" />
   <meta name="twitter:title" content="${escapeHtml(title)}" />
   <meta name="twitter:description" content="${escapeHtml(description)}" />
-  <link rel="alternate" type="application/rss+xml" title="${escapeHtml(siteName)} RSS" href="/rss.xml" />
+  <link rel="alternate" type="application/rss+xml" title="${escapeHtml(siteName)} RSS" href="/feed.xml" />
   <link rel="stylesheet" href="/assets/css/style.css?v=${BUILD_VERSION}" />
   <link rel="icon" href="${escapeHtml(favicon)}" type="image/png" />
   <script src="/assets/js/theme.js?v=${BUILD_VERSION}"></script>
