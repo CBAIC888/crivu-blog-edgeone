@@ -11,7 +11,7 @@ const POSTS_FILE = path.join(ROOT, 'posts', 'posts.json');
 const RECORDS_FILE = path.join(ROOT, 'posts', 'records.json');
 const SITE_FILE = path.join(ROOT, 'posts', 'site.json');
 const RSS_FILE = path.join(ROOT, 'rss.xml');
-const FEATURED_RECORD_ID = 'world-word-exploration';
+const FEATURED_RECORD_ID = 'world-word-history';
 
 const readJson = (file, fallback) => {
   try {

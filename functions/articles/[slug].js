@@ -186,6 +186,13 @@ export async function onRequest(context) {
   const origin = new URL(context.request.url).origin;
   const currentPath = new URL(context.request.url).pathname;
 
+  if (slug === 'world-word-exploration') {
+    return Response.redirect(
+      new URL('/records/world-word-history/', context.request.url).toString(),
+      301
+    );
+  }
+
   const [postsData, site] = await Promise.all([
     fetchStaticJson(context, '/posts/posts.json'),
     fetchStaticJson(context, '/posts/site.json').catch(() => ({})),

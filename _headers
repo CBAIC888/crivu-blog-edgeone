@@ -40,7 +40,7 @@
 /rss.xml
   Cache-Control: public, max-age=3600
 
-/records/world-word-exploration/museum
+/records/world-word-history/museum
   ! X-Frame-Options
   Content-Security-Policy: frame-ancestors 'self'
   Cache-Control: no-store, no-cache, must-revalidate, max-age=0

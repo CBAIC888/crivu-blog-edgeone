@@ -183,7 +183,7 @@ const RECORD_ITEM_FIELDS = [
     name: 'page',
     widget: 'string',
     required: false,
-    hint: '選填。若此紀錄由獨立 HTML 承載，填入站內入口，例如 /records/world-word-exploration/。',
+    hint: '選填。若此紀錄由獨立 HTML 承載，填入站內入口，例如 /records/world-word-history/。',
     pattern: ['^/.*$', '獨立專題頁必須是以 / 開頭的站內路徑'],
   },
   {

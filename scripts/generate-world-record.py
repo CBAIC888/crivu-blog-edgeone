@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = Path("/Users/cbaic/Desktop/自媒體文件/世界專題")
 MANUSCRIPT = Path("/tmp/world-record.93MVYs/總稿.txt")
 MUSEUM = ROOT / "private/7a531e1b4bcab1950e2214b8/index.html"
-OUTPUT = ROOT / "records/world-word-exploration/index.html"
+OUTPUT = ROOT / "records/world-word-history/index.html"
 CARD_COVER = ROOT / "assets/img/uploads/20260723/world-word-exploration-cover.png"
 
 
@@ -355,7 +355,7 @@ def main() -> None:
   <meta property="og:type" content="article">
   <meta property="og:title" content="「世界」一词真的是佛教带进汉语的吗？">
   <meta property="og:description" content="从先秦两汉的旧字、东汉译经与佛教宇宙论出发，追索「世界」一词近两千年的形成、传播与意义变化。">
-  <meta property="og:url" content="https://cbc688.com/records/world-word-exploration/">
+  <meta property="og:url" content="https://cbc688.com/records/world-word-history/">
   <meta property="og:site_name" content="CRIVU">
   <meta property="og:image" content="https://cbc688.com/assets/img/uploads/20260723/world-word-exploration-cover.png">
   <meta name="twitter:card" content="summary">
@@ -363,7 +363,7 @@ def main() -> None:
   <meta name="twitter:description" content="从先秦两汉的旧字、东汉译经与佛教宇宙论出发，追索「世界」一词近两千年的形成、传播与意义变化。">
   <meta name="twitter:image" content="https://cbc688.com/assets/img/uploads/20260723/world-word-exploration-cover.png">
   <title>「世界」一词真的是佛教带进汉语的吗？ · CRIVU</title>
-  <link rel="canonical" href="https://cbc688.com/records/world-word-exploration/">
+  <link rel="canonical" href="https://cbc688.com/records/world-word-history/">
   <link rel="alternate" type="application/rss+xml" title="CRIVU RSS" href="/rss.xml">
   <script>
     (() => {{

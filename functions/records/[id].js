@@ -59,6 +59,14 @@ const renderPhoto = (photo, index) => {
 export async function onRequest(context) {
   const data = await loadSiteBundle(context);
   const id = normalizeText(context.params?.id, { allowPlaceholder: true });
+
+  if (id === 'world-word-exploration') {
+    return Response.redirect(
+      new URL('/records/world-word-history/', context.request.url).toString(),
+      301
+    );
+  }
+
   const record = data.records.find((item) => String(item.id) === id);
 
   if (!record) {

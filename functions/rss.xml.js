@@ -16,7 +16,7 @@ import { loadSiteBundle } from '../shared/site-pages.js';
 
 const SITE_ORIGIN = 'https://cbc688.com';
 const MAX_ITEMS = 30;
-const FEATURED_RECORD_ID = 'world-word-exploration';
+const FEATURED_RECORD_ID = 'world-word-history';
 
 const collapseWhitespace = (value) => String(value ?? '').replace(/\s+/g, ' ').trim();
 
